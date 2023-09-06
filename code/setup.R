@@ -278,6 +278,9 @@ long <- delta %>%
                        'DC_utah_untreated_baking' = 'Baking-Not Baking',
                        'DO_utah_untreated_baking' = 'Baking-Not Baking', 
                        'DC_utah_treated_untreated' = 'Treated-Untreated', 
-                       'DO_utah_treated_untreated' = 'Treated-Untreated'
+                       'DO_utah_treated_untreated' = 'Treated-Untreated', 
+                       'DC_utah_treated_baking' = 'Baking-Not Baking, Treated', 
+                       'DO_utah_treated_baking' = 'Baking-Not Baking, Treated',
                         ) 
          )
+write.csv(long, file = "long.csv")
