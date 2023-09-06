@@ -8,8 +8,6 @@ df <- wide %>%
                names_to = 'type', 
                values_to = 'value')
 
-df$lab = df$iso = df$treated = df$temp = character(nrow(df))
-
 df <- df%>% 
   mutate(lab = ifelse(str_detect(type, 'utah'), 'UU', 'DPAA'), 
          iso = ifelse(str_detect(type, 'd13c'), 'C', 'O'), 
@@ -20,9 +18,9 @@ df <- df%>%
          d18O = ifelse(str_detect(type, 'd18o'), value, NA), 
          d13C = ifelse(str_detect(type, 'd13c'), value, NA)
          ) %>%
-  rename(sample = Sample) %>% 
-  select(-c(value))
+  rename(sample = Sample)
 
+write.csv(df, file = "singlevalues.csv")
 # First looks at sample values --------------------------------------------
 df %>% group_by(sample) %>% 
   summarise(Count= n(),Mean=mean(d13C, na.rm = T),SD=sd(d13C, na.rm = T))
@@ -262,7 +260,9 @@ long <- delta %>%
                        'DC_lab_treated' = 'Treated', 
                        'DO_lab_treated' = 'Treated', 
                        'DC_lab_untreated_30' = 'Untreated (30)', #something's up with this one...
-                       'DO_lab_untreated_30' = 'Untreated (30)', 
+                       'DO_lab_untreated_30' = 'Untreated (30)',
+                       'DC_lab_untreated_50' = 'Untreated (50)', 
+                       'DO_lab_untreated_50' = 'Untreated (50)',
                        
                        'DC_dpaa_treated_50v30' = '50-30, Treated',
                        'DO_dpaa_treated_50v30' = '50-30, Treated',
@@ -278,6 +278,9 @@ long <- delta %>%
                        'DC_utah_untreated_baking' = 'Baking-Not Baking',
                        'DO_utah_untreated_baking' = 'Baking-Not Baking', 
                        'DC_utah_treated_untreated' = 'Treated-Untreated', 
-                       'DO_utah_treated_untreated' = 'Treated-Untreated'
+                       'DO_utah_treated_untreated' = 'Treated-Untreated', 
+                       'DC_utah_treated_baking' = 'Baking-Not Baking, Treated', 
+                       'DO_utah_treated_baking' = 'Baking-Not Baking, Treated',
                         ) 
          )
+write.csv(long, file = "delta.csv")

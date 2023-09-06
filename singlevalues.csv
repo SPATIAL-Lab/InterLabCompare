@@ -1,0 +1,201 @@
+"","sample","type","value","lab","iso","treated","temp","baked","d18O","d13C"
+"1","FE 01","d13c_utah_untreated",-9.37,"UU","C",FALSE,NA,FALSE,NA,-9.37
+"2","FE 01","d13c_utah_untreated_baked_30",-9.4,"UU","C",FALSE,"30",TRUE,NA,-9.4
+"3","FE 01","d13c_dpaa_untreated",-9.48,"DPAA","C",FALSE,NA,FALSE,NA,-9.48
+"4","FE 01","d13c_dpaa_untreated_baked",-9.31,"DPAA","C",FALSE,NA,TRUE,NA,-9.31
+"5","FE 01","d13c_dpaa_untreated_baked_50",-9.59,"DPAA","C",FALSE,"50",TRUE,NA,-9.59
+"6","FE 01","d18o_utah_untreated",-0.69,"UU","O",FALSE,NA,FALSE,-0.69,NA
+"7","FE 01","d18o_utah_untreated_baked_30",-1.59,"UU","O",FALSE,"30",TRUE,-1.59,NA
+"8","FE 01","d18o_dpaa_untreated",-0.88,"DPAA","O",FALSE,NA,FALSE,-0.88,NA
+"9","FE 01","d18o_dpaa_untreated_baked",-1.37,"DPAA","O",FALSE,NA,TRUE,-1.37,NA
+"10","FE 01","d18o_dpaa_untreated_baked_50",0.02,"DPAA","O",FALSE,"50",TRUE,0.02,NA
+"11","FE 01","d13c_utah_treated",-9.64,"UU","C",TRUE,NA,FALSE,NA,-9.64
+"12","FE 01","d13c_utah_treated_baked_30",-9.73,"UU","C",TRUE,"30",TRUE,NA,-9.73
+"13","FE 01","d13c_dpaa_treated",-9.12,"DPAA","C",TRUE,NA,FALSE,NA,-9.12
+"14","FE 01","d13c_dpaa_treated_baked",-9.26,"DPAA","C",TRUE,NA,TRUE,NA,-9.26
+"15","FE 01","d13c_dpaa_treated_baked_50",-9.52,"DPAA","C",TRUE,"50",TRUE,NA,-9.52
+"16","FE 01","d18o_utah_treated",-0.16,"UU","O",TRUE,NA,FALSE,-0.16,NA
+"17","FE 01","d18o_utah_treated_baked_30",-0.99,"UU","O",TRUE,"30",TRUE,-0.99,NA
+"18","FE 01","d18o_dpaa_treated",0.54,"DPAA","O",TRUE,NA,FALSE,0.54,NA
+"19","FE 01","d18o_dpaa_treated_baked",-0.48,"DPAA","O",TRUE,NA,TRUE,-0.48,NA
+"20","FE 01","d18o_dpaa_treated_baked_50",1.25,"DPAA","O",TRUE,"50",TRUE,1.25,NA
+"21","FE 02","d13c_utah_untreated",-15.29,"UU","C",FALSE,NA,FALSE,NA,-15.29
+"22","FE 02","d13c_utah_untreated_baked_30",-15.52,"UU","C",FALSE,"30",TRUE,NA,-15.52
+"23","FE 02","d13c_dpaa_untreated",-15.1,"DPAA","C",FALSE,NA,FALSE,NA,-15.1
+"24","FE 02","d13c_dpaa_untreated_baked",-15.15,"DPAA","C",FALSE,NA,TRUE,NA,-15.15
+"25","FE 02","d13c_dpaa_untreated_baked_50",-15.36,"DPAA","C",FALSE,"50",TRUE,NA,-15.36
+"26","FE 02","d18o_utah_untreated",-7.27,"UU","O",FALSE,NA,FALSE,-7.27,NA
+"27","FE 02","d18o_utah_untreated_baked_30",-7.84,"UU","O",FALSE,"30",TRUE,-7.84,NA
+"28","FE 02","d18o_dpaa_untreated",-7.06,"DPAA","O",FALSE,NA,FALSE,-7.06,NA
+"29","FE 02","d18o_dpaa_untreated_baked",-7.23,"DPAA","O",FALSE,NA,TRUE,-7.23,NA
+"30","FE 02","d18o_dpaa_untreated_baked_50",-5.62,"DPAA","O",FALSE,"50",TRUE,-5.62,NA
+"31","FE 02","d13c_utah_treated",-15.99,"UU","C",TRUE,NA,FALSE,NA,-15.99
+"32","FE 02","d13c_utah_treated_baked_30",-16.03,"UU","C",TRUE,"30",TRUE,NA,-16.03
+"33","FE 02","d13c_dpaa_treated",-15.12,"DPAA","C",TRUE,NA,FALSE,NA,-15.12
+"34","FE 02","d13c_dpaa_treated_baked",-15.03,"DPAA","C",TRUE,NA,TRUE,NA,-15.03
+"35","FE 02","d13c_dpaa_treated_baked_50",-15.5,"DPAA","C",TRUE,"50",TRUE,NA,-15.5
+"36","FE 02","d18o_utah_treated",-6.7,"UU","O",TRUE,NA,FALSE,-6.7,NA
+"37","FE 02","d18o_utah_treated_baked_30",-7.42,"UU","O",TRUE,"30",TRUE,-7.42,NA
+"38","FE 02","d18o_dpaa_treated",-5.77,"DPAA","O",TRUE,NA,FALSE,-5.77,NA
+"39","FE 02","d18o_dpaa_treated_baked",-5.27,"DPAA","O",TRUE,NA,TRUE,-5.27,NA
+"40","FE 02","d18o_dpaa_treated_baked_50",-4.2,"DPAA","O",TRUE,"50",TRUE,-4.2,NA
+"41","FE 03","d13c_utah_untreated",-8.26,"UU","C",FALSE,NA,FALSE,NA,-8.26
+"42","FE 03","d13c_utah_untreated_baked_30",-8.39,"UU","C",FALSE,"30",TRUE,NA,-8.39
+"43","FE 03","d13c_dpaa_untreated",-8.28,"DPAA","C",FALSE,NA,FALSE,NA,-8.28
+"44","FE 03","d13c_dpaa_untreated_baked",-8.31,"DPAA","C",FALSE,NA,TRUE,NA,-8.31
+"45","FE 03","d13c_dpaa_untreated_baked_50",-8.49,"DPAA","C",FALSE,"50",TRUE,NA,-8.49
+"46","FE 03","d18o_utah_untreated",-3.43,"UU","O",FALSE,NA,FALSE,-3.43,NA
+"47","FE 03","d18o_utah_untreated_baked_30",-4.08,"UU","O",FALSE,"30",TRUE,-4.08,NA
+"48","FE 03","d18o_dpaa_untreated",-2.47,"DPAA","O",FALSE,NA,FALSE,-2.47,NA
+"49","FE 03","d18o_dpaa_untreated_baked",-3.16,"DPAA","O",FALSE,NA,TRUE,-3.16,NA
+"50","FE 03","d18o_dpaa_untreated_baked_50",-1.86,"DPAA","O",FALSE,"50",TRUE,-1.86,NA
+"51","FE 03","d13c_utah_treated",-8.79,"UU","C",TRUE,NA,FALSE,NA,-8.79
+"52","FE 03","d13c_utah_treated_baked_30",-8.89,"UU","C",TRUE,"30",TRUE,NA,-8.89
+"53","FE 03","d13c_dpaa_treated",-8.31,"DPAA","C",TRUE,NA,FALSE,NA,-8.31
+"54","FE 03","d13c_dpaa_treated_baked",-8.18,"DPAA","C",TRUE,NA,TRUE,NA,-8.18
+"55","FE 03","d13c_dpaa_treated_baked_50",-8.35,"DPAA","C",TRUE,"50",TRUE,NA,-8.35
+"56","FE 03","d18o_utah_treated",-2.58,"UU","O",TRUE,NA,FALSE,-2.58,NA
+"57","FE 03","d18o_utah_treated_baked_30",-3.19,"UU","O",TRUE,"30",TRUE,-3.19,NA
+"58","FE 03","d18o_dpaa_treated",-1.06,"DPAA","O",TRUE,NA,FALSE,-1.06,NA
+"59","FE 03","d18o_dpaa_treated_baked",-2.36,"DPAA","O",TRUE,NA,TRUE,-2.36,NA
+"60","FE 03","d18o_dpaa_treated_baked_50",-0.58,"DPAA","O",TRUE,"50",TRUE,-0.58,NA
+"61","FE 04","d13c_utah_untreated",-10.62,"UU","C",FALSE,NA,FALSE,NA,-10.62
+"62","FE 04","d13c_utah_untreated_baked_30",-10.71,"UU","C",FALSE,"30",TRUE,NA,-10.71
+"63","FE 04","d13c_dpaa_untreated",-10.78,"DPAA","C",FALSE,NA,FALSE,NA,-10.78
+"64","FE 04","d13c_dpaa_untreated_baked",-10.62,"DPAA","C",FALSE,NA,TRUE,NA,-10.62
+"65","FE 04","d13c_dpaa_untreated_baked_50",-11.39,"DPAA","C",FALSE,"50",TRUE,NA,-11.39
+"66","FE 04","d18o_utah_untreated",-1.15,"UU","O",FALSE,NA,FALSE,-1.15,NA
+"67","FE 04","d18o_utah_untreated_baked_30",-1.8,"UU","O",FALSE,"30",TRUE,-1.8,NA
+"68","FE 04","d18o_dpaa_untreated",-1.71,"DPAA","O",FALSE,NA,FALSE,-1.71,NA
+"69","FE 04","d18o_dpaa_untreated_baked",-1.82,"DPAA","O",FALSE,NA,TRUE,-1.82,NA
+"70","FE 04","d18o_dpaa_untreated_baked_50",-1.12,"DPAA","O",FALSE,"50",TRUE,-1.12,NA
+"71","FE 04","d13c_utah_treated",-10.89,"UU","C",TRUE,NA,FALSE,NA,-10.89
+"72","FE 04","d13c_utah_treated_baked_30",-10.99,"UU","C",TRUE,"30",TRUE,NA,-10.99
+"73","FE 04","d13c_dpaa_treated",-10.5,"DPAA","C",TRUE,NA,FALSE,NA,-10.5
+"74","FE 04","d13c_dpaa_treated_baked",-10.47,"DPAA","C",TRUE,NA,TRUE,NA,-10.47
+"75","FE 04","d13c_dpaa_treated_baked_50",-10.79,"DPAA","C",TRUE,"50",TRUE,NA,-10.79
+"76","FE 04","d18o_utah_treated",-0.54,"UU","O",TRUE,NA,FALSE,-0.54,NA
+"77","FE 04","d18o_utah_treated_baked_30",-1.04,"UU","O",TRUE,"30",TRUE,-1.04,NA
+"78","FE 04","d18o_dpaa_treated",0.05,"DPAA","O",TRUE,NA,FALSE,0.05,NA
+"79","FE 04","d18o_dpaa_treated_baked",-1.22,"DPAA","O",TRUE,NA,TRUE,-1.22,NA
+"80","FE 04","d18o_dpaa_treated_baked_50",0.84,"DPAA","O",TRUE,"50",TRUE,0.84,NA
+"81","FE 05","d13c_utah_untreated",-15.75,"UU","C",FALSE,NA,FALSE,NA,-15.75
+"82","FE 05","d13c_utah_untreated_baked_30",-15.79,"UU","C",FALSE,"30",TRUE,NA,-15.79
+"83","FE 05","d13c_dpaa_untreated",-15.95,"DPAA","C",FALSE,NA,FALSE,NA,-15.95
+"84","FE 05","d13c_dpaa_untreated_baked",-15.8,"DPAA","C",FALSE,NA,TRUE,NA,-15.8
+"85","FE 05","d13c_dpaa_untreated_baked_50",-16.63,"DPAA","C",FALSE,"50",TRUE,NA,-16.63
+"86","FE 05","d18o_utah_untreated",-5.38,"UU","O",FALSE,NA,FALSE,-5.38,NA
+"87","FE 05","d18o_utah_untreated_baked_30",-6.11,"UU","O",FALSE,"30",TRUE,-6.11,NA
+"88","FE 05","d18o_dpaa_untreated",-5.57,"DPAA","O",FALSE,NA,FALSE,-5.57,NA
+"89","FE 05","d18o_dpaa_untreated_baked",-6.28,"DPAA","O",FALSE,NA,TRUE,-6.28,NA
+"90","FE 05","d18o_dpaa_untreated_baked_50",-5.73,"DPAA","O",FALSE,"50",TRUE,-5.73,NA
+"91","FE 05","d13c_utah_treated",-16.14,"UU","C",TRUE,NA,FALSE,NA,-16.14
+"92","FE 05","d13c_utah_treated_baked_30",-16.23,"UU","C",TRUE,"30",TRUE,NA,-16.23
+"93","FE 05","d13c_dpaa_treated",-15.38,"DPAA","C",TRUE,NA,FALSE,NA,-15.38
+"94","FE 05","d13c_dpaa_treated_baked",-15.62,"DPAA","C",TRUE,NA,TRUE,NA,-15.62
+"95","FE 05","d13c_dpaa_treated_baked_50",-15.95,"DPAA","C",TRUE,"50",TRUE,NA,-15.95
+"96","FE 05","d18o_utah_treated",-5.04,"UU","O",TRUE,NA,FALSE,-5.04,NA
+"97","FE 05","d18o_utah_treated_baked_30",-5.32,"UU","O",TRUE,"30",TRUE,-5.32,NA
+"98","FE 05","d18o_dpaa_treated",-4,"DPAA","O",TRUE,NA,FALSE,-4,NA
+"99","FE 05","d18o_dpaa_treated_baked",-4.73,"DPAA","O",TRUE,NA,TRUE,-4.73,NA
+"100","FE 05","d18o_dpaa_treated_baked_50",-3.17,"DPAA","O",TRUE,"50",TRUE,-3.17,NA
+"101","FE 06","d13c_utah_untreated",-13.68,"UU","C",FALSE,NA,FALSE,NA,-13.68
+"102","FE 06","d13c_utah_untreated_baked_30",-13.73,"UU","C",FALSE,"30",TRUE,NA,-13.73
+"103","FE 06","d13c_dpaa_untreated",-13.54,"DPAA","C",FALSE,NA,FALSE,NA,-13.54
+"104","FE 06","d13c_dpaa_untreated_baked",-13.54,"DPAA","C",FALSE,NA,TRUE,NA,-13.54
+"105","FE 06","d13c_dpaa_untreated_baked_50",-13.73,"DPAA","C",FALSE,"50",TRUE,NA,-13.73
+"106","FE 06","d18o_utah_untreated",-3.79,"UU","O",FALSE,NA,FALSE,-3.79,NA
+"107","FE 06","d18o_utah_untreated_baked_30",-4.44,"UU","O",FALSE,"30",TRUE,-4.44,NA
+"108","FE 06","d18o_dpaa_untreated",-3.75,"DPAA","O",FALSE,NA,FALSE,-3.75,NA
+"109","FE 06","d18o_dpaa_untreated_baked",-3.77,"DPAA","O",FALSE,NA,TRUE,-3.77,NA
+"110","FE 06","d18o_dpaa_untreated_baked_50",-2.85,"DPAA","O",FALSE,"50",TRUE,-2.85,NA
+"111","FE 06","d13c_utah_treated",-14.33,"UU","C",TRUE,NA,FALSE,NA,-14.33
+"112","FE 06","d13c_utah_treated_baked_30",-14.38,"UU","C",TRUE,"30",TRUE,NA,-14.38
+"113","FE 06","d13c_dpaa_treated",-13.55,"DPAA","C",TRUE,NA,FALSE,NA,-13.55
+"114","FE 06","d13c_dpaa_treated_baked",-13.63,"DPAA","C",TRUE,NA,TRUE,NA,-13.63
+"115","FE 06","d13c_dpaa_treated_baked_50",-13.84,"DPAA","C",TRUE,"50",TRUE,NA,-13.84
+"116","FE 06","d18o_utah_treated",-3.49,"UU","O",TRUE,NA,FALSE,-3.49,NA
+"117","FE 06","d18o_utah_treated_baked_30",-3.83,"UU","O",TRUE,"30",TRUE,-3.83,NA
+"118","FE 06","d18o_dpaa_treated",-1.89,"DPAA","O",TRUE,NA,FALSE,-1.89,NA
+"119","FE 06","d18o_dpaa_treated_baked",-2.68,"DPAA","O",TRUE,NA,TRUE,-2.68,NA
+"120","FE 06","d18o_dpaa_treated_baked_50",-1.17,"DPAA","O",TRUE,"50",TRUE,-1.17,NA
+"121","FE 07","d13c_utah_untreated",-10.72,"UU","C",FALSE,NA,FALSE,NA,-10.72
+"122","FE 07","d13c_utah_untreated_baked_30",-10.78,"UU","C",FALSE,"30",TRUE,NA,-10.78
+"123","FE 07","d13c_dpaa_untreated",-10.96,"DPAA","C",FALSE,NA,FALSE,NA,-10.96
+"124","FE 07","d13c_dpaa_untreated_baked",-10.76,"DPAA","C",FALSE,NA,TRUE,NA,-10.76
+"125","FE 07","d13c_dpaa_untreated_baked_50",-11.27,"DPAA","C",FALSE,"50",TRUE,NA,-11.27
+"126","FE 07","d18o_utah_untreated",0.9,"UU","O",FALSE,NA,FALSE,0.9,NA
+"127","FE 07","d18o_utah_untreated_baked_30",0.04,"UU","O",FALSE,"30",TRUE,0.04,NA
+"128","FE 07","d18o_dpaa_untreated",0.71,"DPAA","O",FALSE,NA,FALSE,0.71,NA
+"129","FE 07","d18o_dpaa_untreated_baked",-0.15,"DPAA","O",FALSE,NA,TRUE,-0.15,NA
+"130","FE 07","d18o_dpaa_untreated_baked_50",0.59,"DPAA","O",FALSE,"50",TRUE,0.59,NA
+"131","FE 07","d13c_utah_treated",-10.98,"UU","C",TRUE,NA,FALSE,NA,-10.98
+"132","FE 07","d13c_utah_treated_baked_30",-11.09,"UU","C",TRUE,"30",TRUE,NA,-11.09
+"133","FE 07","d13c_dpaa_treated",-10.53,"DPAA","C",TRUE,NA,FALSE,NA,-10.53
+"134","FE 07","d13c_dpaa_treated_baked",-10.65,"DPAA","C",TRUE,NA,TRUE,NA,-10.65
+"135","FE 07","d13c_dpaa_treated_baked_50",-10.79,"DPAA","C",TRUE,"50",TRUE,NA,-10.79
+"136","FE 07","d18o_utah_treated",1.46,"UU","O",TRUE,NA,FALSE,1.46,NA
+"137","FE 07","d18o_utah_treated_baked_30",0.83,"UU","O",TRUE,"30",TRUE,0.83,NA
+"138","FE 07","d18o_dpaa_treated",1.6,"DPAA","O",TRUE,NA,FALSE,1.6,NA
+"139","FE 07","d18o_dpaa_treated_baked",0.97,"DPAA","O",TRUE,NA,TRUE,0.97,NA
+"140","FE 07","d18o_dpaa_treated_baked_50",2.2,"DPAA","O",TRUE,"50",TRUE,2.2,NA
+"141","FE 08","d13c_utah_untreated",-9.52,"UU","C",FALSE,NA,FALSE,NA,-9.52
+"142","FE 08","d13c_utah_untreated_baked_30",-9.49,"UU","C",FALSE,"30",TRUE,NA,-9.49
+"143","FE 08","d13c_dpaa_untreated",-9.53,"DPAA","C",FALSE,NA,FALSE,NA,-9.53
+"144","FE 08","d13c_dpaa_untreated_baked",-9.38,"DPAA","C",FALSE,NA,TRUE,NA,-9.38
+"145","FE 08","d13c_dpaa_untreated_baked_50",-9.6,"DPAA","C",FALSE,"50",TRUE,NA,-9.6
+"146","FE 08","d18o_utah_untreated",0.08,"UU","O",FALSE,NA,FALSE,0.08,NA
+"147","FE 08","d18o_utah_untreated_baked_30",-0.79,"UU","O",FALSE,"30",TRUE,-0.79,NA
+"148","FE 08","d18o_dpaa_untreated",0.42,"DPAA","O",FALSE,NA,FALSE,0.42,NA
+"149","FE 08","d18o_dpaa_untreated_baked",-0.35,"DPAA","O",FALSE,NA,TRUE,-0.35,NA
+"150","FE 08","d18o_dpaa_untreated_baked_50",1.23,"DPAA","O",FALSE,"50",TRUE,1.23,NA
+"151","FE 08","d13c_utah_treated",-9.76,"UU","C",TRUE,NA,FALSE,NA,-9.76
+"152","FE 08","d13c_utah_treated_baked_30",-9.91,"UU","C",TRUE,"30",TRUE,NA,-9.91
+"153","FE 08","d13c_dpaa_treated",-9.35,"DPAA","C",TRUE,NA,FALSE,NA,-9.35
+"154","FE 08","d13c_dpaa_treated_baked",-9.39,"DPAA","C",TRUE,NA,TRUE,NA,-9.39
+"155","FE 08","d13c_dpaa_treated_baked_50",-9.35,"DPAA","C",TRUE,"50",TRUE,NA,-9.35
+"156","FE 08","d18o_utah_treated",-0.31,"UU","O",TRUE,NA,FALSE,-0.31,NA
+"157","FE 08","d18o_utah_treated_baked_30",-0.4,"UU","O",TRUE,"30",TRUE,-0.4,NA
+"158","FE 08","d18o_dpaa_treated",1.34,"DPAA","O",TRUE,NA,FALSE,1.34,NA
+"159","FE 08","d18o_dpaa_treated_baked",-0.22,"DPAA","O",TRUE,NA,TRUE,-0.22,NA
+"160","FE 08","d18o_dpaa_treated_baked_50",2.2,"DPAA","O",TRUE,"50",TRUE,2.2,NA
+"161","TIE","d13c_utah_untreated",-15.05,"UU","C",FALSE,NA,FALSE,NA,-15.05
+"162","TIE","d13c_utah_untreated_baked_30",-15.14,"UU","C",FALSE,"30",TRUE,NA,-15.14
+"163","TIE","d13c_dpaa_untreated",-15.04,"DPAA","C",FALSE,NA,FALSE,NA,-15.04
+"164","TIE","d13c_dpaa_untreated_baked",-14.89,"DPAA","C",FALSE,NA,TRUE,NA,-14.89
+"165","TIE","d13c_dpaa_untreated_baked_50",-15.04,"DPAA","C",FALSE,"50",TRUE,NA,-15.04
+"166","TIE","d18o_utah_untreated",-8.05,"UU","O",FALSE,NA,FALSE,-8.05,NA
+"167","TIE","d18o_utah_untreated_baked_30",-8.55,"UU","O",FALSE,"30",TRUE,-8.55,NA
+"168","TIE","d18o_dpaa_untreated",-6.86,"DPAA","O",FALSE,NA,FALSE,-6.86,NA
+"169","TIE","d18o_dpaa_untreated_baked",-8.14,"DPAA","O",FALSE,NA,TRUE,-8.14,NA
+"170","TIE","d18o_dpaa_untreated_baked_50",-6.91,"DPAA","O",FALSE,"50",TRUE,-6.91,NA
+"171","TIE","d13c_utah_treated",-15.2,"UU","C",TRUE,NA,FALSE,NA,-15.2
+"172","TIE","d13c_utah_treated_baked_30",-15.31,"UU","C",TRUE,"30",TRUE,NA,-15.31
+"173","TIE","d13c_dpaa_treated",-14.81,"DPAA","C",TRUE,NA,FALSE,NA,-14.81
+"174","TIE","d13c_dpaa_treated_baked",-14.65,"DPAA","C",TRUE,NA,TRUE,NA,-14.65
+"175","TIE","d13c_dpaa_treated_baked_50",-15.3,"DPAA","C",TRUE,"50",TRUE,NA,-15.3
+"176","TIE","d18o_utah_treated",-7.76,"UU","O",TRUE,NA,FALSE,-7.76,NA
+"177","TIE","d18o_utah_treated_baked_30",-8.27,"UU","O",TRUE,"30",TRUE,-8.27,NA
+"178","TIE","d18o_dpaa_treated",-6.15,"DPAA","O",TRUE,NA,FALSE,-6.15,NA
+"179","TIE","d18o_dpaa_treated_baked",-6.22,"DPAA","O",TRUE,NA,TRUE,-6.22,NA
+"180","TIE","d18o_dpaa_treated_baked_50",-6.9,"DPAA","O",TRUE,"50",TRUE,-6.9,NA
+"181","BOO-11","d13c_utah_untreated",-14.46,"UU","C",FALSE,NA,FALSE,NA,-14.46
+"182","BOO-11","d13c_utah_untreated_baked_30",-14.42,"UU","C",FALSE,"30",TRUE,NA,-14.42
+"183","BOO-11","d13c_dpaa_untreated",-14.31,"DPAA","C",FALSE,NA,FALSE,NA,-14.31
+"184","BOO-11","d13c_dpaa_untreated_baked",-14.32,"DPAA","C",FALSE,NA,TRUE,NA,-14.32
+"185","BOO-11","d13c_dpaa_untreated_baked_50",-14.68,"DPAA","C",FALSE,"50",TRUE,NA,-14.68
+"186","BOO-11","d18o_utah_untreated",-7.05,"UU","O",FALSE,NA,FALSE,-7.05,NA
+"187","BOO-11","d18o_utah_untreated_baked_30",-8.3,"UU","O",FALSE,"30",TRUE,-8.3,NA
+"188","BOO-11","d18o_dpaa_untreated",-6.28,"DPAA","O",FALSE,NA,FALSE,-6.28,NA
+"189","BOO-11","d18o_dpaa_untreated_baked",-6.92,"DPAA","O",FALSE,NA,TRUE,-6.92,NA
+"190","BOO-11","d18o_dpaa_untreated_baked_50",-4.63,"DPAA","O",FALSE,"50",TRUE,-4.63,NA
+"191","BOO-11","d13c_utah_treated",-15.16,"UU","C",TRUE,NA,FALSE,NA,-15.16
+"192","BOO-11","d13c_utah_treated_baked_30",-15.05,"UU","C",TRUE,"30",TRUE,NA,-15.05
+"193","BOO-11","d13c_dpaa_treated",-14.16,"DPAA","C",TRUE,NA,FALSE,NA,-14.16
+"194","BOO-11","d13c_dpaa_treated_baked",-14.19,"DPAA","C",TRUE,NA,TRUE,NA,-14.19
+"195","BOO-11","d13c_dpaa_treated_baked_50",-14.7,"DPAA","C",TRUE,"50",TRUE,NA,-14.7
+"196","BOO-11","d18o_utah_treated",-7.42,"UU","O",TRUE,NA,FALSE,-7.42,NA
+"197","BOO-11","d18o_utah_treated_baked_30",-8.06,"UU","O",TRUE,"30",TRUE,-8.06,NA
+"198","BOO-11","d18o_dpaa_treated",-5.89,"DPAA","O",TRUE,NA,FALSE,-5.89,NA
+"199","BOO-11","d18o_dpaa_treated_baked",-6.67,"DPAA","O",TRUE,NA,TRUE,-6.67,NA
+"200","BOO-11","d18o_dpaa_treated_baked_50",-3.84,"DPAA","O",TRUE,"50",TRUE,-3.84,NA
