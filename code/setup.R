@@ -259,10 +259,10 @@ long <- delta %>%
                        'DO_lab_untreated' = 'Untreated', 
                        'DC_lab_treated' = 'Treated', 
                        'DO_lab_treated' = 'Treated', 
-                       'DC_lab_untreated_30' = 'Untreated (30)', #something's up with this one...
-                       'DO_lab_untreated_30' = 'Untreated (30)',
-                       'DC_lab_untreated_50' = 'Untreated (50)', 
-                       'DO_lab_untreated_50' = 'Untreated (50)',
+                       'DC_lab_untreated_30' = 'Untreated, Baked, 30 Rxn Temp', #something's up with this one...
+                       'DO_lab_untreated_30' = 'Untreated, Baked, 30 Rxn Temp',
+                       'DC_lab_untreated_50' = 'Untreated, 50 Rxn Temp', 
+                       'DO_lab_untreated_50' = 'Untreated, 50 Rxn Temp',
                        
                        'DC_dpaa_treated_50v30' = '50-30, Treated',
                        'DO_dpaa_treated_50v30' = '50-30, Treated',
@@ -280,7 +280,7 @@ long <- delta %>%
                        'DC_utah_treated_untreated' = 'Treated-Untreated', 
                        'DO_utah_treated_untreated' = 'Treated-Untreated', 
                        'DC_utah_treated_baking' = 'Baking-Not Baking, Treated', 
-                       'DO_utah_treated_baking' = 'Baking-Not Baking, Treated',
+                       'DO_utah_treated_baking' = 'Baking-Not Baking, Treated'
                         ) 
          )
 
