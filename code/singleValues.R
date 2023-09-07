@@ -4,6 +4,7 @@ delta <- read.csv('delta.csv')
 sv <- read.csv('singlevalues.csv')
 #how do the samples look, regardless of treatment? 
 summ <- sv %>% 
+summ <- sv %>% 
   group_by(iso, lab, sample) %>% 
   summarize(mean = mean(value), 
             sd = sd(value), 
@@ -38,10 +39,14 @@ ggplot() +
   geom_boxplot(data = subset(long, lab == 'interlab'), 
                aes(x = type, y = value, fill = iso)) + 
   theme_classic() +
+<<<<<<< HEAD
   scale_fill_manual(values = cols2, 
                     name = "Isotope", 
                     labels = c(expression(paste(delta^13, 'C')), 
                                expression(paste(delta^18, 'O')))) + 
+=======
+  scale_fill_manual(values = cols2) + 
+>>>>>>> fc057a2cdc74193f36df4efbc81461f6d75af732
   theme(axis.text.x = element_text(size = 12),
         axis.text.y = element_text(size = 12),
         axis.title = element_text(size = 14), ) + 

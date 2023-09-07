@@ -283,4 +283,5 @@ long <- delta %>%
                        'DO_utah_treated_baking' = 'Baking-Not Baking, Treated',
                         ) 
          )
+
 write.csv(long, file = "delta.csv")
