@@ -8,7 +8,7 @@ cols <- c("DPAA" = "#97c2f7",  "interlab" = "#5474C0", "UU" = "#2a3f70")
 cols2 <- c("O" = "#131F71", "C" = "#9CA4f8")
 #how do the samples look, regardless of treatment? 
 summ <- sv %>% 
-  group_by(lab, sample) %>% 
+  group_by(iso, lab, sample) %>% 
   summarize(mean = mean(value), 
             sd = sd(value), 
             min = min(value),
@@ -34,6 +34,9 @@ ggplot() +
        y = expression(paste(Delta, "isotope value", " (\u2030)")))
 # what do we only have one isotope set for still? 
 
+cols <- c("DPAA" = "#97c2f7",  "interlab" = "#5474C0", "UU" = "#2a3f70")
+cols2 <- c("O" = "#131F71", "C" = "#9CA4f8")
+
 #exploring interlab variability
 ggplot() + 
   geom_hline(yintercept = 0, color = 'grey20', linetype = 2) +
@@ -49,6 +52,7 @@ ggplot() +
         axis.title = element_text(size = 14), ) + 
   scale_x_discrete(
     labels = function(x) str_wrap(x, width = 10) 
+
                    ) +
   labs(x = "Protocol", 
        y = expression(paste(Delta, " isotope value ", "(\u2030)")))
@@ -56,7 +60,8 @@ ggplot() +
 # exploring DPAA variability
 ggplot() + 
   geom_hline(yintercept = 0, color = 'grey20', linetype = 2) +
-  geom_boxplot(data = subset(delta, lab == 'DPAA'), aes(x = type, y = value, fill = iso)) + 
+  geom_boxplot(data = subset(delta, lab != 'interlab' & iso == 'C'), aes(x = type, y = value, fill = lab)) + 
+
   theme_classic() +
   scale_fill_manual(values = cols2, 
                     name = "Isotope", 
@@ -68,6 +73,7 @@ ggplot() +
   scale_x_discrete(labels = function(x) str_wrap(x, width = 10)) +
   labs(x = "Protocol", 
        y = expression(paste(Delta, "isotope value", " (\u2030)")))
+
 
 # crazy test
 ggplot() + 
