@@ -59,47 +59,50 @@ ggplot(data = subset(df, treatment != 'untreated'), aes(x = treatment, y = dC.of
   geom_boxplot()
 # Delta Calculated from Excel ---------------------------------------------
 
-delta <- read_sheet('https://docs.google.com/spreadsheets/d/1Xah5oyJbzPvUrd-tPMr9mOExBpUDIu0AhFo7mUxgfOQ')
+library(readxl)
+delta <- read_excel("data/DeltaValues.xlsx")
   
 long <- delta %>% 
   pivot_longer(!sample, 
                names_to = 'type', 
                values_to = 'value') %>% 
-  mutate(lab = case_when(str_detect(type, 'lab') ~ 'interlab',
-                         str_detect(type, 'utah') ~ 'UU',
-                         str_detect(type, 'dpaa') ~'DPAA' 
-                         ), 
-         iso = ifelse(str_detect(type, 'DC'), 'C', 'O'),
+  mutate(iso = ifelse(str_detect(type, 'DC'), 'C', 'O'),
          type = recode(type, 
-                       'DC_lab_untreated_baked' = 'Untreated & Baked',
-                       'DO_lab_untreated_baked' = 'Untreated & Baked',
-                       'DC_lab_untreated' = 'Untreated',
-                       'DO_lab_untreated' = 'Untreated', 
-                       'DC_lab_treated' = 'Treated', 
-                       'DO_lab_treated' = 'Treated', 
-                       'DC_lab_untreated_30' = 'Untreated, Baked, 30 Rxn Temp', #something's up with this one...
-                       'DO_lab_untreated_30' = 'Untreated, Baked, 30 Rxn Temp',
-                       'DC_lab_untreated_50' = 'Untreated, 50 Rxn Temp', 
-                       'DO_lab_untreated_50' = 'Untreated, 50 Rxn Temp',
-                       
-                       'DC_dpaa_treated_50v30' = '50-30, Treated',
-                       'DO_dpaa_treated_50v30' = '50-30, Treated',
-                       'DC_dpaa_treated_untreated' = 'Treated-Untreated',
-                       'DO_dpaa_treated_untreated' = 'Treated-Untreated',
-                       'DC_dpaa_untreated_50v30' = '50-30, Untreated',
-                       'DO_dpaa_untreated_50v30' = '50-30, Untreated', 
-                       'DC_dpaa_untreated_baking' = 'Baking-Not Baking',
-                       'DO_dpaa_untreated_baking' = 'Baking-Not Baking', 
-                       'DC_dpaa_treated_baking' = 'Baking-Not Baking, Treated', 
-                       'DO_dpaa_treated_baking' = 'Baking-Not Baking, Treated',
-                       
-                       'DC_utah_untreated_baking' = 'Baking-Not Baking',
-                       'DO_utah_untreated_baking' = 'Baking-Not Baking', 
-                       'DC_utah_treated_untreated' = 'Treated-Untreated', 
-                       'DO_utah_treated_untreated' = 'Treated-Untreated', 
-                       'DC_utah_treated_baking' = 'Baking-Not Baking, Treated', 
-                       'DO_utah_treated_baking' = 'Baking-Not Baking, Treated'
+                       'DC_untreated' = 'Untreated',
+                       'DO_untreated' = 'Untreated', 
+                       'DC_treated' = 'Treated', 
+                       'DO_treated' = 'Treated', 
+                       'DC_untreated_baked_30' = 'Untreated, Baked, 30 Rxn Temp', #something's up with this one...
+                       'DO_untreated_baked_30' = 'Untreated, Baked, 30 Rxn Temp',
+                       'DC_untreated_50' = 'Untreated, 50 Rxn Temp', 
+                       'DO_untreated_50' = 'Untreated, 50 Rxn Temp'
                         ) 
          )
 
 write.csv(long, file = "delta.csv")
+
+
+#code graveyard
+lab = case_when(str_detect(type, 'lab') ~ 'interlab',
+                str_detect(type, 'utah') ~ 'UU',
+                str_detect(type, 'dpaa') ~'DPAA' 
+), 
+
+
+'DC_dpaa_treated_50v30' = '50-30, Treated',
+'DO_dpaa_treated_50v30' = '50-30, Treated',
+'DC_dpaa_treated_untreated' = 'Treated-Untreated',
+'DO_dpaa_treated_untreated' = 'Treated-Untreated',
+'DC_dpaa_untreated_50v30' = '50-30, Untreated',
+'DO_dpaa_untreated_50v30' = '50-30, Untreated', 
+'DC_dpaa_untreated_baking' = 'Baking-Not Baking',
+'DO_dpaa_untreated_baking' = 'Baking-Not Baking', 
+'DC_dpaa_treated_baking' = 'Baking-Not Baking, Treated', 
+'DO_dpaa_treated_baking' = 'Baking-Not Baking, Treated',
+
+'DC_utah_untreated_baking' = 'Baking-Not Baking',
+'DO_utah_untreated_baking' = 'Baking-Not Baking', 
+'DC_utah_treated_untreated' = 'Treated-Untreated', 
+'DO_utah_treated_untreated' = 'Treated-Untreated', 
+'DC_utah_treated_baking' = 'Baking-Not Baking, Treated', 
+'DO_utah_treated_baking' = 'Baking-Not Baking, Treated'
