@@ -1,7 +1,7 @@
 library(dplyr); library(tidyr);library(ggplot2); library(stringr)
 
-delta <- read.csv('delta.csv')
-sv <- read.csv('singlevalues.csv')
+delta <- read.csv('data/delta.csv')
+sv <- read.csv('data/singlevalues.csv')
 il <- read.csv('intralab.csv') %>% 
   filter(treatment != 'untreated')
 cols <- c("DPAA" = "#97c2f7",  "interlab" = "#5474C0", "UU" = "#2a3f70")
@@ -18,14 +18,6 @@ summ <- sv %>%
             O_min = min(d18O),
             O_max = max(d18O)) # huh some samples seem to just have higher SD 
 
-
-
-# Delta values summary ----------------------------------------------------
-
-deltaSumm <- delta %>% 
-  group_by(type, iso) %>% 
-  summarize(mean = round(mean(value), 2),
-            sd = round(sd(value), 2))
 # Treated v Untreated by Lab ----------------------------------------------
 t.test(subset(delta, type == 'Treated' & iso == 'C')$value)
 t.test(subset(delta, type == 'Treated' & iso == 'O')$value)
@@ -56,7 +48,6 @@ t.test(subset(delta, type == 'Untreated, 50 Rxn Temp' & iso == 'O')$value)
 t.test(subset(delta, type == 'Untreated, Baked, 30 Rxn Temp' & iso == 'C')$value)
 t.test(subset(delta, type == 'Untreated, Baked, 30 Rxn Temp' & iso == 'O')$value)
 
-
 ggplot() + 
   geom_hline(yintercept = 0, color = 'grey20', linetype = 2) +
   geom_boxplot(data = subset(delta, type != 'Treated'), 
@@ -66,14 +57,12 @@ ggplot() +
                     name = "Isotope", 
                     labels = c(expression(paste(delta^13, 'C')), 
                                expression(paste(delta^18, 'O')))) + 
+  scale_x_discrete(labels = c('Own Lab Protocols', '50°C Reaction', 'Baked, 30°C Reaction')) + 
   theme(axis.text.x = element_text(size = 12),
         axis.text.y = element_text(size = 12),
         axis.title = element_text(size = 14), ) + 
   labs(x = "Treatment", 
        y = expression(paste(Delta, "isotope value", " (\u2030)")))
-
-
-
 
 # Descriptive Stats -------------------------------------------------------
 
@@ -87,11 +76,12 @@ for (name in names) {
 }#nothing is significant in these outputs
 rm(name, names)
 #mean and sd of Delta values by protocol
-delta %>% 
-  filter(lab == 'interlab') %>% 
-  group_by(type,iso) %>% 
-  summarize(mean = mean(value), 
-                 sd = sd(value))
+deltaSumm <- delta %>% 
+  group_by(type, iso) %>% 
+  summarize(mean = round(mean(value), 2),
+            sd = round(sd(value), 2), 
+            range = round(max(value) - min(value), 2)
+            )
 
 # Interlab stats ----------------------------------------------------------
 summDelta <- subset(delta, lab == 'interlab') %>% 
