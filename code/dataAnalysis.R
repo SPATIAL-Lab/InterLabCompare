@@ -5,7 +5,7 @@ sv <- read.csv('data/singlevalues.csv')
 il <- read.csv('intralab.csv') %>% 
   filter(treatment != 'untreated')
 cols <- c("DPAA" = "#97c2f7",  "interlab" = "#5474C0", "UU" = "#2a3f70")
-cols2 <- c("O" = "#131F71", "C" = "#9CA4f8")
+cols2 <- c("O" = "#8f3858", "C" = "#6670d9")
 #how do the samples look, regardless of treatment? 
 summ <- sv %>% 
   group_by(lab, sample) %>% 
@@ -18,6 +18,17 @@ summ <- sv %>%
             O_min = min(d18O),
             O_max = max(d18O)) # huh some samples seem to just have higher SD 
 
+
+# Comparing Delta Values --------------------------------------------------
+
+summDelta <- delta %>% 
+  group_by(iso, type) %>% 
+  summarize(mean = round(mean(value), 2), 
+            sd = round(sd(value), 2), 
+            min = min(value),
+            max = max(value), 
+            srd = (sd(value)*100)/mean(value)
+            )
 # Treated v Untreated by Lab ----------------------------------------------
 t.test(subset(delta, type == 'Treated' & iso == 'C')$value)
 t.test(subset(delta, type == 'Treated' & iso == 'O')$value)
@@ -64,6 +75,30 @@ ggplot() +
   labs(x = "Treatment", 
        y = expression(paste(Delta, "isotope value", " (\u2030)")))
 
+
+# Absolute Values??? ------------------------------------------------------
+delta$value <- abs(delta$value)
+#nope this was terrible. A terrible plan. 
+summDelta <- delta %>% 
+  group_by(iso, type) %>% 
+  summarize(mean = round(mean(value), 2), 
+            sd = round(sd(value), 2), 
+            min = min(value),
+            max = max(value), 
+            srd = (sd(value)/mean(value))*100)
+
+
+# Variance tests (because I hate myself) ----------------------------------
+
+var.test(subset(sv, lab == 'UU' & treatment == 'untreated_50')$d13C, 
+         subset(sv, lab == 'DPAA' & treatment == 'untreated_30')$d13C)
+var.test(subset(sv, lab == 'UU' & treatment == 'treated_50')$d13C, 
+         subset(sv, lab == 'DPAA' & treatment == 'treated_30')$d13C)
+
+var.test(subset(sv, lab == 'UU' & treatment == 'untreated_50')$d18O, 
+         subset(sv, lab == 'DPAA' & treatment == 'untreated_30')$d18O)
+var.test(subset(sv, lab == 'UU' & treatment == 'treated_50')$d18O, 
+         subset(sv, lab == 'DPAA' & treatment == 'treated_30')$d18O)
 # Descriptive Stats -------------------------------------------------------
 
 #are the data normally distributed? 
