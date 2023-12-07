@@ -1,5 +1,5 @@
 library(dplyr); library(googlesheets4); library(tidyr);
-library(stringr); library(ggplot2)
+library(stringr); library(ggplot2); library(readxl)
 
 long <- read_excel("data/rawInterlabData.xlsx")
 
@@ -24,13 +24,13 @@ sid = unique(uu$sample)
 for(i in sid){
   uu$dC.off[uu$sample == i] = 
     uu$d13C[uu$sample == i] - 
-    uu$d13C[uu$sample == i & uu$treatment == 'untreated']
+    uu$d13C[uu$sample == i & uu$treatment == 'untreated_baked_30']
 }
 
 for(i in sid){
   uu$dO.off[uu$sample == i] = 
     uu$d18O[uu$sample == i] - 
-    uu$d18O[uu$sample == i & uu$treatment == 'untreated']
+    uu$d18O[uu$sample == i & uu$treatment == 'untreated_baked_30']
 }
 
 dpaa <- df %>% 
@@ -42,21 +42,53 @@ sid = unique(uu$sample)
 for(i in sid){
   dpaa$dC.off[dpaa$sample == i] = 
     dpaa$d13C[dpaa$sample == i] - 
-    dpaa$d13C[dpaa$sample == i & dpaa$treatment == 'untreated']
+    dpaa$d13C[dpaa$sample == i & dpaa$treatment == 'untreated_baked_30']
 }
 
 for(i in sid){
   dpaa$dO.off[dpaa$sample == i] = 
     dpaa$d18O[dpaa$sample == i] - 
-    dpaa$d18O[dpaa$sample == i & dpaa$treatment == 'untreated']
+    dpaa$d18O[dpaa$sample == i & dpaa$treatment == 'untreated_baked_30']
 }
 
-df <- rbind(uu, dpaa)
-write.csv(df, file = "intralab.csv")
+il <- rbind(uu, dpaa) %>% 
+  mutate(treatment = recode(treatment, 
+                            'treated_30' = 'Treated, Unbaked, 30 Rxn Temp',
+                            'treated_50' = 'Treated, Unbaked, 50 Rxn Temp', 
+                            'treated_baked_30' = 'Treated, Baked, 30 Rxn Temp', 
+                            'untreated_30' = 'Untreated, Unbaked, 30 Rxn Temp', 
+                            'untreated_50' = 'Untreated, Unbaked, 50 Rxn Temp', 
+                            'untreated_baked_30' = 'Untreated, Baked, 30 Rxn Temp'
+         )) 
+write.csv(il, file = "data/intralab.csv")
 
-ggplot(data = subset(df, treatment != 'untreated'), aes(x = treatment, y = dC.off, fill = lab)) + 
+ggplot(data = subset(il, treatment != 'Untreated, Baked, 30 Rxn Temp'), aes(x = treatment, y = dC.off, fill = lab)) + 
   geom_hline(yintercept = 0, color = 'grey20', linetype = 2) +
   geom_boxplot()
+
+
+# Interlab for 1:1 Plots --------------------------------------------------
+uu <- df %>% 
+  filter(lab == 'UU') %>% 
+  rename(d13Cuu = d13C, 
+         d18Ouu = d18O) %>% 
+  select(sample, d13Cuu, d18Ouu, treatment)
+dpaa <- df %>% 
+  filter(lab == 'DPAA') %>% 
+  rename(d13Cdpaa = d13C, 
+         d18Odpaa = d18O)
+
+il1 <- left_join(uu, dpaa, by = c("sample", "treatment")) %>% 
+  mutate(treatment = recode(treatment, 
+                            'treated_30' = 'Treated, Unbaked, 30 Rxn Temp',
+                            'treated_50' = 'Treated, Unbaked, 50 Rxn Temp', 
+                            'treated_baked_30' = 'Treated, Baked, 30 Rxn Temp', 
+                            'untreated_30' = 'Untreated, Unbaked, 30 Rxn Temp', 
+                            'untreated_50' = 'Untreated, Unbaked, 50 Rxn Temp', 
+                            'untreated_baked_30' = 'Untreated, Baked, 30 Rxn Temp'
+  ))
+write.csv(il1, file = 'data/intralab1.csv')
+
 # Delta Calculated from Excel ---------------------------------------------
 
 library(readxl)
