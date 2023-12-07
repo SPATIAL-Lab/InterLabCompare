@@ -87,7 +87,36 @@ il1 <- left_join(uu, dpaa, by = c("sample", "treatment")) %>%
                             'untreated_50' = 'Untreated, Unbaked, 50 Rxn Temp', 
                             'untreated_baked_30' = 'Untreated, Baked, 30 Rxn Temp'
   ))
-write.csv(il1, file = 'data/intralab1.csv')
+write.csv(il1, file = 'data/interlab.csv')
+
+# Intralab for 1:1 Plots --------------------------------------------------
+wide <- long %>% pivot_wider(names_from = treatment, values_from = c(d18O, d13C))
+
+list_df <- split(df, df$treatment) #split the dataset into a list of datasets based on the value of iris$Species
+list2env(list_df, envir= .GlobalEnv)
+
+untreated_baked_30 <- untreated_baked_30 %>% 
+  rename(d13Ccompare = d13C, 
+         d18Ocompare = d18O) %>% 
+  select(sample, d13Ccompare, d18Ocompare, treatment, lab)
+
+treated_50 <- treated_50 %>% 
+  select(sample, treatment, d13C, d18O, lab)
+treated_baked_30 <- treated_baked_30 %>% 
+  select(sample, treatment, d13C, d18O, lab)
+untreated_50 <- untreated_50 %>% 
+  select(sample, treatment, d13C, d18O, lab)
+
+il2 <- rbind(treated_50, treated_baked_30, untreated_50)
+il2_bound <- full_join(untreated_baked_30, il2, join_by(sample, lab)) %>% 
+  select(-c(treatment.x)) %>% 
+  rename(treatment = treatment.y) %>% 
+  mutate(treatment = recode(treatment, 
+                            'treated_50' = 'Treated, Unbaked, 50 Rxn Temp', 
+                            'treated_baked_30' = 'Treated, Baked, 30 Rxn Temp', 
+                            'untreated_50' = 'Untreated, Unbaked, 50 Rxn Temp'
+  ))
+write.csv(il2_bound, file = 'data/intralab2.csv')
 
 # Delta Calculated from Excel ---------------------------------------------
 

@@ -1,0 +1,61 @@
+"","sample","d13Ccompare","d18Ocompare","lab","treatment","d13C","d18O"
+"1","FE 01",-9.4,-1.59,"UU","Treated, Unbaked, 50 Rxn Temp",-9.64,-0.16
+"2","FE 01",-9.4,-1.59,"UU","Treated, Baked, 30 Rxn Temp",-9.73,-0.99
+"3","FE 01",-9.4,-1.59,"UU","Untreated, Unbaked, 50 Rxn Temp",-9.37,-0.69
+"4","FE 02",-15.52,-7.84,"UU","Treated, Unbaked, 50 Rxn Temp",-15.99,-6.7
+"5","FE 02",-15.52,-7.84,"UU","Treated, Baked, 30 Rxn Temp",-16.03,-7.42
+"6","FE 02",-15.52,-7.84,"UU","Untreated, Unbaked, 50 Rxn Temp",-15.29,-7.27
+"7","FE 03",-8.39,-4.08,"UU","Treated, Unbaked, 50 Rxn Temp",-8.79,-2.58
+"8","FE 03",-8.39,-4.08,"UU","Treated, Baked, 30 Rxn Temp",-8.89,-3.19
+"9","FE 03",-8.39,-4.08,"UU","Untreated, Unbaked, 50 Rxn Temp",-8.26,-3.43
+"10","FE 04",-10.71,-1.8,"UU","Treated, Unbaked, 50 Rxn Temp",-10.89,-0.54
+"11","FE 04",-10.71,-1.8,"UU","Treated, Baked, 30 Rxn Temp",-10.99,-1.04
+"12","FE 04",-10.71,-1.8,"UU","Untreated, Unbaked, 50 Rxn Temp",-10.62,-1.15
+"13","FE 05",-15.79,-6.11,"UU","Treated, Unbaked, 50 Rxn Temp",-16.14,-5.04
+"14","FE 05",-15.79,-6.11,"UU","Treated, Baked, 30 Rxn Temp",-16.23,-5.32
+"15","FE 05",-15.79,-6.11,"UU","Untreated, Unbaked, 50 Rxn Temp",-15.75,-5.38
+"16","FE 06",-13.73,-4.44,"UU","Treated, Unbaked, 50 Rxn Temp",-14.33,-3.49
+"17","FE 06",-13.73,-4.44,"UU","Treated, Baked, 30 Rxn Temp",-14.38,-3.83
+"18","FE 06",-13.73,-4.44,"UU","Untreated, Unbaked, 50 Rxn Temp",-13.68,-3.79
+"19","FE 07",-10.78,0.04,"UU","Treated, Unbaked, 50 Rxn Temp",-10.98,1.46
+"20","FE 07",-10.78,0.04,"UU","Treated, Baked, 30 Rxn Temp",-11.09,0.83
+"21","FE 07",-10.78,0.04,"UU","Untreated, Unbaked, 50 Rxn Temp",-10.72,0.9
+"22","FE 08",-9.49,-0.79,"UU","Treated, Unbaked, 50 Rxn Temp",-9.76,-0.31
+"23","FE 08",-9.49,-0.79,"UU","Treated, Baked, 30 Rxn Temp",-9.91,-0.4
+"24","FE 08",-9.49,-0.79,"UU","Untreated, Unbaked, 50 Rxn Temp",-9.52,0.08
+"25","TIE",-15.14,-8.55,"UU","Treated, Unbaked, 50 Rxn Temp",-15.2,-7.76
+"26","TIE",-15.14,-8.55,"UU","Treated, Baked, 30 Rxn Temp",-15.31,-8.27
+"27","TIE",-15.14,-8.55,"UU","Untreated, Unbaked, 50 Rxn Temp",-15.05,-8.05
+"28","BOO-11",-14.42,-8.3,"UU","Treated, Unbaked, 50 Rxn Temp",-15.16,-7.42
+"29","BOO-11",-14.42,-8.3,"UU","Treated, Baked, 30 Rxn Temp",-15.05,-8.06
+"30","BOO-11",-14.42,-8.3,"UU","Untreated, Unbaked, 50 Rxn Temp",-14.46,-7.05
+"31","FE 01",-9.31,-1.37,"DPAA","Treated, Unbaked, 50 Rxn Temp",-9.52,1.25
+"32","FE 01",-9.31,-1.37,"DPAA","Treated, Baked, 30 Rxn Temp",-9.26,0.54
+"33","FE 01",-9.31,-1.37,"DPAA","Untreated, Unbaked, 50 Rxn Temp",-9.59,0.02
+"34","FE 02",-15.15,-7.23,"DPAA","Treated, Unbaked, 50 Rxn Temp",-15.5,-4.2
+"35","FE 02",-15.15,-7.23,"DPAA","Treated, Baked, 30 Rxn Temp",-15.03,-5.77
+"36","FE 02",-15.15,-7.23,"DPAA","Untreated, Unbaked, 50 Rxn Temp",-15.36,-5.62
+"37","FE 03",-8.31,-3.16,"DPAA","Treated, Unbaked, 50 Rxn Temp",-8.35,-0.58
+"38","FE 03",-8.31,-3.16,"DPAA","Treated, Baked, 30 Rxn Temp",-8.18,-1.06
+"39","FE 03",-8.31,-3.16,"DPAA","Untreated, Unbaked, 50 Rxn Temp",-8.49,-1.86
+"40","FE 04",-10.62,-1.82,"DPAA","Treated, Unbaked, 50 Rxn Temp",-10.79,0.84
+"41","FE 04",-10.62,-1.82,"DPAA","Treated, Baked, 30 Rxn Temp",-10.47,0.05
+"42","FE 04",-10.62,-1.82,"DPAA","Untreated, Unbaked, 50 Rxn Temp",-11.39,-1.12
+"43","FE 05",-15.8,-6.28,"DPAA","Treated, Unbaked, 50 Rxn Temp",-15.95,-3.17
+"44","FE 05",-15.8,-6.28,"DPAA","Treated, Baked, 30 Rxn Temp",-15.62,-4
+"45","FE 05",-15.8,-6.28,"DPAA","Untreated, Unbaked, 50 Rxn Temp",-16.63,-5.73
+"46","FE 06",-13.54,-3.77,"DPAA","Treated, Unbaked, 50 Rxn Temp",-13.84,-1.17
+"47","FE 06",-13.54,-3.77,"DPAA","Treated, Baked, 30 Rxn Temp",-13.63,-1.89
+"48","FE 06",-13.54,-3.77,"DPAA","Untreated, Unbaked, 50 Rxn Temp",-13.73,-2.85
+"49","FE 07",-10.76,-0.15,"DPAA","Treated, Unbaked, 50 Rxn Temp",-10.79,2.2
+"50","FE 07",-10.76,-0.15,"DPAA","Treated, Baked, 30 Rxn Temp",-10.65,1.6
+"51","FE 07",-10.76,-0.15,"DPAA","Untreated, Unbaked, 50 Rxn Temp",-11.27,0.59
+"52","FE 08",-9.38,-0.35,"DPAA","Treated, Unbaked, 50 Rxn Temp",-9.35,2.2
+"53","FE 08",-9.38,-0.35,"DPAA","Treated, Baked, 30 Rxn Temp",-9.39,1.34
+"54","FE 08",-9.38,-0.35,"DPAA","Untreated, Unbaked, 50 Rxn Temp",-9.6,1.23
+"55","TIE",-14.89,-8.14,"DPAA","Treated, Unbaked, 50 Rxn Temp",-15.3,-6.9
+"56","TIE",-14.89,-8.14,"DPAA","Treated, Baked, 30 Rxn Temp",-14.65,-6.15
+"57","TIE",-14.89,-8.14,"DPAA","Untreated, Unbaked, 50 Rxn Temp",-15.04,-6.91
+"58","BOO-11",-14.32,-6.92,"DPAA","Treated, Unbaked, 50 Rxn Temp",-14.7,-3.84
+"59","BOO-11",-14.32,-6.92,"DPAA","Treated, Baked, 30 Rxn Temp",-14.19,-5.89
+"60","BOO-11",-14.32,-6.92,"DPAA","Untreated, Unbaked, 50 Rxn Temp",-14.68,-4.63
