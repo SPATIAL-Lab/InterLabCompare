@@ -4,16 +4,18 @@ library(dplyr); library(tidyr);library(ggplot2); library(stringr); library(ggpub
 
 delta <- read.csv('data/delta.csv')
 sv <- read.csv('data/singlevalues.csv')
-il <- read.csv('data/intralab.csv') %>% 
+intralab1 <- read.csv('data/intralab.csv') %>% 
   filter(treatment != 'Untreated, Baked, 30 Rxn Temp')
-il1 <- read.csv('data/interlab.csv')
-il2 <- read.csv('data/intralab2.csv')
+interlab1 <- read.csv('data/interlab.csv')
+intralab2 <- read.csv('data/intralab2.csv')
 cols <- c("DPAA" = "#97c2f7",  "UU" = "#2a3f70")
 cols2 <- c("O" = "#8f3858", "C" = "#6670d9")
 cols3 <- c("Treated, Baked, 30 Rxn Temp" = "#60CEACFF", 
            "Treated, Unbaked, 50 Rxn Temp" = "#3497A9FF", 
            "Untreated, Baked, 30 Rxn Temp" = "#395D9CFF",
            "Untreated, Unbaked, 50 Rxn Temp" = "#382A54FF")
+
+# Single Value Data -------------------------------------------------------
 #how do the samples look, regardless of treatment? 
 summ <- sv %>% 
   group_by(lab, sample) %>% 
@@ -38,10 +40,17 @@ summDelta <- delta %>%
             )
 # Treated v Untreated by Lab ----------------------------------------------
 t.test(subset(delta, type == 'Treated' & iso == 'C')$value)
+cohensD(subset(delta, type == 'Treated' & iso == 'C')$value)
+
 t.test(subset(delta, type == 'Treated' & iso == 'O')$value)
+cohensD(subset(delta, type == 'Treated' & iso == 'O')$value)
 
 t.test(subset(delta, type == 'Untreated' & iso == 'C')$value)
+cohensD(subset(delta, type == 'Untreated' & iso == 'C')$value)
+
 t.test(subset(delta, type == 'Untreated' & iso == 'O')$value)
+cohensD(subset(delta, type == 'Untreated' & iso == 'O')$value)
+
 
 ggplot() + 
   geom_hline(yintercept = 0, color = 'grey20', linetype = 2) +
@@ -58,13 +67,20 @@ ggplot() +
   labs(x = "Treatment", 
        y = expression(paste(Delta, "isotope value", " (\u2030)")))
 ggsave("figures/Figure1.png", units = c("in"), width = 7, height = 4)
+
 # Baking and Reaction Temp -----------------------------------------------------------
 
 t.test(subset(delta, type == 'Untreated, 50 Rxn Temp' & iso == 'C')$value)
+cohensD(subset(delta, type == 'Untreated, 50 Rxn Temp' & iso == 'C')$value)
+
 t.test(subset(delta, type == 'Untreated, 50 Rxn Temp' & iso == 'O')$value)
+cohensD(subset(delta, type == 'Untreated, 50 Rxn Temp' & iso == 'O')$value)
 
 t.test(subset(delta, type == 'Untreated, Baked, 30 Rxn Temp' & iso == 'C')$value)
+cohensD(subset(delta, type == 'Untreated, Baked, 30 Rxn Temp' & iso == 'C')$value)
+
 t.test(subset(delta, type == 'Untreated, Baked, 30 Rxn Temp' & iso == 'O')$value)
+cohensD(subset(delta, type == 'Untreated, Baked, 30 Rxn Temp' & iso == 'O')$value)
 
 ggplot() + 
   geom_hline(yintercept = 0, color = 'grey20', linetype = 2) +
@@ -177,88 +193,37 @@ O4 <- ggplot() +
 ggarrange(O1, O2, O3, O4, nrow = 2, ncol = 2, labels = "AUTO")
 ggsave("figures/interscatterOArranged.png", units = c("in"), width = 7, height = 5)
 
-# Variance tests (because I hate myself) ----------------------------------
 
-var.test(subset(sv, lab == 'UU' & treatment == 'untreated_50')$d13C, 
-         subset(sv, lab == 'DPAA' & treatment == 'untreated_30')$d13C)
-var.test(subset(sv, lab == 'UU' & treatment == 'treated_50')$d13C, 
-         subset(sv, lab == 'DPAA' & treatment == 'treated_30')$d13C)
+# Intralab stats ----------------------------------------------------------
 
-var.test(subset(sv, lab == 'UU' & treatment == 'untreated_50')$d18O, 
-         subset(sv, lab == 'DPAA' & treatment == 'untreated_30')$d18O)
-var.test(subset(sv, lab == 'UU' & treatment == 'treated_50')$d18O, 
-         subset(sv, lab == 'DPAA' & treatment == 'treated_30')$d18O)
-# Descriptive Stats -------------------------------------------------------
+t.test(subset(il, treatment == 'Treated, Baked, 30 Rxn Temp')$dO.off)
+cohensD(subset(il, treatment == 'Treated, Baked, 30 Rxn Temp')$dO.off)
 
-#are the data normally distributed? 
-names <- unique(sv$sample)
-for (name in names) {
-  print(shapiro.test(subset(sv, sample == name)$d18O))
-}
-for (name in names) {
-  print(shapiro.test(subset(sv, sample == name)$d13C))
-}#nothing is significant in these outputs
-rm(name, names)
-#mean and sd of Delta values by protocol
-deltaSumm <- delta %>% 
-  group_by(type, iso) %>% 
-  summarize(mean = round(mean(value), 2),
-            sd = round(sd(value), 2), 
-            range = round(max(value) - min(value), 2)
-            )
+t.test(subset(delta, type == 'Treated' & iso == 'O')$value)
+cohensD(subset(delta, type == 'Treated' & iso == 'O')$value)
 
-# Interlab stats ----------------------------------------------------------
-summDelta <- subset(delta, lab == 'interlab') %>% 
-  group_by(iso, type) %>% 
-  summarize(mean = round(mean(value), 2), 
-            sd = round(sd(value), 2), 
-            min = min(value),
-            max = max(value))
+t.test(subset(delta, type == 'Untreated' & iso == 'C')$value)
+cohensD(subset(delta, type == 'Untreated' & iso == 'C')$value)
 
-shapiro.test(subset(delta, iso == 'O')$value)
-shapiro.test(subset(delta, iso == 'C')$value)
-ggplot(subset(delta, iso == 'O'), aes(value)) + geom_density()
-ggplot(subset(delta, iso == 'C'), aes(value)) + geom_density()
-
-treats = unique(subset(delta, lab == 'interlab')$type)
-shapTable = data.frame(treats, "C" = rep(0), "O" = rep(0))
-datacols = c("C", "O")
-
-for(i in seq_along(treats)){
-  for(j in 1:2){
-    shapTable[i, j+1] = shapiro.test(subset(delta, lab == 'interlab' & type == treats[i] & iso == datacols[j])$value)$p.value
-  }
-}
-
-# One-sided t.tests for interlab comparisons
-diffTable = tTable = pTable = data.frame(treats, "dC" = rep(0), "dO" = rep(0))
-
-for(i in seq_along(treats)){
-  for(j in 1:2){
-      test = t.test(subset(delta, lab == 'interlab' & type == treats[i] & iso == datacols[j])$value)
-        #delta[delta$type == treats[i], datacols[j]])
-      diffTable[i, j+1] = round(test$estimate, 2)
-      tTable[i, j+1] = round(test$statistic, 2)
-      pTable[i, j+1] = round(test$p.value, 3)
-    }
-   }
-rm(datacols, treats, i, j, test)
-
+t.test(subset(delta, type == 'Untreated' & iso == 'O')$value)
+cohensD(subset(delta, type == 'Untreated' & iso == 'O')$value)
 
 # Intralab visualization --------------------------------------------------
-summIntra <- il %>% 
+summIntra <- intralab %>% 
   group_by(treatment, lab) %>% 
   summarize(
     Omean = round(mean(dO.off), 2),
     Osd = round(sd(dO.off), 2), 
-    Omin = min(dO.off),
-    Omax = max(dO.off), 
-    Osrd = (sd(dO.off)*100)/mean(dO.off),
+    #Omin = min(dO.off),
+    #Omax = max(dO.off), 
+    Orange = max(dO.off) - min(dO.off),
+    #Osrd = (sd(dO.off)*100)/mean(dO.off),
     Cmean = round(mean(dC.off), 2),
     Csd = round(sd(dC.off), 2), 
-    Cmin = min(dC.off),
-    Cmax = max(dC.off), 
-    Csrd = (sd(dC.off)*100)/mean(dC.off)
+    #Cmin = min(dC.off),
+    #Cmax = max(dC.off), 
+    Crange = max(dO.off) - min(dO.off),
+    #Csrd = (sd(dC.off)*100)/mean(dC.off)
   )
 
 intralabO <- ggplot() + 
@@ -354,3 +319,56 @@ intraO3 <- ggplot() +
   ylim(-9, 3)
 ggarrange(intraO1, intraO2, intraO3, nrow = 1, ncol = 3, labels = "AUTO")
 ggsave("figures/interscatterOArranged.png", units = c("in"), width = 7, height = 5)
+
+
+# Graveyard for now -------------------------------------------------------
+
+# Interlab stats
+summDelta <- subset(delta, lab == 'interlab') %>% 
+  group_by(iso, type) %>% 
+  summarize(mean = round(mean(value), 2), 
+            sd = round(sd(value), 2), 
+            min = min(value),
+            max = max(value))
+
+shapiro.test(subset(delta, iso == 'O')$value)
+shapiro.test(subset(delta, iso == 'C')$value)
+ggplot(subset(delta, iso == 'O'), aes(value)) + geom_density()
+ggplot(subset(delta, iso == 'C'), aes(value)) + geom_density()
+
+treats = unique(subset(delta, lab == 'interlab')$type)
+shapTable = data.frame(treats, "C" = rep(0), "O" = rep(0))
+datacols = c("C", "O")
+
+for(i in seq_along(treats)){
+  for(j in 1:2){
+    shapTable[i, j+1] = shapiro.test(subset(delta, lab == 'interlab' & type == treats[i] & iso == datacols[j])$value)$p.value
+  }
+}
+
+# One-sided t.tests for interlab comparisons
+diffTable = tTable = pTable = data.frame(treats, "dC" = rep(0), "dO" = rep(0))
+
+for(i in seq_along(treats)){
+  for(j in 1:2){
+    test = t.test(subset(delta, lab == 'interlab' & type == treats[i] & iso == datacols[j])$value)
+    #delta[delta$type == treats[i], datacols[j]])
+    diffTable[i, j+1] = round(test$estimate, 2)
+    tTable[i, j+1] = round(test$statistic, 2)
+    pTable[i, j+1] = round(test$p.value, 3)
+  }
+}
+rm(datacols, treats, i, j, test)
+
+# Variance tests (because I hate myself) ----------------------------------
+
+var.test(subset(sv, lab == 'UU' & treatment == 'untreated_50')$d13C, 
+         subset(sv, lab == 'DPAA' & treatment == 'untreated_30')$d13C)
+var.test(subset(sv, lab == 'UU' & treatment == 'treated_50')$d13C, 
+         subset(sv, lab == 'DPAA' & treatment == 'treated_30')$d13C)
+
+var.test(subset(sv, lab == 'UU' & treatment == 'untreated_50')$d18O, 
+         subset(sv, lab == 'DPAA' & treatment == 'untreated_30')$d18O)
+var.test(subset(sv, lab == 'UU' & treatment == 'treated_50')$d18O, 
+         subset(sv, lab == 'DPAA' & treatment == 'treated_30')$d18O)
+
