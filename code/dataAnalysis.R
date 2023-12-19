@@ -1,6 +1,7 @@
 # Setup -------------------------------------------------------------------
 
-library(dplyr); library(tidyr);library(ggplot2); library(stringr); library(ggpubr)
+library(dplyr); library(tidyr);library(ggplot2); library(stringr); 
+library(ggpubr); library(lsr)
 
 delta <- read.csv('data/delta.csv')
 sv <- read.csv('data/singlevalues.csv')
@@ -17,7 +18,7 @@ cols3 <- c("Treated, Baked, 30 Rxn Temp" = "#60CEACFF",
 
 # Single Value Data -------------------------------------------------------
 #how do the samples look, regardless of treatment? 
-summ <- sv %>% 
+summSingle <- sv %>% 
   group_by(lab, sample) %>% 
   summarize(C_mean = round(mean(d13C), 2), 
             C_sd = round(sd(d13C), 2), 
@@ -28,9 +29,9 @@ summ <- sv %>%
             O_min = min(d18O),
             O_max = max(d18O)) # huh some samples seem to just have higher SD 
 
-# Comparing Delta Values --------------------------------------------------
+# Summarizing interlab Values --------------------------------------------------
 
-summDelta <- delta %>% 
+summInterlab <- delta %>% 
   group_by(iso, type) %>% 
   summarize(mean = round(mean(value), 2), 
             sd = round(sd(value), 2), 
@@ -39,22 +40,21 @@ summDelta <- delta %>%
             srd = (sd(value)*100)/mean(value)
             )
 # Treated v Untreated by Lab ----------------------------------------------
-t.test(subset(delta, type == 'Treated' & iso == 'C')$value)
-cohensD(subset(delta, type == 'Treated' & iso == 'C')$value)
+t.test(subset(delta, type == 'Treated, Unbaked, Own Rxn Temp' & iso == 'C')$value)
+round(cohensD(subset(delta, type == 'Treated, Unbaked, Own Rxn Temp' & iso == 'C')$value), 1)
 
-t.test(subset(delta, type == 'Treated' & iso == 'O')$value)
-cohensD(subset(delta, type == 'Treated' & iso == 'O')$value)
+t.test(subset(delta, type == 'Treated, Unbaked, Own Rxn Temp' & iso == 'O')$value)
+round(cohensD(subset(delta, type == 'Treated, Unbaked, Own Rxn Temp' & iso == 'O')$value), 1)
 
-t.test(subset(delta, type == 'Untreated' & iso == 'C')$value)
-cohensD(subset(delta, type == 'Untreated' & iso == 'C')$value)
+t.test(subset(delta, type == 'Untreated, Baked, 30 Rxn Temp' & iso == 'C')$value)
+cohensD(subset(delta, type == 'Untreated, Baked, 30 Rxn Temp' & iso == 'C')$value)
 
-t.test(subset(delta, type == 'Untreated' & iso == 'O')$value)
-cohensD(subset(delta, type == 'Untreated' & iso == 'O')$value)
-
+t.test(subset(delta, type == 'Untreated, Baked, 30 Rxn Temp' & iso == 'O')$value)
+cohensD(subset(delta, type == 'Untreated, Baked, 30 Rxn Temp' & iso == 'O')$value)
 
 ggplot() + 
   geom_hline(yintercept = 0, color = 'grey20', linetype = 2) +
-  geom_boxplot(data = subset(delta, type == 'Treated' | type == 'Untreated, Baked, 30 Rxn Temp'), 
+  geom_boxplot(data = subset(delta, type == 'Treated, Unbaked, Own Rxn Temp' | type == 'Untreated, Baked, 30 Rxn Temp'), 
                aes(x = type, y = value, fill = iso)) + 
   theme_classic() +
   scale_fill_manual(values = cols2, 
@@ -65,7 +65,8 @@ ggplot() +
         axis.text.y = element_text(size = 12),
         axis.title = element_text(size = 14), ) + 
   labs(x = "Treatment", 
-       y = expression(paste(Delta, "isotope value", " (\u2030)")))
+       y = expression(paste(Delta, "isotope value", " (\u2030)"))) + 
+  scale_x_discrete(labels = function(treatment) str_wrap(treatment, width = 10))
 ggsave("figures/Figure1.png", units = c("in"), width = 7, height = 4)
 
 # Baking and Reaction Temp -----------------------------------------------------------
@@ -82,28 +83,29 @@ cohensD(subset(delta, type == 'Untreated, Baked, 30 Rxn Temp' & iso == 'C')$valu
 t.test(subset(delta, type == 'Untreated, Baked, 30 Rxn Temp' & iso == 'O')$value)
 cohensD(subset(delta, type == 'Untreated, Baked, 30 Rxn Temp' & iso == 'O')$value)
 
+delta %>% filter(str_detect(type, "Untreated")) %>% 
 ggplot() + 
   geom_hline(yintercept = 0, color = 'grey20', linetype = 2) +
-  geom_boxplot(data = subset(delta, type != 'Treated'), 
-               aes(x = type, y = value, fill = iso)) + 
+  geom_boxplot(aes(x = type, y = value, fill = iso)) + 
   theme_classic() +
   scale_fill_manual(values = cols2, 
                     name = "Isotope", 
                     labels = c(expression(paste(delta^13, 'C')), 
                                expression(paste(delta^18, 'O')))) + 
-  scale_x_discrete(labels = c('Own Lab Protocols', '50°C Reaction', 'Baked, 30°C Reaction')) + 
+  #scale_x_discrete(labels = c('Own Lab Protocols', '50°C Reaction', 'Baked, 30°C Reaction')) + 
   theme(axis.text.x = element_text(size = 12),
         axis.text.y = element_text(size = 12),
         axis.title = element_text(size = 14), ) + 
   labs(x = "Treatment", 
-       y = expression(paste(Delta, "isotope value", " (\u2030)")))
+       y = expression(paste(Delta, "isotope value", " (\u2030)"))) + 
+  scale_x_discrete(labels = function(treatment) str_wrap(treatment, width = 10))
 ggsave("figures/Figure2.png", units = c("in"), width = 7, height = 4)
 
 # Interlab scatter plots 
 # Let's make 1:1 lines to explore changes in values as we change treatments. 
 
 ggplot() + 
-  geom_point(data = il1, aes(x = d13Cuu, y = d13Cdpaa, fill = treatment, shape = treatment), size = 3) + 
+  geom_point(data = interlab1, aes(x = d13Cuu, y = d13Cdpaa, fill = treatment, shape = treatment), size = 3) + 
   geom_abline(slope=1, intercept = 0) +
   scale_fill_manual(values = cols3, 
                     name = "Treatment") +
@@ -115,7 +117,7 @@ ggplot() +
         axis.text.y = element_text(size = 12),
         axis.title = element_text(size = 14), 
         legend.text = element_text(size = 12)) + 
-  labs(x = expression(paste('UU ', delta^13, 'C', " (\u2030)")), 
+  labs(x = expression(paste('SIRFER ', delta^13, 'C', " (\u2030)")), 
        y = expression(paste('DPAA ', delta^13, 'C', " (\u2030)"))) + 
   guides(fill = guide_legend(nrow = 2)) + 
   scale_x_continuous(breaks = c(-17, -15, -13, -11, -9)) + 
@@ -123,7 +125,7 @@ ggplot() +
 ggsave("figures/interscatterC.png", units = c("in"), width = 7, height = 5)
 
 ggplot() + 
-  geom_point(data = il1, aes(x = d18Ouu, y = d18Odpaa, fill = treatment, shape = treatment), size = 3) + 
+  geom_point(data = interlab1, aes(x = d18Ouu, y = d18Odpaa, fill = treatment, shape = treatment), size = 3) + 
   geom_abline(slope=1, intercept = 0) +
   scale_fill_manual(values = cols3, 
                     name = "Treatment") +
@@ -135,7 +137,7 @@ ggplot() +
         axis.text.y = element_text(size = 12),
         axis.title = element_text(size = 14), 
         legend.text = element_text(size = 12)) + 
-  labs(x = expression(paste('UU ', delta^18, 'O', " (\u2030)")), 
+  labs(x = expression(paste('SIRFER ', delta^18, 'O', " (\u2030)")), 
        y = expression(paste('DPAA ', delta^18, 'O', " (\u2030)"))) + 
   guides(fill = guide_legend(nrow = 2)) + 
   xlim(-9, 3) + 
@@ -143,7 +145,7 @@ ggplot() +
 ggsave("figures/interscatterO.png", units = c("in"), width = 7, height = 5)
 
 O1 <- ggplot() + 
-  geom_point(data = subset(il1, treatment == "Treated, Baked, 30 Rxn Temp"), 
+  geom_point(data = subset(interlab1, treatment == "Treated, Baked, 30 Rxn Temp"), 
              aes(x = d18Ouu, y = d18Odpaa), size = 3, color = "#60CEACFF") + 
   geom_abline(slope=1, intercept = 0) +
   theme_classic() +
@@ -152,10 +154,10 @@ O1 <- ggplot() +
     axis.text.y = element_text(size = 12),
     axis.title = element_text(size = 14), 
   ) + 
-  labs(x = expression(paste('UU ', delta^18, 'O', " (\u2030)")), 
+  labs(x = expression(paste('SIRFER ', delta^18, 'O', " (\u2030)")), 
        y = expression(paste('DPAA ', delta^18, 'O', " (\u2030)")))
 O2 <- ggplot() + 
-  geom_point(data = subset(il1, treatment == "Treated, Unbaked, 50 Rxn Temp"), 
+  geom_point(data = subset(interlab1, treatment == "Treated, Unbaked, 50 Rxn Temp"), 
              aes(x = d18Ouu, y = d18Odpaa), size = 3, color = "#3497A9FF") + 
   geom_abline(slope=1, intercept = 0) +
   theme_classic() +
@@ -164,10 +166,10 @@ O2 <- ggplot() +
     axis.text.y = element_text(size = 12),
     axis.title = element_text(size = 14), 
   ) + 
-  labs(x = expression(paste('UU ', delta^18, 'O', " (\u2030)")), 
+  labs(x = expression(paste('SIRFER ', delta^18, 'O', " (\u2030)")), 
        y = expression(paste('DPAA ', delta^18, 'O', " (\u2030)")))
 O3 <- ggplot() + 
-  geom_point(data = subset(il1, treatment == "Untreated, Baked, 30 Rxn Temp"), 
+  geom_point(data = subset(interlab1, treatment == "Untreated, Baked, 30 Rxn Temp"), 
              aes(x = d18Ouu, y = d18Odpaa), size = 3, color = "#395D9CFF") + 
   geom_abline(slope=1, intercept = 0) +
   theme_classic() +
@@ -176,10 +178,10 @@ O3 <- ggplot() +
     axis.text.y = element_text(size = 12),
     axis.title = element_text(size = 14), 
   ) + 
-  labs(x = expression(paste('UU ', delta^18, 'O', " (\u2030)")), 
+  labs(x = expression(paste('SIRFER ', delta^18, 'O', " (\u2030)")), 
        y = expression(paste('DPAA ', delta^18, 'O', " (\u2030)")))
 O4 <- ggplot() + 
-  geom_point(data = subset(il1, treatment == "Untreated, Unbaked, 50 Rxn Temp"), 
+  geom_point(data = subset(interlab1, treatment == "Untreated, Unbaked, 50 Rxn Temp"), 
              aes(x = d18Ouu, y = d18Odpaa), size = 3, color = "#382A54FF") + 
   geom_abline(slope=1, intercept = 0) +
   theme_classic() +
@@ -188,7 +190,7 @@ O4 <- ggplot() +
     axis.text.y = element_text(size = 12),
     axis.title = element_text(size = 14), 
   ) + 
-  labs(x = expression(paste('UU ', delta^18, 'O', " (\u2030)")), 
+  labs(x = expression(paste('SIRFER ', delta^18, 'O', " (\u2030)")), 
        y = expression(paste('DPAA ', delta^18, 'O', " (\u2030)")))
 ggarrange(O1, O2, O3, O4, nrow = 2, ncol = 2, labels = "AUTO")
 ggsave("figures/interscatterOArranged.png", units = c("in"), width = 7, height = 5)
@@ -209,20 +211,20 @@ t.test(subset(delta, type == 'Untreated' & iso == 'O')$value)
 cohensD(subset(delta, type == 'Untreated' & iso == 'O')$value)
 
 # Intralab visualization --------------------------------------------------
-summIntra <- intralab %>% 
+summIntra <- intralab1 %>% 
   group_by(treatment, lab) %>% 
   summarize(
-    Omean = round(mean(dO.off), 2),
-    Osd = round(sd(dO.off), 2), 
+    Omean = round(mean(dO.off), 1),
+    Osd = round(sd(dO.off), 1), 
     #Omin = min(dO.off),
     #Omax = max(dO.off), 
     Orange = max(dO.off) - min(dO.off),
     #Osrd = (sd(dO.off)*100)/mean(dO.off),
-    Cmean = round(mean(dC.off), 2),
-    Csd = round(sd(dC.off), 2), 
+    Cmean = round(mean(dC.off), 1),
+    Csd = round(sd(dC.off), 1), 
     #Cmin = min(dC.off),
     #Cmax = max(dC.off), 
-    Crange = max(dO.off) - min(dO.off),
+    Crange = max(dC.off) - min(dC.off),
     #Csrd = (sd(dC.off)*100)/mean(dC.off)
   )
 

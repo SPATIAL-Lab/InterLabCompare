@@ -62,11 +62,6 @@ il <- rbind(uu, dpaa) %>%
          )) 
 write.csv(il, file = "data/intralab.csv")
 
-ggplot(data = subset(il, treatment != 'Untreated, Baked, 30 Rxn Temp'), aes(x = treatment, y = dC.off, fill = lab)) + 
-  geom_hline(yintercept = 0, color = 'grey20', linetype = 2) +
-  geom_boxplot()
-
-
 # Interlab for 1:1 Plots --------------------------------------------------
 uu <- df %>% 
   filter(lab == 'UU') %>% 
@@ -117,27 +112,3 @@ il2_bound <- full_join(untreated_baked_30, il2, join_by(sample, lab)) %>%
                             'untreated_50' = 'Untreated, Unbaked, 50 Rxn Temp'
   ))
 write.csv(il2_bound, file = 'data/intralab2.csv')
-
-# Delta Calculated from Excel ---------------------------------------------
-
-library(readxl)
-delta <- read_excel("data/deltaValues.xlsx")
-  
-long <- delta %>% 
-  pivot_longer(!sample, 
-               names_to = 'type', 
-               values_to = 'value') %>% 
-  mutate(iso = ifelse(str_detect(type, 'DC'), 'C', 'O'),
-         type = recode(type, 
-                       'DC_untreated' = 'Untreated',
-                       'DO_untreated' = 'Untreated', 
-                       'DC_treated' = 'Treated', 
-                       'DO_treated' = 'Treated', 
-                       'DC_untreated_baked_30' = 'Untreated, Baked, 30 Rxn Temp', #something's up with this one...
-                       'DO_untreated_baked_30' = 'Untreated, Baked, 30 Rxn Temp',
-                       'DC_untreated_50' = 'Untreated, 50 Rxn Temp', 
-                       'DO_untreated_50' = 'Untreated, 50 Rxn Temp'
-                        ) 
-         )
-
-write.csv(long, file = "data/delta.csv")
