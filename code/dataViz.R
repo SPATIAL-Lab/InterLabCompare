@@ -198,12 +198,11 @@ intraO1 <- ggplot() +
   theme( 
     legend.position = 'none',
     axis.text= element_text(size = 10),
-    axis.title = element_text(size = 14), 
+    axis.title = element_text(size = 8), 
   ) + 
-  labs(y = expression(paste('Treated, Baked, 30 Rxn Temp ', delta^18, 'O', " (\u2030)")), 
-       x = expression(paste('Unreated, Unbaked, 30 Rxn Temp ', delta^18, 'O', " (\u2030)"))) + 
-  ylim(-9, 3) + 
-  scale_x_continuous(limits = c(-9, 3), 
+  labs(y = "", x = "") + 
+  scale_y_continuous(breaks = seq(-9, 1, by = 2)) + 
+  scale_x_continuous(breaks = seq(-9, 1, by = 2), 
                      labels = function(d18O) str_wrap(d18O, width = 10))
 
 intraO2 <- ggplot() + 
@@ -214,12 +213,11 @@ intraO2 <- ggplot() +
   theme( 
     legend.position = 'none',
     axis.text= element_text(size = 10),
-    axis.title = element_text(size = 14), 
+    axis.title = element_text(size = 8), 
   ) + 
-  labs(y = expression(paste('Treated, Baked, 50 Rxn Temp ', delta^18, 'O', " (\u2030)")), 
-       x = expression(paste('Unreated, Unbaked, 30 Rxn Temp ', delta^18, 'O', " (\u2030)"))) +  
-  ylim(-9, 3) + 
-  scale_x_continuous(limits = c(-9, 3), 
+  labs(y = "", x = "") +   
+  scale_y_continuous(breaks = seq(-9, 1, by = 2)) + 
+  scale_x_continuous(breaks = seq(-9, 1, by = 2), 
                      labels = function(d18O) str_wrap(d18O, width = 10))
 
 intraO3 <- ggplot() + 
@@ -228,15 +226,14 @@ intraO3 <- ggplot() +
   geom_abline(slope=1, intercept = 0) +
   theme_classic() +
   theme(
-    legend.position = 'right',
+    legend.position = 'none',
     axis.text= element_text(size = 10),
-    axis.title = element_text(size = 14), 
+    axis.title = element_text(size = 8), 
   ) + 
-  labs(y = expression(paste('Untreated, Unbaked, 50 Rxn Temp ', delta^18, 'O', " (\u2030)")), 
-       x = expression(paste('Unreated, Unbaked, 30 Rxn Temp ', delta^18, 'O', " (\u2030)")), 
-       shape = 'Lab') + 
-  xlim(-9, 3) + 
-  ylim(-9, 3)
+  labs(y = "", x = "") + 
+  scale_y_continuous(breaks = seq(-9, 1, by = 2)) + 
+  scale_x_continuous(breaks = seq(-9, 1, by = 2), 
+                     labels = function(d18O) str_wrap(d18O, width = 10))
 
 ggarrange(intraO1, intraO2, intraO3, nrow = 2, ncol = 2, labels = "AUTO")
 ggsave("figures/intrascatterOArranged.png", units = c("in"), width = 7, height = 5)

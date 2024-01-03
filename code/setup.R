@@ -1,4 +1,4 @@
-library(dplyr); library(googlesheets4); library(tidyr);
+library(dplyr); library(tidyr);
 library(stringr); library(ggplot2); library(readxl)
 
 long <- read_excel("data/rawInterlabData.xlsx")

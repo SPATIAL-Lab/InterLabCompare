@@ -91,6 +91,9 @@ summIntra <- intralab1 %>%
     #Csrd = (sd(dC.off)*100)/mean(dC.off)
   )
 
+
+# Intralab ttests, oxygen -------------------------------------------------
+
 intra_t_test <- sort(unique(intralab1$treatment))
 ttest_intralab_DPAA = data.frame(intra_t_test)
 datacols = c("O")
@@ -100,9 +103,46 @@ for(i in 1:5){
   ttest_intralab_DPAA$estimate[i] = tt$estimate
   ttest_intralab_DPAA$stat[i] = round(tt$statistic, 2)
   ttest_intralab_DPAA$pvalue[i] = round(tt$p.value, 3)
-  ttest_intralab_DPAA$cohens[i] = cd
+  ttest_intralab_DPAA$cohens[i] = round(cd, 1)
   }
 
+intra_t_test <- sort(unique(subset(intralab1, lab == 'UU')$treatment))
+ttest_intralab_SIRFER = data.frame(intra_t_test)
+datacols = c("O")
+for(i in 1:3){
+  tt = t.test(subset(intralab1, treatment == paste(intra_t_test[i]) & lab == 'UU')$dO.off)
+  cd = cohensD(subset(intralab1, treatment == intra_t_test[i] & lab == 'UU')$dO.off)
+  ttest_intralab_SIRFER$mean[i] = tt$estimate
+  ttest_intralab_SIRFER$t[i] = round(tt$statistic, 2)
+  ttest_intralab_SIRFER$pvalue[i] = round(tt$p.value, 3)
+  ttest_intralab_SIRFER$cohens[i] = round(cd, 1)
+}
+
+# Intralab ttests, carbon -------------------------------------------------
+
+intra_t_test <- sort(unique(intralab1$treatment))
+ttest_intralab_DPAA_C = data.frame(intra_t_test)
+datacols = c("C")
+for(i in 1:5){
+  tt = t.test(subset(intralab1, treatment == paste(intra_t_test[i]) & lab == 'DPAA')$dC.off)
+  cd = cohensD(subset(intralab1, treatment == intra_t_test[i] & lab == 'DPAA')$dC.off)
+  ttest_intralab_DPAA_C$mean[i] = tt$estimate
+  ttest_intralab_DPAA_C$t[i] = round(tt$statistic, 2)
+  ttest_intralab_DPAA_C$pvalue[i] = round(tt$p.value, 3)
+  ttest_intralab_DPAA_C$cohens[i] = round(cd, 1)
+}
+
+intra_t_test <- sort(unique(subset(intralab1, lab == 'UU')$treatment))
+ttest_intralab_SIRFER_C = data.frame(intra_t_test)
+datacols = c("C")
+for(i in 1:3){
+  tt = t.test(subset(intralab1, treatment == paste(intra_t_test[i]) & lab == 'UU')$dC.off)
+  cd = cohensD(subset(intralab1, treatment == intra_t_test[i] & lab == 'UU')$dC.off)
+  ttest_intralab_SIRFER_C$mean[i] = tt$estimate
+  ttest_intralab_SIRFER_C$t[i] = round(tt$statistic, 2)
+  ttest_intralab_SIRFER_C$pvalue[i] = round(tt$p.value, 3)
+  ttest_intralab_SIRFER_C$cohens[i] = round(cd, 1)
+}
 # Graveyard for now -------------------------------------------------------
 
 # Interlab stats
