@@ -11,11 +11,16 @@ interlab1 <- read.csv('data/interlab.csv')
 intralab2 <- read.csv('data/intralab2.csv')
 cols <- c("DPAA" = "#97c2f7",  "UU" = "#2a3f70")
 cols2 <- c("O" = "#8f3858", "C" = "#6670d9")
-cols3 <- c("Treated, Baked, 30 Rxn Temp" = "#60CEACFF", 
-           "Treated, Unbaked, 50 Rxn Temp" = "#3497A9FF", 
-           "Untreated, Baked, 30 Rxn Temp" = "#395D9CFF",
-           "Untreated, Unbaked, 50 Rxn Temp" = "#382A54FF")
-
+cols3 <- c("Treated, Baked, 30 Rxn Temp" = "#ADE3C0FF", 
+           "Treated, Unbaked, 50 Rxn Temp" = "#43BBADFF",
+           "Treated, Unbaked, 30 Rxn Temp" = "#3487A6FF",
+           "Untreated, Unbaked, 50 Rxn Temp" = "#3D5296FF", 
+           "Untreated, Unbaked, 30 Rxn Temp" = "#35264CFF")
+shps3 <- c("Treated, Baked, 30 Rxn Temp" = 21, 
+           "Treated, Unbaked, 50 Rxn Temp" = 22,
+           "Treated, Unbaked, 30 Rxn Temp" = 23,
+           "Untreated, Unbaked, 50 Rxn Temp" = 24, 
+           "Untreated, Unbaked, 30 Rxn Temp" = 25)
 # Figure 1
 ggplot() + 
   geom_hline(yintercept = 0, color = 'grey20', linetype = 2) +
@@ -155,7 +160,7 @@ intralabO <- ggplot() +
   scale_fill_manual(values = cols, 
                     name = "Lab" 
   ) + 
-  theme(legend.position = "none", 
+  theme( 
         axis.text.x = element_text(size = 12),
         axis.text.y = element_text(size = 12),
         axis.title = element_text(size = 14), ) + 
@@ -172,7 +177,7 @@ intralabC <- ggplot() +
   scale_fill_manual(values = cols, 
                     name = "Lab" 
   ) + 
-  theme(legend.position = "none", 
+  theme(
         axis.text.x = element_text(size = 12),
         axis.text.y = element_text(size = 12),
         axis.title = element_text(size = 14)) + 
@@ -181,7 +186,7 @@ intralabC <- ggplot() +
        y = expression(paste(Delta^13, 'C', " (\u2030)")))
 #ggsave("figures/intralabC.png", units = c("in"), width = 7, height = 4)
 
-ggarrange(intralabO, intralabC, nrow = 1, labels = "AUTO")
+ggarrange(intralabO, intralabC, nrow = 1, common.legend = T, legend = 'bottom')
 ggsave("figures/intralab.png", units = c("in"), width = 8, height = 4)
 
 # What if we want 1:1 plots? Well, time to go wide
@@ -237,3 +242,99 @@ intraO3 <- ggplot() +
 
 ggarrange(intraO1, intraO2, intraO3, nrow = 2, ncol = 2, labels = "AUTO")
 ggsave("figures/intrascatterOArranged.png", units = c("in"), width = 7, height = 5)
+
+#okay but what if we did all the DPAA options, and then all the SIRFER options available? 
+
+intraO_DPAA <- ggplot() + 
+  geom_point(data = subset(intralab2, lab == 'DPAA'),
+             aes(y = d18O,
+                 x = d18Ocompare,
+                 fill = treatment,
+                 shape = treatment),
+             size = 3) + 
+  geom_abline(slope = 1, intercept = 0) +
+  scale_fill_manual(values = cols3,
+                     name = 'Treatment') +
+  scale_shape_manual(values = shps3,
+                     name = "Treatment") + 
+  theme_classic() +
+  theme() + 
+  labs(title = "DPAA", 
+       x = expression(paste('Untreated, Baked, 30 Rxn Temp ', delta^18, 'O', " (\u2030)")), 
+       y = expression(paste(delta^18, 'O', " (\u2030)"))) + 
+  guides(fill = guide_legend(nrow = 2), 
+         shape = guide_legend(nrow = 2)) + 
+  scale_x_continuous(limits = c(-10, 3)) + 
+  scale_y_continuous(limits = c(-10, 3))
+
+intraO_UU <- ggplot() + 
+  geom_point(data = subset(intralab2, lab == 'UU'),
+             aes(y = d18O,
+                 x = d18Ocompare,
+                 fill = treatment,
+                 shape = treatment),
+             size = 3) + 
+  geom_abline(slope = 1, intercept = 0) +
+  scale_fill_manual(values = cols3,
+                    name = 'Treatment') +
+  scale_shape_manual(values = shps3,
+                     name = "Treatment") + 
+  theme_classic() +
+  theme() + 
+  labs(title = "SIRFER", 
+       x = expression(paste('Untreated, Baked, 30 Rxn Temp ', delta^18, 'O', " (\u2030)")), 
+       y = expression(paste(delta^18, 'O', " (\u2030)"))) + 
+  guides(fill = guide_legend(nrow = 2), 
+         shape = guide_legend(nrow = 2)) + 
+  scale_x_continuous(limits = c(-10, 3)) + 
+  scale_y_continuous(limits = c(-10, 3))
+
+ggarrange(intraO_DPAA, intraO_UU, nrow = 1, ncol = 2, common.legend = T, legend = 'bottom')
+ggsave("figures/intraO11.png", units = c("mm"), width = 200, height = 120)
+
+intraC_DPAA <- ggplot() + 
+  geom_point(data = subset(intralab2, lab == 'DPAA'),
+             aes(y = d13C,
+                 x = d13Ccompare,
+                 fill = treatment,
+                 shape = treatment),
+             size = 3) + 
+  geom_abline(slope = 1, intercept = 0) +
+  scale_fill_manual(values = cols3,
+                    name = 'Treatment') +
+  scale_shape_manual(values = shps3, 
+                     name = "Treatment") + 
+  theme_classic() +
+  theme() + 
+  labs(title = "DPAA", 
+       x = expression(paste('Untreated, Baked, 30 Rxn Temp ', delta^13, 'C', " (\u2030)")), 
+       y = expression(paste(delta^13, 'C', " (\u2030)"))) + 
+  guides(fill = guide_legend(nrow = 2), 
+         shape = guide_legend(nrow = 2)) + 
+  scale_x_continuous(limits = c(-17, -7)) + 
+  scale_y_continuous(limits = c(-17, -7))
+
+intraC_UU <- ggplot() + 
+  geom_point(data = subset(intralab2, lab == 'UU'),
+             aes(y = d13C,
+                 x = d13Ccompare,
+                 fill = treatment,
+                 shape = treatment),
+             size = 3) + 
+  geom_abline(slope = 1, intercept = 0) +
+  scale_fill_manual(values = cols3,
+                    name = 'Treatment') +
+  scale_shape_manual(values = shps3,
+                     name = "Treatment") + 
+  theme_classic() +
+  theme() + 
+  labs(title = "SIRFER", 
+       x = expression(paste('Untreated, Baked, 30 Rxn Temp ', delta^13, 'C', " (\u2030)")), 
+       y = expression(paste(delta^13, 'C', " (\u2030)"))) + 
+  guides(fill = guide_legend(nrow = 2), 
+         shape = guide_legend(nrow = 2)) + 
+  scale_x_continuous(limits = c(-17, -7)) + 
+  scale_y_continuous(limits = c(-17, -7))
+
+ggarrange(intraC_DPAA, intraC_UU, nrow = 1, ncol = 2, common.legend = T, legend="bottom")
+ggsave("figures/intraC11.png", units = c("mm"), width = 200, height = 120)
