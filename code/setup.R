@@ -67,13 +67,7 @@ uu <- df %>%
   filter(lab == 'UU') %>% 
   rename(d13Cuu = d13C, 
          d18Ouu = d18O) %>% 
-  select(sample, d13Cuu, d18Ouu, treatment)
-dpaa <- df %>% 
-  filter(lab == 'DPAA') %>% 
-  rename(d13Cdpaa = d13C, 
-         d18Odpaa = d18O)
-
-il1 <- left_join(uu, dpaa, by = c("sample", "treatment")) %>% 
+  select(sample, d13Cuu, d18Ouu, treatment) %>% 
   mutate(treatment = recode(treatment, 
                             'treated_30' = 'Treated, Unbaked, 30 Rxn Temp',
                             'treated_50' = 'Treated, Unbaked, 50 Rxn Temp', 
@@ -82,6 +76,23 @@ il1 <- left_join(uu, dpaa, by = c("sample", "treatment")) %>%
                             'untreated_50' = 'Untreated, Unbaked, 50 Rxn Temp', 
                             'untreated_baked_30' = 'Untreated, Baked, 30 Rxn Temp'
   ))
+
+dpaa <- df %>% 
+  filter(lab == 'DPAA') %>% 
+  rename(d13Cdpaa = d13C, 
+         d18Odpaa = d18O) %>% 
+  select(-c(lab)) %>% 
+  mutate(treatment = recode(treatment,
+                            'treated_30' = 'Treated, Unbaked, 30 Rxn Temp',
+                            'treated_50' = 'Treated, Unbaked, 50 Rxn Temp', 
+                            'treated_baked_30' = 'Treated, Baked, 30 Rxn Temp', 
+                            'untreated_30' = 'Untreated, Unbaked, 30 Rxn Temp', 
+                            'untreated_50' = 'Untreated, Unbaked, 50 Rxn Temp', 
+                            'untreated_baked_30' = 'Untreated, Baked, 30 Rxn Temp'
+  ))
+
+il1 <- left_join(uu, dpaa, by = c("sample", "treatment"))
+
 write.csv(il1, file = 'data/interlab.csv')
 
 # Intralab for 1:1 Plots --------------------------------------------------

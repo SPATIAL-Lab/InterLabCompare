@@ -173,11 +173,14 @@ for(i in 1:10){
   SDCdpaa$sd[i] = sd(subset(sv, sample == paste(samples[i]) & lab == 'DPAA')$d13C)
   SDCdpaa$lab = 'DPAA'
 }
-
 SDC <- rbind(SDCdpaa, SDCuu)
 rm(SDCdpaa, SDCuu)
+
 RIDC <- round((mean(subset(delta, iso == "C")$value) + 4*mean(SDC$sd))/2, 1)
 
+# RID of best samples (untreated, baked, 30)
+RIDObest <- round((mean(subset(delta, iso == "O" & type == 'Untreated, Baked, 30 Rxn Temp')$value) + 4*mean(SDO$sd))/2, 1)
+RIDCbest <- round((mean(subset(delta, iso == "C" & type == 'Untreated, Baked, 30 Rxn Temp')$value) + 4*mean(SDC$sd))/2, 1)
 # Baking Comparison -------------------------------------------------------
 t.test(d18O~treatment, 
        data = sv %>% filter(lab == 'DPAA' & treatment == 'treated_baked_30' |  

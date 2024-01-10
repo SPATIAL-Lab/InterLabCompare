@@ -16,11 +16,23 @@ cols3 <- c("Treated, Baked, 30 Rxn Temp" = "#ADE3C0FF",
            "Treated, Unbaked, 30 Rxn Temp" = "#3487A6FF",
            "Untreated, Unbaked, 50 Rxn Temp" = "#3D5296FF", 
            "Untreated, Unbaked, 30 Rxn Temp" = "#35264CFF")
-shps3 <- c("Treated, Baked, 30 Rxn Temp" = 21, 
-           "Treated, Unbaked, 50 Rxn Temp" = 22,
-           "Treated, Unbaked, 30 Rxn Temp" = 23,
-           "Untreated, Unbaked, 50 Rxn Temp" = 24, 
-           "Untreated, Unbaked, 30 Rxn Temp" = 25)
+cols4 <- c("Treated, Baked, 30 Rxn Temp" = "#43BBADFF", 
+           "Treated, Unbaked, 50 Rxn Temp" = "#43BBADFF",
+           "Treated, Unbaked, 30 Rxn Temp" = "#43BBADFF",
+           "Untreated, Unbaked, 50 Rxn Temp" = "#35264CFF", 
+           "Untreated, Baked, 30 Rxn Temp" = "#35264CFF")
+shps <- c("Treated, Baked, 30 Rxn Temp" = 21, 
+          "Treated, Unbaked, 50 Rxn Temp" = 22,
+          "Treated, Unbaked, 30 Rxn Temp" = 22,
+          "Untreated, Unbaked, 50 Rxn Temp" = 22, 
+          "Untreated, Baked, 30 Rxn Temp" = 21)
+cols5 <- c("Treated, Baked, 30 Rxn Temp" = "#8f3858", 
+          "Treated, Unbaked, 50 Rxn Temp" = "#6670d9",
+          "Treated, Unbaked, 30 Rxn Temp" = "#8f3858",
+          "Untreated, Unbaked, 50 Rxn Temp" = "#6670d9", 
+          "Untreated, Baked, 30 Rxn Temp" = "#8f3858")
+
+
 # Figure 1
 ggplot() + 
   geom_hline(yintercept = 0, color = 'grey20', linetype = 2) +
@@ -58,16 +70,20 @@ delta %>% filter(str_detect(type, "Untreated")) %>%
   scale_x_discrete(labels = function(treatment) str_wrap(treatment, width = 10))
 ggsave("figures/Figure2.png", units = c("in"), width = 7, height = 4)
 
-# Interlab scatter plots 
+
+# Interlab scatter plots --------------------------------------------------
 # Let's make 1:1 lines to explore changes in values as we change treatments. 
 
 ggplot() + 
-  geom_point(data = interlab1, aes(x = d13Cuu, y = d13Cdpaa, fill = treatment, shape = treatment), size = 3) + 
+  geom_point(data = interlab1, aes(x = d13Cuu, y = d13Cdpaa, fill = treatment,
+                                   shape = treatment, color = treatment), size = 3) + 
   geom_abline(slope=1, intercept = 0) +
-  scale_fill_manual(values = cols3, 
+  scale_fill_manual(values = cols4, 
                     name = "Treatment") +
-  scale_shape_manual(values = c(21, 22, 23, 24), 
+  scale_shape_manual(values = shps, 
                      name = "Treatment") + 
+  scale_color_manual(values = cols5, 
+                     name = 'Treatment') + 
   theme_classic() +
   theme(legend.position = 'bottom', 
         axis.text.x = element_text(size = 12),
