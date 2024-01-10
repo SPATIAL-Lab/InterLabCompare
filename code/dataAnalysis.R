@@ -8,6 +8,7 @@ intralab1 <- read.csv('data/intralab.csv') %>%
   filter(treatment != 'Untreated, Baked, 30 Rxn Temp')
 interlab1 <- read.csv('data/interlab.csv')
 intralab2 <- read.csv('data/intralab2.csv')
+sv <- read.csv("data/singlevalues.csv")
 
 # Single Value Data -------------------------------------------------------
 #how do the samples look, regardless of treatment? 
@@ -143,53 +144,66 @@ for(i in 1:3){
   ttest_intralab_SIRFER_C$pvalue[i] = round(tt$p.value, 3)
   ttest_intralab_SIRFER_C$cohens[i] = round(cd, 1)
 }
-# Graveyard for now -------------------------------------------------------
 
-# Interlab stats
-summDelta <- subset(delta, lab == 'interlab') %>% 
-  group_by(iso, type) %>% 
-  summarize(mean = round(mean(value), 2), 
-            sd = round(sd(value), 2), 
-            min = min(value),
-            max = max(value))
+# Re-calculating RID ------------------------------------------------------
 
-shapiro.test(subset(delta, iso == 'O')$value)
-shapiro.test(subset(delta, iso == 'C')$value)
-ggplot(subset(delta, iso == 'O'), aes(value)) + geom_density()
-ggplot(subset(delta, iso == 'C'), aes(value)) + geom_density()
-
-treats = unique(subset(delta, lab == 'interlab')$type)
-shapTable = data.frame(treats, "C" = rep(0), "O" = rep(0))
-datacols = c("C", "O")
-
-for(i in seq_along(treats)){
-  for(j in 1:2){
-    shapTable[i, j+1] = shapiro.test(subset(delta, lab == 'interlab' & type == treats[i] & iso == datacols[j])$value)$p.value
-  }
+samples = sort(unique(sv$sample))
+SDOuu <- data.frame(samples)
+SDOdpaa <- data.frame(samples)
+for(i in 1:10){
+  SDOuu$sd[i] = sd(subset(sv, sample == paste(samples[i]) & lab == 'UU')$d18O)
+  SDOuu$lab = 'UU'
+}
+for(i in 1:10){
+  SDOdpaa$sd[i] = sd(subset(sv, sample == paste(samples[i]) & lab == 'DPAA')$d18O)
+  SDOdpaa$lab = 'DPAA'
 }
 
-# One-sided t.tests for interlab comparisons
-inter_t_test = sort(unique(delta$type))
-diffTable = tTable = pTable = data.frame(inter_t_test, "value" = rep(0))
-datacols = c("C", "O")
-for(i in seq_along(inter_t_test)){
-    test = t.test(subset(delta, type == inter_t_test[i] & iso == "O")$value)
-    #delta[delta$type == treats[i], datacols[j]])
-    diffTable[i] = round(test$estimate, 2)
-    tTable[i] = round(test$statistic, 2)
-    pTable[i] = round(test$p.value, 3)
+SDO <- rbind(SDOdpaa, SDOuu)
+rm(SDOdpaa, SDOuu)
+RIDO <- round((mean(subset(delta, iso == "O")$value) + 4*mean(SDO$sd))/2, 1)
+
+SDCuu <- data.frame(samples)
+SDCdpaa <- data.frame(samples)
+for(i in 1:10){
+  SDCuu$sd[i] = sd(subset(sv, sample == paste(samples[i]) & lab == 'UU')$d13C)
+  SDCuu$lab = 'UU'
 }
-rm(datacols, treats, i, j, test)
+for(i in 1:10){
+  SDCdpaa$sd[i] = sd(subset(sv, sample == paste(samples[i]) & lab == 'DPAA')$d13C)
+  SDCdpaa$lab = 'DPAA'
+}
 
-# Variance tests (because I hate myself) ----------------------------------
+SDC <- rbind(SDCdpaa, SDCuu)
+rm(SDCdpaa, SDCuu)
+RIDC <- round((mean(subset(delta, iso == "C")$value) + 4*mean(SDC$sd))/2, 1)
 
-var.test(subset(sv, lab == 'UU' & treatment == 'untreated_50')$d13C, 
-         subset(sv, lab == 'DPAA' & treatment == 'untreated_30')$d13C)
-var.test(subset(sv, lab == 'UU' & treatment == 'treated_50')$d13C, 
-         subset(sv, lab == 'DPAA' & treatment == 'treated_30')$d13C)
+# Baking Comparison -------------------------------------------------------
+t.test(d18O~treatment, 
+       data = sv %>% filter(lab == 'DPAA' & treatment == 'treated_baked_30' |  
+                                            lab == 'DPAA' & treatment == "treated_30"),
+       paired = T)
 
-var.test(subset(sv, lab == 'UU' & treatment == 'untreated_50')$d18O, 
-         subset(sv, lab == 'DPAA' & treatment == 'untreated_30')$d18O)
-var.test(subset(sv, lab == 'UU' & treatment == 'treated_50')$d18O, 
-         subset(sv, lab == 'DPAA' & treatment == 'treated_30')$d18O)
+t.test(d18O~treatment,
+       data = sv %>% filter(lab == 'DPAA' & treatment == 'untreated_baked_30' |  
+                              lab == 'DPAA' & treatment == "untreated_30"),
+       paired = T)
 
+t.test(d18O~treated,
+       data = dpaa,
+       paired = T)
+t.test(d18O~baked,
+       data = dpaa,
+       paired = T)
+
+# can't compare baking at SIRFER...
+
+# ANOVA??? ---------------------------------------------------------------
+kruskal.test(data = subset(sv), d18O ~ lab * treated * temp * baked)
+
+anova(lm(data = subset(sv), d18O ~ lab *treated * temp * baked))
+anova(lm(data = subset(sv), d13C ~ lab *treated * temp * baked))
+
+anova(lm(data = subset(sv, lab == 'UU'), d18O ~ treated * temp * baked))
+
+   
