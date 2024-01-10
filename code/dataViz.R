@@ -31,9 +31,15 @@ cols5 <- c("Treated, Baked, 30 Rxn Temp" = "#8f3858",
           "Treated, Unbaked, 30 Rxn Temp" = "#8f3858",
           "Untreated, Unbaked, 50 Rxn Temp" = "#6670d9", 
           "Untreated, Baked, 30 Rxn Temp" = "#8f3858")
+cols6 <- c("Treated, Baked, 30 Rxn Temp" = "#cc7b81", 
+           "Treated, Unbaked, 50 Rxn Temp" = "#8f3858",
+           "Treated, Unbaked, 30 Rxn Temp" = "#cc7b81",
+           "Untreated, Unbaked, 50 Rxn Temp" = "#33386C", 
+           "Untreated, Baked, 30 Rxn Temp" = "#6670d9")
 
 
-# Figure 1
+# Figure 1 ----------------------------------------------------------------
+
 ggplot() + 
   geom_hline(yintercept = 0, color = 'grey20', linetype = 2) +
   geom_boxplot(data = subset(delta, type == 'Treated, Unbaked, Own Rxn Temp' | type == 'Untreated, Baked, 30 Rxn Temp'), 
@@ -51,7 +57,9 @@ ggplot() +
   scale_x_discrete(labels = function(treatment) str_wrap(treatment, width = 10))
 ggsave("figures/Figure1.png", units = c("in"), width = 7, height = 4)
 
-# Figure 2
+
+# Figure 2 ----------------------------------------------------------------
+
 delta %>% filter(str_detect(type, "Untreated")) %>% 
   ggplot() + 
   geom_hline(yintercept = 0, color = 'grey20', linetype = 2) +
@@ -95,14 +103,36 @@ ggplot() +
   guides(fill = guide_legend(nrow = 2)) + 
   scale_x_continuous(breaks = c(-17, -15, -13, -11, -9)) + 
   scale_y_continuous(breaks = c(-17, -15, -13, -11, -9)) 
-ggsave("figures/interscatterC.png", units = c("in"), width = 7, height = 5)
+ggsave("figures/interscatterC1.png", units = c("in"), width = 7, height = 5)
 
-ggplot() + 
+interscatterC <- ggplot() + 
+  geom_point(data = interlab1, aes(x = d13Cuu, y = d13Cdpaa, fill = treatment,
+                                   shape = treatment), size = 3) + 
+  geom_abline(slope=1, intercept = 0) +
+  scale_fill_manual(values = cols6, 
+                    name = "Treatment") +
+  scale_shape_manual(values = shps, 
+                     name = "Treatment") + 
+  theme_classic() +
+  theme(legend.position = 'bottom', 
+        axis.text.x = element_text(size = 12),
+        axis.text.y = element_text(size = 12),
+        axis.title = element_text(size = 14), 
+        legend.text = element_text(size = 12)) + 
+  labs(x = expression(paste('SIRFER ', delta^13, 'C', " (\u2030)")), 
+       y = expression(paste('DPAA ', delta^13, 'C', " (\u2030)"))) + 
+  guides(fill = guide_legend(nrow = 2)) + 
+  scale_x_continuous(breaks = c(-17, -15, -13, -11, -9)) + 
+  scale_y_continuous(breaks = c(-17, -15, -13, -11, -9)) 
+ggsave("figures/interscatterC2.png", units = c("in"), width = 7, height = 5)
+
+
+interscatterO <- ggplot() + 
   geom_point(data = interlab1, aes(x = d18Ouu, y = d18Odpaa, fill = treatment, shape = treatment), size = 3) + 
   geom_abline(slope=1, intercept = 0) +
-  scale_fill_manual(values = cols3, 
+  scale_fill_manual(values = cols6, 
                     name = "Treatment") +
-  scale_shape_manual(values = c(21, 22, 23, 24), 
+  scale_shape_manual(values = shps, 
                      name = "Treatment") + 
   theme_classic() +
   theme(legend.position = 'bottom', 
@@ -116,6 +146,9 @@ ggplot() +
   xlim(-9, 3) + 
   ylim(-9, 3)
 ggsave("figures/interscatterO.png", units = c("in"), width = 7, height = 5)
+
+ggarrange(interscatterO, interscatterC, nrow = 1, ncol = 2, common.legend = T, legend="bottom")
+ggsave("figures/interscatter.png", units = c("in"), width = 7, height = 5)
 
 O1 <- ggplot() + 
   geom_point(data = subset(interlab1, treatment == "Treated, Baked, 30 Rxn Temp"), 
