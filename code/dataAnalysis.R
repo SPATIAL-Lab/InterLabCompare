@@ -48,11 +48,11 @@ cohensD(subset(delta, type == 'Untreated, Baked, 30 Rxn Temp' & iso == 'O')$valu
 
 # Baking and Reaction Temp -----------------------------------------------------------
 
-t.test(subset(delta, type == 'Untreated, 50 Rxn Temp' & iso == 'C')$value)
-cohensD(subset(delta, type == 'Untreated, 50 Rxn Temp' & iso == 'C')$value)
+t.test(subset(delta, type == 'Untreated, Baked, 50 Rxn Temp' & iso == 'C')$value)
+cohensD(subset(delta, type == 'Untreated, Baked, 50 Rxn Temp' & iso == 'C')$value)
 
-t.test(subset(delta, type == 'Untreated, 50 Rxn Temp' & iso == 'O')$value)
-cohensD(subset(delta, type == 'Untreated, 50 Rxn Temp' & iso == 'O')$value)
+t.test(subset(delta, type == 'Untreated, Unbaked, 50 Rxn Temp' & iso == 'O')$value)
+cohensD(subset(delta, type == 'Untreated, Unbaked, 50 Rxn Temp' & iso == 'O')$value)
 
 t.test(subset(delta, type == 'Untreated, Baked, 30 Rxn Temp' & iso == 'C')$value)
 cohensD(subset(delta, type == 'Untreated, Baked, 30 Rxn Temp' & iso == 'C')$value)
