@@ -145,6 +145,61 @@ for(i in 1:3){
   ttest_intralab_SIRFER_C$cohens[i] = round(cd, 1)
 }
 
+
+# Intralab linear relationships -------------------------------------------
+
+## Carbon -------------------------------------------
+intra_linear <- sort(unique(intralab2$treatment))
+linear_intralab_DPAA_C = data.frame(intra_linear)
+datacols = c("C")
+for(i in 1:5){
+  linear = lm(subset(intralab2, treatment == paste(intra_linear[i]) & lab == 'DPAA')$d13C ~
+            subset(intralab2, treatment == paste(intra_linear[i]) & lab == 'DPAA')$d13Ccompare)
+  linear_intralab_DPAA_C$intercept[i] = linear[["coefficients"]][["(Intercept)"]]
+  linear_intralab_DPAA_C$slope[i] = linear[["coefficients"]][['subset(intralab2, treatment == paste(intra_linear[i]) & lab == "DPAA")$d13Ccompare']]
+}
+linear_intralab_DPAA_C$lab = "DPAA"
+
+intra_linear <- sort(unique(subset(intralab2, lab == 'UU')$treatment))
+linear_intralab_UU_C = data.frame(intra_linear)
+datacols = c("C")
+for(i in 1:5){
+  linear = lm(subset(intralab2, treatment == paste(intra_linear[i]) & lab == 'UU')$d13C ~
+                subset(intralab2, treatment == paste(intra_linear[i]) & lab == 'UU')$d13Ccompare)
+  linear_intralab_UU_C$intercept[i] = linear[["coefficients"]][["(Intercept)"]]
+  linear_intralab_UU_C$slope[i] = linear[["coefficients"]][['subset(intralab2, treatment == paste(intra_linear[i]) & lab == "UU")$d13Ccompare']]
+}
+linear_intralab_UU_C$lab = "SIRFER"
+
+linear_intralab_C <- rbind(linear_intralab_DPAA_C, linear_intralab_UU_C)
+rm(linear_intralab_UU_C, linear_intralab_DPAA_C)
+
+## Oxygen ------------------------------------------------------------------
+intra_linear <- sort(unique(intralab2$treatment))
+linear_intralab_DPAA_O = data.frame(intra_linear)
+datacols = c("C")
+for(i in 1:5){
+  linear = lm(subset(intralab2, treatment == paste(intra_linear[i]) & lab == 'DPAA')$d18O ~
+                subset(intralab2, treatment == paste(intra_linear[i]) & lab == 'DPAA')$d18Ocompare)
+  linear_intralab_DPAA_O$intercept[i] = linear[["coefficients"]][["(Intercept)"]]
+  linear_intralab_DPAA_O$slope[i] = linear[["coefficients"]][['subset(intralab2, treatment == paste(intra_linear[i]) & lab == "DPAA")$d18Ocompare']]
+}
+linear_intralab_DPAA_O$lab = "DPAA"
+
+intra_linear <- sort(unique(subset(intralab2, lab == 'UU')$treatment))
+linear_intralab_UU_O = data.frame(intra_linear)
+datacols = c("O")
+for(i in 1:5){
+  linear = lm(subset(intralab2, treatment == paste(intra_linear[i]) & lab == 'UU')$d18O ~
+                subset(intralab2, treatment == paste(intra_linear[i]) & lab == 'UU')$d18Ocompare)
+  linear_intralab_UU_O$intercept[i] = linear[["coefficients"]][["(Intercept)"]]
+  linear_intralab_UU_O$slope[i] = linear[["coefficients"]][['subset(intralab2, treatment == paste(intra_linear[i]) & lab == "UU")$d18Ocompare']]
+}
+linear_intralab_UU_O$lab = "SIRFER"
+
+linear_intralab_O <- rbind(linear_intralab_DPAA_O, linear_intralab_UU_O)
+rm(linear_intralab_UU_O, linear_intralab_DPAA_O)
+
 # Re-calculating RID ------------------------------------------------------
 
 samples = sort(unique(sv$sample))
