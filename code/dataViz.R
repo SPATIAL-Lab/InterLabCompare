@@ -26,6 +26,11 @@ shps <- c("Treated, Baked, 30 Rxn Temp" = 21,
           "Treated, Unbaked, 30 Rxn Temp" = 21,
           "Untreated, Unbaked, 50 Rxn Temp" = 22, 
           "Untreated, Baked, 30 Rxn Temp" = 22)
+shps2 <- c("Treated, Baked, 30 Rxn Temp" = 21, 
+           "Treated, Unbaked, 50 Rxn Temp" = 22,
+           "Treated, Unbaked, 30 Rxn Temp" = 23,
+           "Untreated, Unbaked, 50 Rxn Temp" = 24, 
+           "Untreated, Baked, 30 Rxn Temp" = 25)
 cols5 <- c("Treated, Baked, 30 Rxn Temp" = "#8f3858", 
           "Treated, Unbaked, 50 Rxn Temp" = "#6670d9",
           "Treated, Unbaked, 30 Rxn Temp" = "#8f3858",
@@ -86,6 +91,9 @@ ggplot() +
   geom_point(data = interlab1, aes(x = d13Cuu, y = d13Cdpaa, fill = treatment,
                                    shape = treatment, color = treatment), size = 3) + 
   geom_abline(slope=1, intercept = 0) +
+  geom_smooth(method = lm, se = F,
+              data = interlab1, 
+              aes(x = d13Cuu, y = d13Cdpaa, color = treatment)) + 
   scale_fill_manual(values = cols4, 
                     name = "Treatment") +
   scale_shape_manual(values = shps, 
@@ -201,6 +209,9 @@ O4 <- ggplot() +
 ggarrange(O1, O2, O3, O4, nrow = 2, ncol = 2, labels = "AUTO")
 ggsave("figures/interscatterOArranged.png", units = c("in"), width = 7, height = 5)
 
+
+# Intralab boxplots ----------------------------------------------------
+
 intralabO <- ggplot() + 
   geom_hline(yintercept = 0, color = 'grey20', linetype = 2) +
   geom_boxplot(data = subset(intralab1, treatment != "Treated, Unbaked, 30 Rxn Temp" & treatment != "Untreated, Unbaked, 30 Rxn Temp"), 
@@ -302,9 +313,16 @@ intraO_DPAA <- ggplot() +
                  shape = treatment),
              size = 3) + 
   geom_abline(slope = 1, intercept = 0) +
+  geom_smooth(method = lm, se = F,
+              data = subset(intralab2, lab == 'DPAA'),
+              aes(y = d18O,
+                  x = d18Ocompare,
+                  color = treatment)) +
   scale_fill_manual(values = cols3,
                      name = 'Treatment') +
-  scale_shape_manual(values = shps3,
+  scale_color_manual(values = cols3,
+                    name = 'Treatment') +
+  scale_shape_manual(values = shps2,
                      name = "Treatment") + 
   theme_classic() +
   theme() + 
@@ -326,7 +344,7 @@ intraO_UU <- ggplot() +
   geom_abline(slope = 1, intercept = 0) +
   scale_fill_manual(values = cols3,
                     name = 'Treatment') +
-  scale_shape_manual(values = shps3,
+  scale_shape_manual(values = shps2,
                      name = "Treatment") + 
   theme_classic() +
   theme() + 
@@ -351,7 +369,7 @@ intraC_DPAA <- ggplot() +
   geom_abline(slope = 1, intercept = 0) +
   scale_fill_manual(values = cols3,
                     name = 'Treatment') +
-  scale_shape_manual(values = shps3, 
+  scale_shape_manual(values = shps2, 
                      name = "Treatment") + 
   theme_classic() +
   theme() + 
@@ -373,7 +391,7 @@ intraC_UU <- ggplot() +
   geom_abline(slope = 1, intercept = 0) +
   scale_fill_manual(values = cols3,
                     name = 'Treatment') +
-  scale_shape_manual(values = shps3,
+  scale_shape_manual(values = shps2,
                      name = "Treatment") + 
   theme_classic() +
   theme() + 
