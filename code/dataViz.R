@@ -22,21 +22,21 @@ cols4 <- c("Treated, Baked, 30 Rxn Temp" = "#43BBADFF",
            "Untreated, Unbaked, 50 Rxn Temp" = "#35264CFF", 
            "Untreated, Baked, 30 Rxn Temp" = "#35264CFF")
 shps <- c("Treated, Baked, 30 Rxn Temp" = 21, 
-          "Treated, Unbaked, 50 Rxn Temp" = 22,
-          "Treated, Unbaked, 30 Rxn Temp" = 22,
+          "Treated, Unbaked, 50 Rxn Temp" = 21,
+          "Treated, Unbaked, 30 Rxn Temp" = 21,
           "Untreated, Unbaked, 50 Rxn Temp" = 22, 
-          "Untreated, Baked, 30 Rxn Temp" = 21)
+          "Untreated, Baked, 30 Rxn Temp" = 22)
 cols5 <- c("Treated, Baked, 30 Rxn Temp" = "#8f3858", 
           "Treated, Unbaked, 50 Rxn Temp" = "#6670d9",
           "Treated, Unbaked, 30 Rxn Temp" = "#8f3858",
           "Untreated, Unbaked, 50 Rxn Temp" = "#6670d9", 
           "Untreated, Baked, 30 Rxn Temp" = "#8f3858")
-cols6 <- c("Treated, Baked, 30 Rxn Temp" = "#cc7b81", 
+cols6 <- c("Treated, Baked, 30 Rxn Temp" = "#33386C", 
            "Treated, Unbaked, 50 Rxn Temp" = "#8f3858",
-           "Treated, Unbaked, 30 Rxn Temp" = "#cc7b81",
-           "Untreated, Unbaked, 50 Rxn Temp" = "#33386C", 
-           "Untreated, Baked, 30 Rxn Temp" = "#6670d9")
-
+           "Treated, Unbaked, 30 Rxn Temp" = "#6670d9",
+           "Untreated, Unbaked, 50 Rxn Temp" = "#8f3858", 
+           "Untreated, Baked, 30 Rxn Temp" = "#33386C")
+#cc7b81 if we had a baked 50
 
 # Figure 1 ----------------------------------------------------------------
 
@@ -90,7 +90,7 @@ ggplot() +
                     name = "Treatment") +
   scale_shape_manual(values = shps, 
                      name = "Treatment") + 
-  scale_color_manual(values = cols5, 
+  scale_color_manual(values = cols6, 
                      name = 'Treatment') + 
   theme_classic() +
   theme(legend.position = 'bottom', 
@@ -124,7 +124,7 @@ interscatterC <- ggplot() +
   guides(fill = guide_legend(nrow = 2)) + 
   scale_x_continuous(breaks = c(-17, -15, -13, -11, -9)) + 
   scale_y_continuous(breaks = c(-17, -15, -13, -11, -9)) 
-ggsave("figures/interscatterC2.png", units = c("in"), width = 7, height = 5)
+#ggsave("figures/interscatterC2.png", units = c("in"), width = 7, height = 5)
 
 
 interscatterO <- ggplot() + 
@@ -145,7 +145,7 @@ interscatterO <- ggplot() +
   guides(fill = guide_legend(nrow = 2)) + 
   xlim(-9, 3) + 
   ylim(-9, 3)
-ggsave("figures/interscatterO.png", units = c("in"), width = 7, height = 5)
+#ggsave("figures/interscatterO.png", units = c("in"), width = 7, height = 5)
 
 ggarrange(interscatterO, interscatterC, nrow = 1, ncol = 2, common.legend = T, legend="bottom")
 ggsave("figures/interscatter.png", units = c("in"), width = 7, height = 5)
