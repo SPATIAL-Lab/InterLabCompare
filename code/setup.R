@@ -1,3 +1,4 @@
+# Initial cleaning of data. Doesn't need to be run now as the needed data are in the data folder. 
 library(dplyr); library(tidyr);
 library(stringr); library(ggplot2); library(readxl)
 

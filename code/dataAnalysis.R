@@ -216,7 +216,7 @@ for(i in 1:10){
 
 SDO <- rbind(SDOdpaa, SDOuu)
 rm(SDOdpaa, SDOuu)
-RIDO <- round((mean(subset(delta, iso == "O")$value) + 4*mean(SDO$sd))/2, 1)
+RIDOoverall <- round((mean(subset(delta, iso == "O")$value) + 4*mean(SDO$sd))/2, 1)
 
 SDCuu <- data.frame(samples)
 SDCdpaa <- data.frame(samples)
@@ -231,11 +231,29 @@ for(i in 1:10){
 SDC <- rbind(SDCdpaa, SDCuu)
 rm(SDCdpaa, SDCuu)
 
-RIDC <- round((mean(subset(delta, iso == "C")$value) + 4*mean(SDC$sd))/2, 1)
+RIDCoverall <- round((mean(subset(delta, iso == "C")$value) + 4*mean(SDC$sd))/2, 1)
 
-# RID of best samples (untreated, baked, 30)
-RIDObest <- round((mean(subset(delta, iso == "O" & type == 'Untreated, Baked, 30 Rxn Temp')$value) + 4*mean(SDO$sd))/2, 1)
-RIDCbest <- round((mean(subset(delta, iso == "C" & type == 'Untreated, Baked, 30 Rxn Temp')$value) + 4*mean(SDC$sd))/2, 1)
+## RID for each group comparison -------------------------------------------
+
+samples = sort(unique(delta$type))
+RIDO <- data.frame(samples)
+for(i in 1:6){
+  RIDO$RID[i] = round((mean(subset(delta, iso == "O" & type == paste(samples[i]))$value) + 4*sd(subset(delta, iso == "O" & type == paste(samples[i]))$value))/2, 1)
+  RIDO$mean[i] = round(mean(subset(delta, iso == "O" & type == paste(samples[i]))$value), 2)
+  RIDO$sd[i] = round(sd(subset(delta, iso == "O" & type == paste(samples[i]))$value), 2)
+}
+RIDC <- data.frame(samples)
+for(i in 1:6){
+  RIDC$RID[i] = round((mean(subset(delta, iso == "C" & type == paste(samples[i]))$value) + 4*sd(subset(delta, iso == "C" & type == paste(samples[i]))$value))/2, 1)
+  RIDC$mean[i] = round(mean(subset(delta, iso == "C" & type == paste(samples[i]))$value), 2)
+  RIDC$sd[i] = round(sd(subset(delta, iso == "C" & type == paste(samples[i]))$value), 2)
+  }
+
+RIDObest <- round((mean(subset(delta, iso == "O" & type == 'Untreated, Baked, 30 Rxn Temp')$value) + 4*sd(subset(delta, iso == "O" & type == 'Untreated, Baked, 30 Rxn Temp')$value))/2, 1)
+RIDCbest <- round((mean(subset(delta, iso == "C" & type == 'Untreated, Baked, 30 Rxn Temp')$value) + 4*sd(subset(delta, iso == "C" & type == 'Untreated, Baked, 30 Rxn Temp')$value))/2, 1)
+#RIDCbest <- round((mean(subset(delta, iso == "C" & type == 'Untreated, Baked, 30 Rxn Temp')$value) + 4*mean(SDC$sd))/2, 1)
+RIDOworst <- round((mean(subset(delta, iso == "O" & type == 'Treated, Unbaked, 50 Rxn Temp')$value) + 4*mean(SDO$sd))/2, 1)
+
 # Baking Comparison -------------------------------------------------------
 t.test(d18O~treatment, 
        data = sv %>% filter(lab == 'DPAA' & treatment == 'treated_baked_30' |  
