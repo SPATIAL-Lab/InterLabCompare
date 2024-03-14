@@ -1,5 +1,5 @@
 # Setup -------------------------------------------------------------------
-
+# run this before anything else, it loads librarys and the data frames 
 library(dplyr); library(tidyr);library(ggplot2); library(stringr); 
 library(ggpubr); library(lsr)
 
@@ -27,13 +27,18 @@ summSingle <- sv %>%
 
 summInterlab <- delta %>% 
   group_by(iso, type) %>% 
-  summarize(mean = round(mean(value), 2), 
-            sd = round(sd(value), 2), 
+  summarize(min = min(value),
+            max = max(value),
+            mean = round(mean(value), 1), 
+            sd = round(sd(value), 1), 
             min = min(value),
             max = max(value), 
-            srd = (sd(value)*100)/mean(value)
-            )
+            range = round(max - min, 1), 
+            RID = round(mean + 2*sd, 1)
+            ) %>% 
+  select(-c(min, max))
 # Treated v Untreated by Lab ----------------------------------------------
+
 t.test(subset(delta, type == 'Treated, Unbaked, Own Rxn Temp' & iso == 'C')$value)
 round(cohensD(subset(delta, type == 'Treated, Unbaked, Own Rxn Temp' & iso == 'C')$value), 1)
 
@@ -46,19 +51,21 @@ cohensD(subset(delta, type == 'Untreated, Baked, 30 Rxn Temp' & iso == 'C')$valu
 t.test(subset(delta, type == 'Untreated, Baked, 30 Rxn Temp' & iso == 'O')$value)
 cohensD(subset(delta, type == 'Untreated, Baked, 30 Rxn Temp' & iso == 'O')$value)
 
+
 # Baking and Reaction Temp -----------------------------------------------------------
 
-t.test(subset(delta, type == 'Untreated, Baked, 50 Rxn Temp' & iso == 'C')$value)
-cohensD(subset(delta, type == 'Untreated, Baked, 50 Rxn Temp' & iso == 'C')$value)
+t.test(subset(delta, type == 'Untreated, Unbaked, Own Rxn Temp' & iso == 'C')$value)
+cohensD(subset(delta, type == 'Untreated, Unbaked, Own Rxn Temp' & iso == 'C')$value)
+
+t.test(subset(delta, type == 'Untreated, Unbaked, Own Rxn Temp' & iso == 'O')$value)
+cohensD(subset(delta, type == 'Untreated, Unbaked, Own Rxn Temp' & iso == 'O')$value)
+
+t.test(subset(delta, type == 'Untreated, Unbaked, 50 Rxn Temp' & iso == 'C')$value)
+cohensD(subset(delta, type == 'Untreated, Unbaked, 50 Rxn Temp' & iso == 'C')$value)
 
 t.test(subset(delta, type == 'Untreated, Unbaked, 50 Rxn Temp' & iso == 'O')$value)
 cohensD(subset(delta, type == 'Untreated, Unbaked, 50 Rxn Temp' & iso == 'O')$value)
 
-t.test(subset(delta, type == 'Untreated, Baked, 30 Rxn Temp' & iso == 'C')$value)
-cohensD(subset(delta, type == 'Untreated, Baked, 30 Rxn Temp' & iso == 'C')$value)
-
-t.test(subset(delta, type == 'Untreated, Baked, 30 Rxn Temp' & iso == 'O')$value)
-cohensD(subset(delta, type == 'Untreated, Baked, 30 Rxn Temp' & iso == 'O')$value)
 
 # Intralab stats ----------------------------------------------------------
 
@@ -201,58 +208,23 @@ linear_intralab_O <- rbind(linear_intralab_DPAA_O, linear_intralab_UU_O)
 rm(linear_intralab_UU_O, linear_intralab_DPAA_O)
 
 # Re-calculating RID ------------------------------------------------------
-
-samples = sort(unique(sv$sample))
-SDOuu <- data.frame(samples)
-SDOdpaa <- data.frame(samples)
-for(i in 1:10){
-  SDOuu$sd[i] = sd(subset(sv, sample == paste(samples[i]) & lab == 'UU')$d18O)
-  SDOuu$lab = 'UU'
-}
-for(i in 1:10){
-  SDOdpaa$sd[i] = sd(subset(sv, sample == paste(samples[i]) & lab == 'DPAA')$d18O)
-  SDOdpaa$lab = 'DPAA'
-}
-
-SDO <- rbind(SDOdpaa, SDOuu)
-rm(SDOdpaa, SDOuu)
-RIDOoverall <- round((mean(subset(delta, iso == "O")$value) + 4*mean(SDO$sd))/2, 1)
-
-SDCuu <- data.frame(samples)
-SDCdpaa <- data.frame(samples)
-for(i in 1:10){
-  SDCuu$sd[i] = sd(subset(sv, sample == paste(samples[i]) & lab == 'UU')$d13C)
-  SDCuu$lab = 'UU'
-}
-for(i in 1:10){
-  SDCdpaa$sd[i] = sd(subset(sv, sample == paste(samples[i]) & lab == 'DPAA')$d13C)
-  SDCdpaa$lab = 'DPAA'
-}
-SDC <- rbind(SDCdpaa, SDCuu)
-rm(SDCdpaa, SDCuu)
-
-RIDCoverall <- round((mean(subset(delta, iso == "C")$value) + 4*mean(SDC$sd))/2, 1)
-
 ## RID for each group comparison -------------------------------------------
+# did you know I can do this whole stupid thing in one line of dplyr. See summInterlab
 
-samples = sort(unique(delta$type))
-RIDO <- data.frame(samples)
+treats = sort(unique(delta$type))
+RIDO <- data.frame(treats)
 for(i in 1:6){
-  RIDO$RID[i] = round((mean(subset(delta, iso == "O" & type == paste(samples[i]))$value) + 4*sd(subset(delta, iso == "O" & type == paste(samples[i]))$value))/2, 1)
-  RIDO$mean[i] = round(mean(subset(delta, iso == "O" & type == paste(samples[i]))$value), 2)
-  RIDO$sd[i] = round(sd(subset(delta, iso == "O" & type == paste(samples[i]))$value), 2)
+  RIDO$RID[i] = round((mean(subset(delta, iso == "O" & type == paste(treats[i]))$value) + 2*sd(subset(delta, iso == "O" & type == paste(treats[i]))$value)), 1)
+  RIDO$mean[i] = round(mean(subset(delta, iso == "O" & type == paste(treats))$value), 2)
+  RIDO$sd[i] = round(sd(subset(delta, iso == "O" & type == paste(treats[i]))$value), 2)
 }
-RIDC <- data.frame(samples)
+RIDC <- data.frame(treats)
 for(i in 1:6){
-  RIDC$RID[i] = round((mean(subset(delta, iso == "C" & type == paste(samples[i]))$value) + 4*sd(subset(delta, iso == "C" & type == paste(samples[i]))$value))/2, 1)
-  RIDC$mean[i] = round(mean(subset(delta, iso == "C" & type == paste(samples[i]))$value), 2)
-  RIDC$sd[i] = round(sd(subset(delta, iso == "C" & type == paste(samples[i]))$value), 2)
+  RIDC$RID[i] = round((mean(subset(delta, iso == "C" & type == paste(treats[i]))$value) + 2*sd(subset(delta, iso == "C" & type == paste(treats[i]))$value)), 1)
+  RIDC$mean[i] = round(mean(subset(delta, iso == "C" & type == paste(treats[i]))$value), 2)
+  RIDC$sd[i] = round(sd(subset(delta, iso == "C" & type == paste(treats[i]))$value), 2)
   }
 
-RIDObest <- round((mean(subset(delta, iso == "O" & type == 'Untreated, Baked, 30 Rxn Temp')$value) + 4*sd(subset(delta, iso == "O" & type == 'Untreated, Baked, 30 Rxn Temp')$value))/2, 1)
-RIDCbest <- round((mean(subset(delta, iso == "C" & type == 'Untreated, Baked, 30 Rxn Temp')$value) + 4*sd(subset(delta, iso == "C" & type == 'Untreated, Baked, 30 Rxn Temp')$value))/2, 1)
-#RIDCbest <- round((mean(subset(delta, iso == "C" & type == 'Untreated, Baked, 30 Rxn Temp')$value) + 4*mean(SDC$sd))/2, 1)
-RIDOworst <- round((mean(subset(delta, iso == "O" & type == 'Treated, Unbaked, 50 Rxn Temp')$value) + 4*mean(SDO$sd))/2, 1)
 
 # Baking Comparison -------------------------------------------------------
 t.test(d18O~treatment, 
