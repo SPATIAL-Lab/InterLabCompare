@@ -12,7 +12,8 @@ df <- long %>%
          baked = ifelse(str_detect(treatment, 'baked'), T, F), #assuming it's 30 for now
          treatment = substring(treatment, 6)
   ) 
-
+df$d13C <- round(df$d13C, 2)
+df$d18O <- round(df$d18O, 2)
 write.csv(df, file = "data/singlevalues.csv")
 
 # Intra-lab comparison, treated-untreated--------------------------------------

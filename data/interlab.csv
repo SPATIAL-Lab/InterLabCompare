@@ -39,3 +39,13 @@
 "38","FE 08",-9.91,-0.4,"Treated, Baked, 30 Rxn Temp",-9.39,-0.22,TRUE,"30",TRUE
 "39","TIE",-15.31,-8.27,"Treated, Baked, 30 Rxn Temp",-14.65,-6.22,TRUE,"30",TRUE
 "40","BOO-11",-15.05,-8.06,"Treated, Baked, 30 Rxn Temp",-14.19,-6.67,TRUE,"30",TRUE
+"41","BOO-11",-14.55,-8.53,"Untreated, Unbaked, 50 Rxn Temp",-14.68,-4.63,FALSE,"50",FALSE
+"42","FE01",-9.33,-1.03,"Untreated, Unbaked, 50 Rxn Temp",NA,NA,NA,NA,NA
+"43","FE02",-15.51,-7.55,"Untreated, Unbaked, 50 Rxn Temp",NA,NA,NA,NA,NA
+"44","FE03",-8.29,-3.9,"Untreated, Unbaked, 50 Rxn Temp",NA,NA,NA,NA,NA
+"45","FE04",-10.59,-1.6,"Untreated, Unbaked, 50 Rxn Temp",NA,NA,NA,NA,NA
+"46","FE05",-15.97,-5.67,"Untreated, Unbaked, 50 Rxn Temp",NA,NA,NA,NA,NA
+"47","FE06",-13.74,-4.23,"Untreated, Unbaked, 50 Rxn Temp",NA,NA,NA,NA,NA
+"48","FE07",-10.56,0.54,"Untreated, Unbaked, 50 Rxn Temp",NA,NA,NA,NA,NA
+"49","FE08",-9.44,-0.82,"Untreated, Unbaked, 50 Rxn Temp",NA,NA,NA,NA,NA
+"50","TIE",-15.21,-8.27,"Untreated, Unbaked, 50 Rxn Temp",-15.04,-6.91,FALSE,"50",FALSE

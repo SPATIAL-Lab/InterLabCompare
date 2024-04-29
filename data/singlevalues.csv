@@ -99,3 +99,13 @@
 "98","FE 08",-9.35,"treated_50",2.2,"DPAA",TRUE,"50",FALSE
 "99","TIE",-15.3,"treated_50",-6.9,"DPAA",TRUE,"50",FALSE
 "100","BOO-11",-14.7,"treated_50",-3.84,"DPAA",TRUE,"50",FALSE
+"101","BOO-11",-14.55,"untreated_50",-8.53,"UU",FALSE,"50",FALSE
+"102","FE01",-9.33,"untreated_50",-1.03,"UU",FALSE,"50",FALSE
+"103","FE02",-15.51,"untreated_50",-7.55,"UU",FALSE,"50",FALSE
+"104","FE03",-8.29,"untreated_50",-3.9,"UU",FALSE,"50",FALSE
+"105","FE04",-10.59,"untreated_50",-1.6,"UU",FALSE,"50",FALSE
+"106","FE05",-15.97,"untreated_50",-5.67,"UU",FALSE,"50",FALSE
+"107","FE06",-13.74,"untreated_50",-4.23,"UU",FALSE,"50",FALSE
+"108","FE07",-10.56,"untreated_50",0.54,"UU",FALSE,"50",FALSE
+"109","FE08",-9.44,"untreated_50",-0.82,"UU",FALSE,"50",FALSE
+"110","TIE",-15.21,"untreated_50",-8.27,"UU",FALSE,"50",FALSE

@@ -66,6 +66,11 @@ cohensD(subset(delta, type == 'Untreated, Unbaked, 50 Rxn Temp' & iso == 'C')$va
 t.test(subset(delta, type == 'Untreated, Unbaked, 50 Rxn Temp' & iso == 'O')$value)
 cohensD(subset(delta, type == 'Untreated, Unbaked, 50 Rxn Temp' & iso == 'O')$value)
 
+t.test(subset(delta, type == 'Untreated, Unbaked, 30 Rxn Temp' & iso == 'C')$value)
+cohensD(subset(delta, type == 'Untreated, Unbaked, 30 Rxn Temp' & iso == 'C')$value)
+
+t.test(subset(delta, type == 'Untreated, Unbaked, 30 Rxn Temp' & iso == 'O')$value)
+cohensD(subset(delta, type == 'Untreated, Unbaked, 30 Rxn Temp' & iso == 'O')$value)
 
 # Intralab stats ----------------------------------------------------------
 

@@ -39,63 +39,73 @@
 "38","FE 08",-9.91,"Treated, Baked, 30 Rxn Temp",-0.4,"UU",TRUE,"30",TRUE,0.39,-0.42
 "39","TIE",-15.31,"Treated, Baked, 30 Rxn Temp",-8.27,"UU",TRUE,"30",TRUE,0.280000000000001,-0.17
 "40","BOO-11",-15.05,"Treated, Baked, 30 Rxn Temp",-8.06,"UU",TRUE,"30",TRUE,0.24,-0.630000000000001
-"41","FE 01",-9.48,"Untreated, Unbaked, 30 Rxn Temp",-0.88,"DPAA",FALSE,"30",FALSE,0.49,-0.17
-"42","FE 02",-15.1,"Untreated, Unbaked, 30 Rxn Temp",-7.06,"DPAA",FALSE,"30",FALSE,0.170000000000001,0.0500000000000007
-"43","FE 03",-8.28,"Untreated, Unbaked, 30 Rxn Temp",-2.47,"DPAA",FALSE,"30",FALSE,0.69,0.0300000000000011
-"44","FE 04",-10.78,"Untreated, Unbaked, 30 Rxn Temp",-1.71,"DPAA",FALSE,"30",FALSE,0.11,-0.16
-"45","FE 05",-15.95,"Untreated, Unbaked, 30 Rxn Temp",-5.57,"DPAA",FALSE,"30",FALSE,0.71,-0.149999999999999
-"46","FE 06",-13.54,"Untreated, Unbaked, 30 Rxn Temp",-3.75,"DPAA",FALSE,"30",FALSE,0.02,0
-"47","FE 07",-10.96,"Untreated, Unbaked, 30 Rxn Temp",0.71,"DPAA",FALSE,"30",FALSE,0.86,-0.200000000000001
-"48","FE 08",-9.53,"Untreated, Unbaked, 30 Rxn Temp",0.42,"DPAA",FALSE,"30",FALSE,0.77,-0.149999999999999
-"49","TIE",-15.04,"Untreated, Unbaked, 30 Rxn Temp",-6.86,"DPAA",FALSE,"30",FALSE,1.28,-0.149999999999999
-"50","BOO-11",-14.31,"Untreated, Unbaked, 30 Rxn Temp",-6.28,"DPAA",FALSE,"30",FALSE,0.64,0.00999999999999979
-"51","FE 01",-9.31,"Untreated, Baked, 30 Rxn Temp",-1.37,"DPAA",FALSE,"30",TRUE,0,0
-"52","FE 02",-15.15,"Untreated, Baked, 30 Rxn Temp",-7.23,"DPAA",FALSE,"30",TRUE,0,0
-"53","FE 03",-8.31,"Untreated, Baked, 30 Rxn Temp",-3.16,"DPAA",FALSE,"30",TRUE,0,0
-"54","FE 04",-10.62,"Untreated, Baked, 30 Rxn Temp",-1.82,"DPAA",FALSE,"30",TRUE,0,0
-"55","FE 05",-15.8,"Untreated, Baked, 30 Rxn Temp",-6.28,"DPAA",FALSE,"30",TRUE,0,0
-"56","FE 06",-13.54,"Untreated, Baked, 30 Rxn Temp",-3.77,"DPAA",FALSE,"30",TRUE,0,0
-"57","FE 07",-10.76,"Untreated, Baked, 30 Rxn Temp",-0.15,"DPAA",FALSE,"30",TRUE,0,0
-"58","FE 08",-9.38,"Untreated, Baked, 30 Rxn Temp",-0.35,"DPAA",FALSE,"30",TRUE,0,0
-"59","TIE",-14.89,"Untreated, Baked, 30 Rxn Temp",-8.14,"DPAA",FALSE,"30",TRUE,0,0
-"60","BOO-11",-14.32,"Untreated, Baked, 30 Rxn Temp",-6.92,"DPAA",FALSE,"30",TRUE,0,0
-"61","FE 01",-9.59,"Untreated, Unbaked, 50 Rxn Temp",0.02,"DPAA",FALSE,"50",FALSE,1.39,-0.279999999999999
-"62","FE 02",-15.36,"Untreated, Unbaked, 50 Rxn Temp",-5.62,"DPAA",FALSE,"50",FALSE,1.61,-0.209999999999999
-"63","FE 03",-8.49,"Untreated, Unbaked, 50 Rxn Temp",-1.86,"DPAA",FALSE,"50",FALSE,1.3,-0.18
-"64","FE 04",-11.39,"Untreated, Unbaked, 50 Rxn Temp",-1.12,"DPAA",FALSE,"50",FALSE,0.7,-0.770000000000001
-"65","FE 05",-16.63,"Untreated, Unbaked, 50 Rxn Temp",-5.73,"DPAA",FALSE,"50",FALSE,0.55,-0.829999999999998
-"66","FE 06",-13.73,"Untreated, Unbaked, 50 Rxn Temp",-2.85,"DPAA",FALSE,"50",FALSE,0.92,-0.190000000000001
-"67","FE 07",-11.27,"Untreated, Unbaked, 50 Rxn Temp",0.59,"DPAA",FALSE,"50",FALSE,0.74,-0.51
-"68","FE 08",-9.6,"Untreated, Unbaked, 50 Rxn Temp",1.23,"DPAA",FALSE,"50",FALSE,1.58,-0.219999999999999
-"69","TIE",-15.04,"Untreated, Unbaked, 50 Rxn Temp",-6.91,"DPAA",FALSE,"50",FALSE,1.23,-0.149999999999999
-"70","BOO-11",-14.68,"Untreated, Unbaked, 50 Rxn Temp",-4.63,"DPAA",FALSE,"50",FALSE,2.29,-0.359999999999999
-"71","FE 01",-9.12,"Treated, Unbaked, 30 Rxn Temp",0.54,"DPAA",TRUE,"30",FALSE,1.91,0.190000000000001
-"72","FE 02",-15.12,"Treated, Unbaked, 30 Rxn Temp",-5.77,"DPAA",TRUE,"30",FALSE,1.46,0.0300000000000011
-"73","FE 03",-8.31,"Treated, Unbaked, 30 Rxn Temp",-1.06,"DPAA",TRUE,"30",FALSE,2.1,0
-"74","FE 04",-10.5,"Treated, Unbaked, 30 Rxn Temp",0.05,"DPAA",TRUE,"30",FALSE,1.87,0.119999999999999
-"75","FE 05",-15.38,"Treated, Unbaked, 30 Rxn Temp",-4,"DPAA",TRUE,"30",FALSE,2.28,0.42
-"76","FE 06",-13.55,"Treated, Unbaked, 30 Rxn Temp",-1.89,"DPAA",TRUE,"30",FALSE,1.88,-0.0100000000000016
-"77","FE 07",-10.53,"Treated, Unbaked, 30 Rxn Temp",1.6,"DPAA",TRUE,"30",FALSE,1.75,0.23
-"78","FE 08",-9.35,"Treated, Unbaked, 30 Rxn Temp",1.34,"DPAA",TRUE,"30",FALSE,1.69,0.0300000000000011
-"79","TIE",-14.81,"Treated, Unbaked, 30 Rxn Temp",-6.15,"DPAA",TRUE,"30",FALSE,1.99,0.0800000000000001
-"80","BOO-11",-14.16,"Treated, Unbaked, 30 Rxn Temp",-5.89,"DPAA",TRUE,"30",FALSE,1.03,0.16
-"81","FE 01",-9.26,"Treated, Baked, 30 Rxn Temp",-0.48,"DPAA",TRUE,"30",TRUE,0.89,0.0500000000000007
-"82","FE 02",-15.03,"Treated, Baked, 30 Rxn Temp",-5.27,"DPAA",TRUE,"30",TRUE,1.96,0.120000000000001
-"83","FE 03",-8.18,"Treated, Baked, 30 Rxn Temp",-2.36,"DPAA",TRUE,"30",TRUE,0.8,0.130000000000001
-"84","FE 04",-10.47,"Treated, Baked, 30 Rxn Temp",-1.22,"DPAA",TRUE,"30",TRUE,0.6,0.149999999999999
-"85","FE 05",-15.62,"Treated, Baked, 30 Rxn Temp",-4.73,"DPAA",TRUE,"30",TRUE,1.55,0.180000000000001
-"86","FE 06",-13.63,"Treated, Baked, 30 Rxn Temp",-2.68,"DPAA",TRUE,"30",TRUE,1.09,-0.0900000000000016
-"87","FE 07",-10.65,"Treated, Baked, 30 Rxn Temp",0.97,"DPAA",TRUE,"30",TRUE,1.12,0.109999999999999
-"88","FE 08",-9.39,"Treated, Baked, 30 Rxn Temp",-0.22,"DPAA",TRUE,"30",TRUE,0.13,-0.00999999999999979
-"89","TIE",-14.65,"Treated, Baked, 30 Rxn Temp",-6.22,"DPAA",TRUE,"30",TRUE,1.92,0.24
-"90","BOO-11",-14.19,"Treated, Baked, 30 Rxn Temp",-6.67,"DPAA",TRUE,"30",TRUE,0.25,0.130000000000001
-"91","FE 01",-9.52,"Treated, Unbaked, 50 Rxn Temp",1.25,"DPAA",TRUE,"50",FALSE,2.62,-0.209999999999999
-"92","FE 02",-15.5,"Treated, Unbaked, 50 Rxn Temp",-4.2,"DPAA",TRUE,"50",FALSE,3.03,-0.35
-"93","FE 03",-8.35,"Treated, Unbaked, 50 Rxn Temp",-0.58,"DPAA",TRUE,"50",FALSE,2.58,-0.0399999999999991
-"94","FE 04",-10.79,"Treated, Unbaked, 50 Rxn Temp",0.84,"DPAA",TRUE,"50",FALSE,2.66,-0.17
-"95","FE 05",-15.95,"Treated, Unbaked, 50 Rxn Temp",-3.17,"DPAA",TRUE,"50",FALSE,3.11,-0.149999999999999
-"96","FE 06",-13.84,"Treated, Unbaked, 50 Rxn Temp",-1.17,"DPAA",TRUE,"50",FALSE,2.6,-0.300000000000001
-"97","FE 07",-10.79,"Treated, Unbaked, 50 Rxn Temp",2.2,"DPAA",TRUE,"50",FALSE,2.35,-0.0299999999999994
-"98","FE 08",-9.35,"Treated, Unbaked, 50 Rxn Temp",2.2,"DPAA",TRUE,"50",FALSE,2.55,0.0300000000000011
-"99","TIE",-15.3,"Treated, Unbaked, 50 Rxn Temp",-6.9,"DPAA",TRUE,"50",FALSE,1.24,-0.41
-"100","BOO-11",-14.7,"Treated, Unbaked, 50 Rxn Temp",-3.84,"DPAA",TRUE,"50",FALSE,3.08,-0.379999999999999
+"41","BOO-11",-14.55,"untreated_unbaked_50",-8.53,"UU",FALSE,"50",TRUE,-0.229999999999999,-0.130000000000001
+"42","FE01",-9.33,"untreated_unbaked_51",-1.03,"UU",FALSE,NA,TRUE,0,0
+"43","FE02",-15.51,"untreated_unbaked_52",-7.55,"UU",FALSE,NA,TRUE,0,0
+"44","FE03",-8.29,"untreated_unbaked_53",-3.9,"UU",FALSE,NA,TRUE,0,0
+"45","FE04",-10.59,"untreated_unbaked_54",-1.6,"UU",FALSE,NA,TRUE,0,0
+"46","FE05",-15.97,"untreated_unbaked_55",-5.67,"UU",FALSE,NA,TRUE,0,0
+"47","FE06",-13.74,"untreated_unbaked_56",-4.23,"UU",FALSE,NA,TRUE,0,0
+"48","FE07",-10.56,"untreated_unbaked_57",0.54,"UU",FALSE,NA,TRUE,0,0
+"49","FE08",-9.44,"untreated_unbaked_58",-0.82,"UU",FALSE,NA,TRUE,0,0
+"50","TIE",-15.21,"untreated_unbaked_59",-8.27,"UU",FALSE,NA,TRUE,0.280000000000001,-0.0700000000000003
+"51","FE 01",-9.48,"Untreated, Unbaked, 30 Rxn Temp",-0.88,"DPAA",FALSE,"30",FALSE,0.49,-0.17
+"52","FE 02",-15.1,"Untreated, Unbaked, 30 Rxn Temp",-7.06,"DPAA",FALSE,"30",FALSE,0.170000000000001,0.0500000000000007
+"53","FE 03",-8.28,"Untreated, Unbaked, 30 Rxn Temp",-2.47,"DPAA",FALSE,"30",FALSE,0.69,0.0300000000000011
+"54","FE 04",-10.78,"Untreated, Unbaked, 30 Rxn Temp",-1.71,"DPAA",FALSE,"30",FALSE,0.11,-0.16
+"55","FE 05",-15.95,"Untreated, Unbaked, 30 Rxn Temp",-5.57,"DPAA",FALSE,"30",FALSE,0.71,-0.149999999999999
+"56","FE 06",-13.54,"Untreated, Unbaked, 30 Rxn Temp",-3.75,"DPAA",FALSE,"30",FALSE,0.02,0
+"57","FE 07",-10.96,"Untreated, Unbaked, 30 Rxn Temp",0.71,"DPAA",FALSE,"30",FALSE,0.86,-0.200000000000001
+"58","FE 08",-9.53,"Untreated, Unbaked, 30 Rxn Temp",0.42,"DPAA",FALSE,"30",FALSE,0.77,-0.149999999999999
+"59","TIE",-15.04,"Untreated, Unbaked, 30 Rxn Temp",-6.86,"DPAA",FALSE,"30",FALSE,1.28,-0.149999999999999
+"60","BOO-11",-14.31,"Untreated, Unbaked, 30 Rxn Temp",-6.28,"DPAA",FALSE,"30",FALSE,0.64,0.00999999999999979
+"61","FE 01",-9.31,"Untreated, Baked, 30 Rxn Temp",-1.37,"DPAA",FALSE,"30",TRUE,0,0
+"62","FE 02",-15.15,"Untreated, Baked, 30 Rxn Temp",-7.23,"DPAA",FALSE,"30",TRUE,0,0
+"63","FE 03",-8.31,"Untreated, Baked, 30 Rxn Temp",-3.16,"DPAA",FALSE,"30",TRUE,0,0
+"64","FE 04",-10.62,"Untreated, Baked, 30 Rxn Temp",-1.82,"DPAA",FALSE,"30",TRUE,0,0
+"65","FE 05",-15.8,"Untreated, Baked, 30 Rxn Temp",-6.28,"DPAA",FALSE,"30",TRUE,0,0
+"66","FE 06",-13.54,"Untreated, Baked, 30 Rxn Temp",-3.77,"DPAA",FALSE,"30",TRUE,0,0
+"67","FE 07",-10.76,"Untreated, Baked, 30 Rxn Temp",-0.15,"DPAA",FALSE,"30",TRUE,0,0
+"68","FE 08",-9.38,"Untreated, Baked, 30 Rxn Temp",-0.35,"DPAA",FALSE,"30",TRUE,0,0
+"69","TIE",-14.89,"Untreated, Baked, 30 Rxn Temp",-8.14,"DPAA",FALSE,"30",TRUE,0,0
+"70","BOO-11",-14.32,"Untreated, Baked, 30 Rxn Temp",-6.92,"DPAA",FALSE,"30",TRUE,0,0
+"71","FE 01",-9.59,"Untreated, Unbaked, 50 Rxn Temp",0.02,"DPAA",FALSE,"50",FALSE,1.39,-0.279999999999999
+"72","FE 02",-15.36,"Untreated, Unbaked, 50 Rxn Temp",-5.62,"DPAA",FALSE,"50",FALSE,1.61,-0.209999999999999
+"73","FE 03",-8.49,"Untreated, Unbaked, 50 Rxn Temp",-1.86,"DPAA",FALSE,"50",FALSE,1.3,-0.18
+"74","FE 04",-11.39,"Untreated, Unbaked, 50 Rxn Temp",-1.12,"DPAA",FALSE,"50",FALSE,0.7,-0.770000000000001
+"75","FE 05",-16.63,"Untreated, Unbaked, 50 Rxn Temp",-5.73,"DPAA",FALSE,"50",FALSE,0.55,-0.829999999999998
+"76","FE 06",-13.73,"Untreated, Unbaked, 50 Rxn Temp",-2.85,"DPAA",FALSE,"50",FALSE,0.92,-0.190000000000001
+"77","FE 07",-11.27,"Untreated, Unbaked, 50 Rxn Temp",0.59,"DPAA",FALSE,"50",FALSE,0.74,-0.51
+"78","FE 08",-9.6,"Untreated, Unbaked, 50 Rxn Temp",1.23,"DPAA",FALSE,"50",FALSE,1.58,-0.219999999999999
+"79","TIE",-15.04,"Untreated, Unbaked, 50 Rxn Temp",-6.91,"DPAA",FALSE,"50",FALSE,1.23,-0.149999999999999
+"80","BOO-11",-14.68,"Untreated, Unbaked, 50 Rxn Temp",-4.63,"DPAA",FALSE,"50",FALSE,2.29,-0.359999999999999
+"81","FE 01",-9.12,"Treated, Unbaked, 30 Rxn Temp",0.54,"DPAA",TRUE,"30",FALSE,1.91,0.190000000000001
+"82","FE 02",-15.12,"Treated, Unbaked, 30 Rxn Temp",-5.77,"DPAA",TRUE,"30",FALSE,1.46,0.0300000000000011
+"83","FE 03",-8.31,"Treated, Unbaked, 30 Rxn Temp",-1.06,"DPAA",TRUE,"30",FALSE,2.1,0
+"84","FE 04",-10.5,"Treated, Unbaked, 30 Rxn Temp",0.05,"DPAA",TRUE,"30",FALSE,1.87,0.119999999999999
+"85","FE 05",-15.38,"Treated, Unbaked, 30 Rxn Temp",-4,"DPAA",TRUE,"30",FALSE,2.28,0.42
+"86","FE 06",-13.55,"Treated, Unbaked, 30 Rxn Temp",-1.89,"DPAA",TRUE,"30",FALSE,1.88,-0.0100000000000016
+"87","FE 07",-10.53,"Treated, Unbaked, 30 Rxn Temp",1.6,"DPAA",TRUE,"30",FALSE,1.75,0.23
+"88","FE 08",-9.35,"Treated, Unbaked, 30 Rxn Temp",1.34,"DPAA",TRUE,"30",FALSE,1.69,0.0300000000000011
+"89","TIE",-14.81,"Treated, Unbaked, 30 Rxn Temp",-6.15,"DPAA",TRUE,"30",FALSE,1.99,0.0800000000000001
+"90","BOO-11",-14.16,"Treated, Unbaked, 30 Rxn Temp",-5.89,"DPAA",TRUE,"30",FALSE,1.03,0.16
+"91","FE 01",-9.26,"Treated, Baked, 30 Rxn Temp",-0.48,"DPAA",TRUE,"30",TRUE,0.89,0.0500000000000007
+"92","FE 02",-15.03,"Treated, Baked, 30 Rxn Temp",-5.27,"DPAA",TRUE,"30",TRUE,1.96,0.120000000000001
+"93","FE 03",-8.18,"Treated, Baked, 30 Rxn Temp",-2.36,"DPAA",TRUE,"30",TRUE,0.8,0.130000000000001
+"94","FE 04",-10.47,"Treated, Baked, 30 Rxn Temp",-1.22,"DPAA",TRUE,"30",TRUE,0.6,0.149999999999999
+"95","FE 05",-15.62,"Treated, Baked, 30 Rxn Temp",-4.73,"DPAA",TRUE,"30",TRUE,1.55,0.180000000000001
+"96","FE 06",-13.63,"Treated, Baked, 30 Rxn Temp",-2.68,"DPAA",TRUE,"30",TRUE,1.09,-0.0900000000000016
+"97","FE 07",-10.65,"Treated, Baked, 30 Rxn Temp",0.97,"DPAA",TRUE,"30",TRUE,1.12,0.109999999999999
+"98","FE 08",-9.39,"Treated, Baked, 30 Rxn Temp",-0.22,"DPAA",TRUE,"30",TRUE,0.13,-0.00999999999999979
+"99","TIE",-14.65,"Treated, Baked, 30 Rxn Temp",-6.22,"DPAA",TRUE,"30",TRUE,1.92,0.24
+"100","BOO-11",-14.19,"Treated, Baked, 30 Rxn Temp",-6.67,"DPAA",TRUE,"30",TRUE,0.25,0.130000000000001
+"101","FE 01",-9.52,"Treated, Unbaked, 50 Rxn Temp",1.25,"DPAA",TRUE,"50",FALSE,2.62,-0.209999999999999
+"102","FE 02",-15.5,"Treated, Unbaked, 50 Rxn Temp",-4.2,"DPAA",TRUE,"50",FALSE,3.03,-0.35
+"103","FE 03",-8.35,"Treated, Unbaked, 50 Rxn Temp",-0.58,"DPAA",TRUE,"50",FALSE,2.58,-0.0399999999999991
+"104","FE 04",-10.79,"Treated, Unbaked, 50 Rxn Temp",0.84,"DPAA",TRUE,"50",FALSE,2.66,-0.17
+"105","FE 05",-15.95,"Treated, Unbaked, 50 Rxn Temp",-3.17,"DPAA",TRUE,"50",FALSE,3.11,-0.149999999999999
+"106","FE 06",-13.84,"Treated, Unbaked, 50 Rxn Temp",-1.17,"DPAA",TRUE,"50",FALSE,2.6,-0.300000000000001
+"107","FE 07",-10.79,"Treated, Unbaked, 50 Rxn Temp",2.2,"DPAA",TRUE,"50",FALSE,2.35,-0.0299999999999994
+"108","FE 08",-9.35,"Treated, Unbaked, 50 Rxn Temp",2.2,"DPAA",TRUE,"50",FALSE,2.55,0.0300000000000011
+"109","TIE",-15.3,"Treated, Unbaked, 50 Rxn Temp",-6.9,"DPAA",TRUE,"50",FALSE,1.24,-0.41
+"110","BOO-11",-14.7,"Treated, Unbaked, 50 Rxn Temp",-3.84,"DPAA",TRUE,"50",FALSE,3.08,-0.379999999999999
