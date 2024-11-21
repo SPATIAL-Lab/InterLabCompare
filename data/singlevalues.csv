@@ -9,16 +9,16 @@
 "8","FE 08","untreated_unbaked_50",-9.52,0.08,"8","UU",FALSE,"50",FALSE
 "9","TIE","untreated_unbaked_50",-15.05,-8.05,"8","UU",FALSE,"50",FALSE
 "10","BOO-11","untreated_unbaked_50",-14.46,-7.05,"8","UU",FALSE,"50",FALSE
-"11","FE 01","untreated_baked_30",-9.4,-1.59,"8","UU",FALSE,"30",TRUE
-"12","FE 02","untreated_baked_30",-15.52,-7.84,"8","UU",FALSE,"30",TRUE
-"13","FE 03","untreated_baked_30",-8.39,-4.08,"8","UU",FALSE,"30",TRUE
-"14","FE 04","untreated_baked_30",-10.71,-1.8,"8","UU",FALSE,"30",TRUE
-"15","FE 05","untreated_baked_30",-15.79,-6.11,"8","UU",FALSE,"30",TRUE
-"16","FE 06","untreated_baked_30",-13.73,-4.44,"8","UU",FALSE,"30",TRUE
-"17","FE 07","untreated_baked_30",-10.78,0.04,"8","UU",FALSE,"30",TRUE
-"18","FE 08","untreated_baked_30",-9.49,-0.79,"8","UU",FALSE,"30",TRUE
-"19","TIE","untreated_baked_30",-15.14,-8.55,"8","UU",FALSE,"30",TRUE
-"20","BOO-11","untreated_baked_30",-14.42,-8.3,"8","UU",FALSE,"30",TRUE
+"11","FE 01","untreated_baked_30",-9.4,-1.59,"24","UU",FALSE,"30",TRUE
+"12","FE 02","untreated_baked_30",-15.52,-7.84,"24","UU",FALSE,"30",TRUE
+"13","FE 03","untreated_baked_30",-8.39,-4.08,"24","UU",FALSE,"30",TRUE
+"14","FE 04","untreated_baked_30",-10.71,-1.8,"24","UU",FALSE,"30",TRUE
+"15","FE 05","untreated_baked_30",-15.79,-6.11,"24","UU",FALSE,"30",TRUE
+"16","FE 06","untreated_baked_30",-13.73,-4.44,"24","UU",FALSE,"30",TRUE
+"17","FE 07","untreated_baked_30",-10.78,0.04,"24","UU",FALSE,"30",TRUE
+"18","FE 08","untreated_baked_30",-9.49,-0.79,"24","UU",FALSE,"30",TRUE
+"19","TIE","untreated_baked_30",-15.14,-8.55,"24","UU",FALSE,"30",TRUE
+"20","BOO-11","untreated_baked_30",-14.42,-8.3,"24","UU",FALSE,"30",TRUE
 "21","FE 01","untreated_unbaked_30",-9.48,-0.88,"24","DPAA",FALSE,"30",FALSE
 "22","FE 02","untreated_unbaked_30",-15.1,-7.06,"24","DPAA",FALSE,"30",FALSE
 "23","FE 03","untreated_unbaked_30",-8.28,-2.47,"24","DPAA",FALSE,"30",FALSE
@@ -59,16 +59,16 @@
 "58","FE 08","treated_unbaked_50",-9.76,-0.31,"8","UU",TRUE,"50",FALSE
 "59","TIE","treated_unbaked_50",-15.2,-7.76,"8","UU",TRUE,"50",FALSE
 "60","BOO-11","treated_unbaked_50",-15.16,-7.42,"8","UU",TRUE,"50",FALSE
-"61","FE 01","treated_baked_30",-9.73,-0.99,"8","UU",TRUE,"30",TRUE
-"62","FE 02","treated_baked_30",-16.03,-7.42,"8","UU",TRUE,"30",TRUE
-"63","FE 03","treated_baked_30",-8.89,-3.19,"8","UU",TRUE,"30",TRUE
-"64","FE 04","treated_baked_30",-10.99,-1.04,"8","UU",TRUE,"30",TRUE
-"65","FE 05","treated_baked_30",-16.23,-5.32,"8","UU",TRUE,"30",TRUE
-"66","FE 06","treated_baked_30",-14.38,-3.83,"8","UU",TRUE,"30",TRUE
-"67","FE 07","treated_baked_30",-11.09,0.83,"8","UU",TRUE,"30",TRUE
-"68","FE 08","treated_baked_30",-9.91,-0.4,"8","UU",TRUE,"30",TRUE
-"69","TIE","treated_baked_30",-15.31,-8.27,"8","UU",TRUE,"30",TRUE
-"70","BOO-11","treated_baked_30",-15.05,-8.06,"8","UU",TRUE,"30",TRUE
+"61","FE 01","treated_baked_30",-9.73,-0.99,"24","UU",TRUE,"30",TRUE
+"62","FE 02","treated_baked_30",-16.03,-7.42,"24","UU",TRUE,"30",TRUE
+"63","FE 03","treated_baked_30",-8.89,-3.19,"24","UU",TRUE,"30",TRUE
+"64","FE 04","treated_baked_30",-10.99,-1.04,"24","UU",TRUE,"30",TRUE
+"65","FE 05","treated_baked_30",-16.23,-5.32,"24","UU",TRUE,"30",TRUE
+"66","FE 06","treated_baked_30",-14.38,-3.83,"24","UU",TRUE,"30",TRUE
+"67","FE 07","treated_baked_30",-11.09,0.83,"24","UU",TRUE,"30",TRUE
+"68","FE 08","treated_baked_30",-9.91,-0.4,"24","UU",TRUE,"30",TRUE
+"69","TIE","treated_baked_30",-15.31,-8.27,"24","UU",TRUE,"30",TRUE
+"70","BOO-11","treated_baked_30",-15.05,-8.06,"24","UU",TRUE,"30",TRUE
 "71","FE 01","treated_unbaked_30",-9.12,0.54,"24","DPAA",TRUE,"30",FALSE
 "72","FE 02","treated_unbaked_30",-15.12,-5.77,"24","DPAA",TRUE,"30",FALSE
 "73","FE 03","treated_unbaked_30",-8.31,-1.06,"24","DPAA",TRUE,"30",FALSE
@@ -100,14 +100,14 @@
 "99","TIE","treated_unbaked_50",-15.3,-6.9,"24","DPAA",TRUE,"50",FALSE
 "100","BOO-11","treated_unbaked_50",-14.7,-3.84,"24","DPAA",TRUE,"50",FALSE
 "101","BOO-11","untreated_unbaked_30",-14.55,-8.53,"24","UU",FALSE,"30",FALSE
-"102","FE01","untreated_unbaked_30",-9.33,-1.03,"24","UU",FALSE,"30",FALSE
-"103","FE02","untreated_unbaked_30",-15.51,-7.55,"24","UU",FALSE,"30",FALSE
-"104","FE03","untreated_unbaked_30",-8.29,-3.9,"24","UU",FALSE,"30",FALSE
-"105","FE04","untreated_unbaked_30",-10.59,-1.6,"24","UU",FALSE,"30",FALSE
-"106","FE05","untreated_unbaked_30",-15.97,-5.67,"24","UU",FALSE,"30",FALSE
-"107","FE06","untreated_unbaked_30",-13.74,-4.23,"24","UU",FALSE,"30",FALSE
-"108","FE07","untreated_unbaked_30",-10.56,0.54,"24","UU",FALSE,"30",FALSE
-"109","FE08","untreated_unbaked_30",-9.44,-0.82,"24","UU",FALSE,"30",FALSE
+"102","FE 01","untreated_unbaked_30",-9.33,-1.03,"24","UU",FALSE,"30",FALSE
+"103","FE 02","untreated_unbaked_30",-15.51,-7.55,"24","UU",FALSE,"30",FALSE
+"104","FE 03","untreated_unbaked_30",-8.29,-3.9,"24","UU",FALSE,"30",FALSE
+"105","FE 04","untreated_unbaked_30",-10.59,-1.6,"24","UU",FALSE,"30",FALSE
+"106","FE 05","untreated_unbaked_30",-15.97,-5.67,"24","UU",FALSE,"30",FALSE
+"107","FE 06","untreated_unbaked_30",-13.74,-4.23,"24","UU",FALSE,"30",FALSE
+"108","FE 07","untreated_unbaked_30",-10.56,0.54,"24","UU",FALSE,"30",FALSE
+"109","FE 08","untreated_unbaked_30",-9.44,-0.82,"24","UU",FALSE,"30",FALSE
 "110","TIE","untreated_unbaked_30",-15.21,-8.27,"24","UU",FALSE,"30",FALSE
 "111","FE 01","untreated_unbaked_50",-9.31,-0.52,"8","DPAA",FALSE,"50",FALSE
 "112","FE 02","untreated_unbaked_50",-15.03,-6.16,"8","DPAA",FALSE,"50",FALSE

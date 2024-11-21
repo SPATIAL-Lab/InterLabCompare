@@ -72,11 +72,11 @@ uu <- df %>%
          d18Ouu = d18O) %>% 
   select(sample, d13Cuu, d18Ouu, treatment) %>% 
   mutate(treatment = recode(treatment, 
-                            'treated_30' = 'Treated, Unbaked, 30 Rxn Temp',
-                            'treated_50' = 'Treated, Unbaked, 50 Rxn Temp', 
+                            'treated_unbaked_30' = 'Treated, Unbaked, 30 Rxn Temp',
+                            'treated_unbaked_50' = 'Treated, Unbaked, 50 Rxn Temp', 
                             'treated_baked_30' = 'Treated, Baked, 30 Rxn Temp', 
-                            'untreated_30' = 'Untreated, Unbaked, 30 Rxn Temp', 
-                            'untreated_50' = 'Untreated, Unbaked, 50 Rxn Temp', 
+                            'untreated_unbaked_30' = 'Untreated, Unbaked, 30 Rxn Temp', 
+                            'untreated_unbaked_50' = 'Untreated, Unbaked, 50 Rxn Temp', 
                             'untreated_baked_30' = 'Untreated, Baked, 30 Rxn Temp'
   ))
 
@@ -86,11 +86,11 @@ dpaa <- df %>%
          d18Odpaa = d18O) %>% 
   select(-c(lab)) %>% 
   mutate(treatment = recode(treatment,
-                            'treated_30' = 'Treated, Unbaked, 30 Rxn Temp',
-                            'treated_50' = 'Treated, Unbaked, 50 Rxn Temp', 
+                            'treated_unbaked_30' = 'Treated, Unbaked, 30 Rxn Temp',
+                            'treated_unbaked_50' = 'Treated, Unbaked, 50 Rxn Temp', 
                             'treated_baked_30' = 'Treated, Baked, 30 Rxn Temp', 
-                            'untreated_30' = 'Untreated, Unbaked, 30 Rxn Temp', 
-                            'untreated_50' = 'Untreated, Unbaked, 50 Rxn Temp', 
+                            'untreated__unbaked_30' = 'Untreated, Unbaked, 30 Rxn Temp', 
+                            'untreated__unbaked_50' = 'Untreated, Unbaked, 50 Rxn Temp', 
                             'untreated_baked_30' = 'Untreated, Baked, 30 Rxn Temp'
   ))
 
@@ -109,26 +109,26 @@ untreated_baked_30 <- untreated_baked_30 %>%
          d18Ocompare = d18O) %>% 
   select(sample, d13Ccompare, d18Ocompare, treatment, lab)
 
-treated_30 <- treated_30 %>% 
+treated_unbaked_30 <- treated_unbaked_30 %>% 
   select(sample, treatment, d13C, d18O, lab)
-treated_50 <- treated_50 %>% 
+treated_unbaked_50 <- treated_unbaked_50 %>% 
   select(sample, treatment, d13C, d18O, lab)
 treated_baked_30 <- treated_baked_30 %>% 
   select(sample, treatment, d13C, d18O, lab)
-untreated_30 <- untreated_30 %>% 
+untreated_unbaked_30 <- untreated_unbaked_30 %>% 
   select(sample, treatment, d13C, d18O, lab)
-untreated_50 <- untreated_50 %>% 
+untreated_unbaked_50 <- untreated_unbaked_50 %>% 
   select(sample, treatment, d13C, d18O, lab)
 
-il2 <- rbind(treated_30, treated_50, treated_baked_30, untreated_30, untreated_50)
+il2 <- rbind(treated_unbaked_30, treated_unbaked_50, treated_baked_30, untreated_unbaked_30, untreated_unbaked_50)
 il2_bound <- full_join(untreated_baked_30, il2, join_by(sample, lab)) %>% 
   select(-c(treatment.x)) %>% 
   rename(treatment = treatment.y) %>% 
   mutate(treatment = recode(treatment, 
-                            'treated_30' = 'Treated, Unbaked, 30 Rxn Temp', 
-                            'treated_50' = 'Treated, Unbaked, 50 Rxn Temp', 
+                            'treated_unbaked_30' = 'Treated, Unbaked, 30 Rxn Temp', 
+                            'treated_unbaked_50' = 'Treated, Unbaked, 50 Rxn Temp', 
                             'treated_baked_30' = 'Treated, Baked, 30 Rxn Temp',
-                            'untreated_30' = 'Untreated, Unbaked, 30 Rxn Temp',
-                            'untreated_50' = 'Untreated, Unbaked, 50 Rxn Temp'
+                            'untreated_unbaked_30' = 'Untreated, Unbaked, 30 Rxn Temp',
+                            'untreated_unbaked_50' = 'Untreated, Unbaked, 50 Rxn Temp'
   ))
 write.csv(il2_bound, file = 'data/intralab2.csv')
