@@ -2,15 +2,16 @@
 library(dplyr); library(tidyr);
 library(stringr); library(ggplot2); library(readxl)
 
-long <- read_excel("data/rawInterlabData.xlsx")
+long <- read_excel("data/baseInterlabData.xlsx")
 
 df <- long %>% 
   mutate(lab = ifelse(str_detect(treatment, 'utah'), 'UU', 'DPAA'), 
          treated = ifelse(str_detect(treatment, 'untreated'), F, T),
          temp = case_when(str_detect(treatment, '30') ~ '30', 
                           str_detect(treatment, '50') ~ '50'), 
-         baked = ifelse(str_detect(treatment, 'baked'), T, F), #assuming it's 30 for now
-         treatment = substring(treatment, 6)
+         baked = ifelse(str_detect(treatment, 'unbaked'), F, T), #assuming it's 30 for now
+         treatment = substring(treatment, 6), 
+         rxn_time = as.character(rxn_time)
   ) 
 df$d13C <- round(df$d13C, 2)
 df$d18O <- round(df$d18O, 2)

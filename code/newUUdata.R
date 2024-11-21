@@ -1,4 +1,4 @@
-library(dplyr); libray(tidyr); library(readr)
+library(dplyr); library(tidyr); library(readr)
 
 df <- read_csv("data/UU_0424.csv") %>% 
   select(-c(batch_id))
