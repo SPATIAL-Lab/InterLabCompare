@@ -1,4 +1,5 @@
 # Initial cleaning of data. Doesn't need to be run now as the needed data are in the data folder. 
+# Creates the csvs called singlevalues, interlab, intralab, and intralab2
 library(dplyr); library(tidyr);
 library(stringr); library(ggplot2); library(readxl)
 
@@ -56,11 +57,11 @@ for(i in sid){
 
 il <- rbind(uu, dpaa) %>% 
   mutate(treatment = recode(treatment, 
-                            'treated_30' = 'Treated, Unbaked, 30 Rxn Temp',
-                            'treated_50' = 'Treated, Unbaked, 50 Rxn Temp', 
+                            'treated_unbaked_30' = 'Treated, Unbaked, 30 Rxn Temp',
+                            'treated_unbaked_50' = 'Treated, Unbaked, 50 Rxn Temp', 
                             'treated_baked_30' = 'Treated, Baked, 30 Rxn Temp', 
-                            'untreated_30' = 'Untreated, Unbaked, 30 Rxn Temp', 
-                            'untreated_50' = 'Untreated, Unbaked, 50 Rxn Temp', 
+                            'untreated_unbaked_30' = 'Untreated, Unbaked, 30 Rxn Temp', 
+                            'untreated_unbaked_50' = 'Untreated, Unbaked, 50 Rxn Temp', 
                             'untreated_baked_30' = 'Untreated, Baked, 30 Rxn Temp'
          )) 
 write.csv(il, file = "data/intralab.csv")
