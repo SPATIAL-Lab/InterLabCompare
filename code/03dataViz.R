@@ -9,6 +9,7 @@ intralab1 <- read.csv('data/intralab.csv') %>%
   filter(treatment != 'Untreated, Baked, 30 Rxn Temp')
 interlab1 <- read.csv('data/interlab.csv')
 intralab2 <- read.csv('data/intralab2.csv')
+intralab3 <- read.csv('data/intralab3.csv')
 cols <- c("DPAA" = "#97c2f7",  "UU" = "#2a3f70")
 cols2 <- c("O" = "#8f3858", "C" = "#6670d9")
 cols3 <- c("Treated, Baked, 30 Rxn Temp" = "#ADE3C0FF", 
@@ -31,6 +32,8 @@ shps2 <- c("Treated, Baked, 30 Rxn Temp" = 21,
            "Treated, Unbaked, 30 Rxn Temp" = 23,
            "Untreated, Unbaked, 50 Rxn Temp" = 24, 
            "Untreated, Unbaked, 30 Rxn Temp" = 25)
+shps3 <- c("DPAA" = 15, 
+           "UU" = 16)
 cols5 <- c("Treated, Baked, 30 Rxn Temp" = "#8f3858", 
           "Treated, Unbaked, 50 Rxn Temp" = "#6670d9",
           "Treated, Unbaked, 30 Rxn Temp" = "#8f3858",
@@ -47,7 +50,7 @@ cols6 <- c("Treated, Baked, 30 Rxn Temp" = "#6670d9",
 
 ggplot() + 
   geom_hline(yintercept = 0, color = 'grey20', linetype = 2) +
-  geom_boxplot(data = subset(delta, type == 'Treated, Unbaked, Own Rxn Temp' | type == 'Untreated, Baked, 30 Rxn Temp'), 
+  geom_boxplot(data = subset(delta, type == 'Treated, Unbaked, Own Rxn Temp' | type == 'Untreated, Unbaked, Own Rxn Temp'), 
                aes(x = type, y = value, fill = iso)) + 
   theme_classic() +
   scale_fill_manual(values = cols2, 
@@ -58,10 +61,52 @@ ggplot() +
         axis.text.y = element_text(size = 12),
         axis.title = element_text(size = 14), ) + 
   labs(x = "Treatment", 
-       y = expression(paste(Delta, "isotope value", " (\u2030)"))) + 
+       y = expression(paste(Delta, " isotope value ", " (\u2030)"))) + 
   scale_x_discrete(labels = function(treatment) str_wrap(treatment, width = 10))
 ggsave("figures/Figure1.png", units = c("in"), width = 7, height = 4)
 
+
+# Figure 2 Intralab un/treated --------------------------------------------
+
+interscatterC <- ggplot() + 
+  geom_point(data = intralab3, aes(x = d13Ctreated, y = d13C, color = lab,
+                                  shape = lab), size = 3) + 
+  geom_abline(slope = 1, intercept = 0) +
+  scale_color_manual(values = cols, 
+                    name = 'Lab') + 
+  scale_shape_manual(values = shps3, 
+                     name = "Lab") + 
+  theme_classic() +
+  theme(axis.text.x = element_text(size = 12),
+        axis.text.y = element_text(size = 12),
+        axis.title = element_text(size = 14), 
+        legend.text = element_text(size = 12)) + 
+  labs(x = expression(paste(delta^13, 'C', " (\u2030), Treated")), 
+       y = expression(paste(delta^13, 'C', " (\u2030), Untreated"))) + 
+  scale_x_continuous(breaks = c(-17, -15, -13, -11, -9)) + 
+  scale_y_continuous(breaks = c(-17, -15, -13, -11, -9)) 
+
+
+interscatterO <- ggplot() + 
+  geom_point(data = intralab3, aes(x = d18Otreated, y = d18O, color = lab,
+                                  shape = lab), size = 3) +
+  scale_color_manual(values = cols, 
+                    name = 'Lab') + 
+  scale_shape_manual(values = shps3,
+                     name = "Lab") + 
+  geom_abline(slope=1, intercept = 0) +
+  theme_classic() +
+  theme(axis.text.x = element_text(size = 12),
+        axis.text.y = element_text(size = 12),
+        axis.title = element_text(size = 14), 
+        legend.text = element_text(size = 12)) + 
+  labs(x = expression(paste(delta^18, 'O', " (\u2030), Treated")), 
+       y = expression(paste(delta^18, 'O', " (\u2030), Untreated"))) + 
+  guides(fill = guide_legend(nrow = 2)) + 
+  xlim(-9, 3) + 
+  ylim(-9, 3)
+ggarrange(interscatterO, interscatterC, nrow = 1, ncol = 2, common.legend = T, legend="bottom")
+ggsave("figures/Figure1.png", units = c("in"), width = 7, height = 4)
 
 # Figure 2/ interlab boxplots2 ----------------------------------------------------------------
 

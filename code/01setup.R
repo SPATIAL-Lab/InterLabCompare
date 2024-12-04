@@ -133,3 +133,42 @@ il2_bound <- full_join(untreated_baked_30, il2, join_by(sample, lab)) %>%
                             'untreated_unbaked_50' = 'Untreated, Unbaked, 50 Rxn Temp'
   ))
 write.csv(il2_bound, file = 'data/intralab2.csv')
+
+
+# Comparing Un/Treated with own rxn temp, unbaked -------------------------
+# so we want untreated_unbaked_50 for UU, untreated_unbaked_30 for DPAA
+# and then treated_unbaked_50 for UU, treated_unbaked_30 for DPAA
+
+uu <- df %>% 
+  filter(treatment == 'untreated_unbaked_50' | treatment == 'treated_unbaked_50') %>% 
+  filter(lab == 'UU') %>% 
+  mutate(treatment = recode(treatment, 
+                             'untreated_unbaked_50' = 'Untreated', 
+                             'treated_unbaked_50' = 'Treated')
+  )
+
+dpaa <- df %>% 
+  filter(treatment == 'untreated_unbaked_30' | treatment == 'treated_unbaked_30') %>% 
+  filter(lab == 'DPAA') %>% 
+  mutate(treatment = recode(treatment, 
+                            'untreated_unbaked_30' = 'Untreated', 
+                            'treated_unbaked_30' = 'Treated')
+  )
+
+il <- rbind(uu, dpaa) 
+
+list_df <- split(il, il$treatment) #split the dataset into a list of datasets 
+list2env(list_df, envir= .GlobalEnv)
+
+Treated <- Treated %>% 
+  rename(d13Ctreated = d13C, 
+         d18Otreated = d18O) %>% 
+  select(sample, d13Ctreated, d18Otreated, treatment, lab)
+
+Untreated <- Untreated %>% 
+  select(sample, d13C, d18O, treatment, lab)
+
+il_bound <- full_join(Treated, Untreated, join_by(sample, lab)) %>% 
+  select(-c(treatment.x)) %>% 
+  rename(treatment = treatment.y) 
+write.csv(il_bound, file = 'data/intralab3.csv')

@@ -10,6 +10,26 @@ interlab1 <- read.csv('data/interlab.csv')
 intralab2 <- read.csv('data/intralab2.csv')
 sv <- read.csv("data/singlevalues.csv")
 
+
+# Results in Paper --------------------------------------------------------
+
+# first, compare samples run via usual SOP to when we follow SOP, except for not treating
+
+t.test(subset(delta, type == 'Treated, Unbaked, Own Rxn Temp' & iso == 'C')$value)
+round(cohensD(subset(delta, type == 'Treated, Unbaked, Own Rxn Temp' & iso == 'C')$value), 1)
+
+t.test(subset(delta, type == 'Treated, Unbaked, Own Rxn Temp' & iso == 'O')$value)
+round(cohensD(subset(delta, type == 'Treated, Unbaked, Own Rxn Temp' & iso == 'O')$value), 1)
+
+t.test(subset(delta, type == 'Untreated, Unbaked, Own Rxn Temp' & iso == 'C')$value)
+cohensD(subset(delta, type == 'Untreated, Unbaked, Own Rxn Temp' & iso == 'C')$value)
+
+t.test(subset(delta, type == 'Untreated, Unbaked, Own Rxn Temp' & iso == 'O')$value)
+cohensD(subset(delta, type == 'Untreated, Unbaked, Own Rxn Temp' & iso == 'O')$value)
+
+
+
+
 # Single Value Data -------------------------------------------------------
 #how do the samples look, regardless of treatment? 
 summSingle <- sv %>% 
