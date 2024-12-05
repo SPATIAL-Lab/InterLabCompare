@@ -16,9 +16,12 @@ df <- long %>%
   ) 
 df$d13C <- round(df$d13C, 2)
 df$d18O <- round(df$d18O, 2)
+
+# let's drop DPAA's untreated, unbaked, 50 for 24 hours group
+df <- subset(df, treatment != 'untreated_unbaked_50' | rxn_time != 24)
 write.csv(df, file = "data/singlevalues.csv")
 
-# Intra-lab comparison, treated-untreated--------------------------------------
+# Intra-lab comparison, Untreated, Bakesd, 30 -----------------------------------
 uu <- df %>% 
   filter(lab == 'UU')
 
@@ -170,5 +173,7 @@ Untreated <- Untreated %>%
 
 il_bound <- full_join(Treated, Untreated, join_by(sample, lab)) %>% 
   select(-c(treatment.x)) %>% 
-  rename(treatment = treatment.y) 
+  rename(treatment = treatment.y) %>% 
+  mutate(diffC = d13Ctreated - d13C, 
+         diffO = d18Otreated - d18O)
 write.csv(il_bound, file = 'data/intralab3.csv')

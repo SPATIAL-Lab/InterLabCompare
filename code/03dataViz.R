@@ -62,9 +62,8 @@ ggplot() +
         axis.title = element_text(size = 14), ) + 
   labs(x = "Treatment", 
        y = expression(paste(Delta, " isotope value ", " (\u2030)"))) + 
-  scale_x_discrete(labels = function(treatment) str_wrap(treatment, width = 10))
+  scale_x_discrete(labels = function(treatment) str_wrap(treatment, width = 20))
 ggsave("figures/Figure1.png", units = c("in"), width = 7, height = 4)
-
 
 # Figure 2 Intralab un/treated --------------------------------------------
 
@@ -106,7 +105,48 @@ interscatterO <- ggplot() +
   xlim(-9, 3) + 
   ylim(-9, 3)
 ggarrange(interscatterO, interscatterC, nrow = 1, ncol = 2, common.legend = T, legend="bottom")
-ggsave("figures/Figure1.png", units = c("in"), width = 7, height = 4)
+ggsave("figures/Figure2.png", units = c("in"), width = 7, height = 4)
+
+
+# Figure 3 Interlab temperature -------------------------------------------
+
+ggplot() + 
+  geom_hline(yintercept = 0, color = 'grey20', linetype = 2) +
+  geom_boxplot(data = subset(delta, type == 'Untreated, Unbaked, 50 Rxn Temp' | type == 'Untreated, Unbaked, 30 Rxn Temp'), 
+               aes(x = type, y = value, fill = iso)) + 
+  theme_classic() +
+  scale_fill_manual(values = cols2, 
+                    name = "Isotope", 
+                    labels = c(expression(paste(delta^13, 'C')), 
+                               expression(paste(delta^18, 'O')))) + 
+  theme(axis.text.x = element_text(size = 12),
+        axis.text.y = element_text(size = 12),
+        axis.title = element_text(size = 14), ) + 
+  labs(x = "Treatment", 
+       y = expression(paste(Delta, " isotope value ", " (\u2030)"))) + 
+  scale_x_discrete(labels = function(treatment) str_wrap(treatment, width = 20))
+ggsave("figures/Figure3.png", units = c("in"), width = 7, height = 4)
+
+
+# Figure 4 Interlab baking ------------------------------------------------
+
+ggplot() + 
+  geom_hline(yintercept = 0, color = 'grey20', linetype = 2) +
+  geom_boxplot(data = subset(delta, type == 'Untreated, Unbaked, 30 Rxn Temp' | type == 'Untreated, Baked, 30 Rxn Temp'), 
+               aes(x = type, y = value, fill = iso)) + 
+  theme_classic() +
+  scale_fill_manual(values = cols2, 
+                    name = "Isotope", 
+                    labels = c(expression(paste(delta^13, 'C')), 
+                               expression(paste(delta^18, 'O')))) + 
+  theme(axis.text.x = element_text(size = 12),
+        axis.text.y = element_text(size = 12),
+        axis.title = element_text(size = 14), ) + 
+  labs(x = "Treatment", 
+       y = expression(paste(Delta, " isotope value ", " (\u2030)"))) + 
+  scale_x_discrete(labels = function(treatment) str_wrap(treatment, width = 20))
+ggsave("figures/Figure4.png", units = c("in"), width = 7, height = 4)
+
 
 # Figure 2/ interlab boxplots2 ----------------------------------------------------------------
 
@@ -228,51 +268,7 @@ O4 <- ggplot() +
 ggarrange(O1, O2, O3, O4, nrow = 2, ncol = 2, labels = "AUTO")
 ggsave("figures/interscatterOArranged.png", units = c("in"), width = 7, height = 5)
 
-
-# Intralab boxplots ----------------------------------------------------
-
-intralabO <- ggplot() + 
-  geom_hline(yintercept = 0, color = 'grey20', linetype = 2) +
-  geom_boxplot(data = subset(intralab1, treatment != "Treated, Unbaked, 30 Rxn Temp" & treatment != "Untreated, Unbaked, 30 Rxn Temp"), 
-               aes(x = treatment, y = dO.off, fill = lab)) + 
-  theme_classic() +
-  scale_fill_manual(values = cols, 
-                    name = "Lab" 
-  ) + 
-  theme( 
-        axis.text.x = element_text(size = 12),
-        axis.text.y = element_text(size = 12),
-        axis.title = element_text(size = 14), ) + 
-  scale_x_discrete(labels = function(treatment) str_wrap(treatment, width = 10)) +
-  labs(x = "Treatment", 
-       y = expression(paste(Delta^18, 'O', " (\u2030)")))
-#ggsave("figures/intralabO.png", units = c("in"), width = 7, height = 4)
-
-intralabC <- ggplot() + 
-  geom_hline(yintercept = 0, color = 'grey20', linetype = 2) +
-  geom_boxplot(data = subset(intralab1, treatment != "Treated, Unbaked, 30 Rxn Temp" & treatment != "Untreated, Unbaked, 30 Rxn Temp"), 
-               aes(x = treatment, y = dC.off, fill = lab)) + 
-  theme_classic() +
-  scale_fill_manual(values = cols, 
-                    name = "Lab" 
-  ) + 
-  theme(
-        axis.text.x = element_text(size = 12),
-        axis.text.y = element_text(size = 12),
-        axis.title = element_text(size = 14)) + 
-  scale_x_discrete(labels = function(treatment) str_wrap(treatment, width = 10)) +
-  labs(x = "Treatment", 
-       y = expression(paste(Delta^13, 'C', " (\u2030)")))
-#ggsave("figures/intralabC.png", units = c("in"), width = 7, height = 4)
-
-ggarrange(intralabO, intralabC, nrow = 1, common.legend = T, legend = 'bottom')
-ggsave("figures/intralab.png", units = c("in"), width = 8, height = 4)
-
-# What if we want 1:1 plots? Well, time to go wide
-
 # Intralab 1:1 plots ------------------------------------------------------
-
-
 
 #okay but what if we did all the DPAA options, and then all the SIRFER options available? 
 
@@ -338,11 +334,11 @@ ggarrange(intraO_DPAA, intraO_UU, nrow = 1, ncol = 2, common.legend = T, legend 
 ggsave("figures/intraO11.png", units = c("mm"), width = 200, height = 120)
 
 intraC_DPAA <- ggplot() + 
-  geom_smooth(method = lm, se = F,
-              data = subset(intralab2, lab == 'DPAA'),
-              aes(y = d13C,
-                  x = d13Ccompare,
-                  color = treatment), show.legend = F) +
+  # geom_smooth(method = lm, se = F,
+  #             data = subset(intralab2, lab == 'DPAA'),
+  #             aes(y = d13C,
+  #                 x = d13Ccompare,
+  #                 color = treatment), show.legend = F) +
   geom_point(data = subset(intralab2, lab == 'DPAA'),
              aes(y = d13C,
                  x = d13Ccompare,
@@ -367,11 +363,11 @@ intraC_DPAA <- ggplot() +
   scale_y_continuous(limits = c(-17, -7))
 
 intraC_UU <- ggplot() +
-  geom_smooth(method = lm, se = F,
-              data = subset(intralab2, lab == 'UU'),
-              aes(y = d13C,
-                  x = d13Ccompare,
-                  color = treatment), show.legend = F) +
+  # geom_smooth(method = lm, se = F,
+  #             data = subset(intralab2, lab == 'UU'),
+  #             aes(y = d13C,
+  #                 x = d13Ccompare,
+  #                 color = treatment), show.legend = F) +
   geom_point(data = subset(intralab2, lab == 'UU'),
              aes(y = d13C,
                  x = d13Ccompare,
@@ -398,83 +394,3 @@ intraC_UU <- ggplot() +
 ggarrange(intraC_DPAA, intraC_UU, nrow = 1, ncol = 2, common.legend = T, legend="bottom")
 ggsave("figures/intraC11.png", units = c("mm"), width = 200, height = 120)
 
-
-# Not needed for now ------------------------------------------------------
- 
-## Interscatter 1:1
-ggplot() + 
-  geom_point(data = interlab1, aes(x = d13Cuu, y = d13Cdpaa, fill = treatment,
-                                   shape = treatment, color = treatment), size = 3) + 
-  geom_abline(slope=1, intercept = 0) +
-  scale_fill_manual(values = cols4, 
-                    name = "Treatment") +
-  scale_shape_manual(values = shps, 
-                     name = "Treatment") + 
-  scale_color_manual(values = cols6, 
-                     name = 'Treatment') + 
-  theme_classic() +
-  theme(legend.position = 'bottom', 
-        axis.text.x = element_text(size = 12),
-        axis.text.y = element_text(size = 12),
-        axis.title = element_text(size = 14), 
-        legend.text = element_text(size = 12)) + 
-  labs(x = expression(paste('SIRFER ', delta^13, 'C', " (\u2030)")), 
-       y = expression(paste('DPAA ', delta^13, 'C', " (\u2030)"))) + 
-  guides(fill = guide_legend(nrow = 2)) + 
-  scale_x_continuous(breaks = c(-17, -15, -13, -11, -9)) + 
-  scale_y_continuous(breaks = c(-17, -15, -13, -11, -9)) 
-ggsave("figures/interscatterC1.png", units = c("in"), width = 7, height = 5)
-
-## Intralab, one by one. 
-ggplot() + 
-  geom_abline(slope = 1, intercept = 0) + 
-  geom_point(data = intralab2, aes(y = d13C, x = d13Ccompare, color = treatment), size = 3) + 
-  theme_classic()
-
-intraO1 <- ggplot() + 
-  geom_point(data = subset(intralab2, treatment == "Treated, Baked, 30 Rxn Temp"), 
-             aes(y = d18O, x = d18Ocompare, shape = lab), size = 3, color = "#60CEACFF") + 
-  geom_abline(slope=1, intercept = 0) +
-  theme_classic() +
-  theme( 
-    legend.position = 'none',
-    axis.text= element_text(size = 10),
-    axis.title = element_text(size = 8), 
-  ) + 
-  labs(y = "", x = "") + 
-  scale_y_continuous(breaks = seq(-9, 1, by = 2)) + 
-  scale_x_continuous(breaks = seq(-9, 1, by = 2), 
-                     labels = function(d18O) str_wrap(d18O, width = 10))
-
-intraO2 <- ggplot() + 
-  geom_point(data = subset(intralab2, treatment == "Treated, Unbaked, 50 Rxn Temp"), 
-             aes(y = d18O, x = d18Ocompare, shape = lab), size = 3, color = "#3497A9FF") + 
-  geom_abline(slope=1, intercept = 0) +
-  theme_classic() +
-  theme( 
-    legend.position = 'none',
-    axis.text= element_text(size = 10),
-    axis.title = element_text(size = 8), 
-  ) + 
-  labs(y = "", x = "") +   
-  scale_y_continuous(breaks = seq(-9, 1, by = 2)) + 
-  scale_x_continuous(breaks = seq(-9, 1, by = 2), 
-                     labels = function(d18O) str_wrap(d18O, width = 10))
-
-intraO3 <- ggplot() + 
-  geom_point(data = subset(intralab2, treatment == "Untreated, Unbaked, 50 Rxn Temp"), 
-             aes(y = d18O, x = d18Ocompare, shape = lab), size = 3, color = "#382A54FF") + 
-  geom_abline(slope=1, intercept = 0) +
-  theme_classic() +
-  theme(
-    legend.position = 'none',
-    axis.text= element_text(size = 10),
-    axis.title = element_text(size = 8), 
-  ) + 
-  labs(y = "", x = "") + 
-  scale_y_continuous(breaks = seq(-9, 1, by = 2)) + 
-  scale_x_continuous(breaks = seq(-9, 1, by = 2), 
-                     labels = function(d18O) str_wrap(d18O, width = 10))
-
-ggarrange(intraO1, intraO2, intraO3, nrow = 2, ncol = 2, labels = "AUTO")
-ggsave("figures/intrascatterOArranged.png", units = c("in"), width = 7, height = 5)
