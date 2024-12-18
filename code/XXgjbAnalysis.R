@@ -255,7 +255,8 @@ t.test(DO.dp_30.ut_30)
 ## increasing d18O values after acetic acid treatment.
 
 # Baking ----
-# What if we add baking to our 'best' standardized treatment? 
+# What if we add baking to the untreated, 30 degree rxn temp method,
+# which performed well for d13C but still had d18O bias?
 
 ## Without treatment, 30 degree rxn temp, baking
 
@@ -290,7 +291,7 @@ t.test(DC.uu_30.ut.b_30.ut)
 t.test(DO)
 t.test(DO.30.ut)
 t.test(DO.30.ut.b)
-### Betwen-lab variability lower than w/o baking, similar to BAU,
+### Between-lab variability lower than w/o baking, similar to BAU,
 ### slightly larger than expectation
 euc_O
 sd(DO)
@@ -311,13 +312,13 @@ t.test(DO.uu_30.ut.b_30.ut)
 ## Variance in d18O differences remains somewhat higher than expected
 ## based on lab-reported external uncertainty.
 
-## Effect of baking negligable for d13C and only apparant for d18O at DPAA,
-## consistent with expetation for removal of adhered water in high-humidity
+## Effect of baking negligible for d13C and only apparent for d18O at DPAA,
+## consistent with expectation for removal of adhered water in high-humidity
 ## environment.
 
 ## Standardizing rxn temp, eliminating treatment, and baking reduces bias 
 ## relative to BAU and other examples tested here. Also performs better than
-## other standardized treatments, and simlar to BAU, wrt the 'noisiness' of 
+## other standardized treatments, and similar to BAU, wrt the 'noisiness' of 
 ## the data (variance of between-lab differences). This is our recommendation.
 
 ## That said, we still see biases in d18O between labs and the comparisons
