@@ -393,4 +393,3 @@ intraC_UU <- ggplot() +
 
 ggarrange(intraC_DPAA, intraC_UU, nrow = 1, ncol = 2, common.legend = T, legend="bottom")
 ggsave("figures/intraC11.png", units = c("mm"), width = 200, height = 120)
-

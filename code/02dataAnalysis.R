@@ -2,6 +2,7 @@
 # run this before anything else, it loads librarys and the data frames 
 library(dplyr); library(tidyr);library(ggplot2); library(stringr); 
 library(ggpubr); library(lsr)
+library(epiR) # for CCC calculations, at the end of this script
 
 delta <- read.csv('data/delta.csv')
 intralab1 <- read.csv('data/intralab.csv') %>% 
@@ -95,3 +96,29 @@ summIntra <- intralab1 %>%
     Crange = max(dC.off) - min(dC.off),
     #Csrd = (sd(dC.off)*100)/mean(dC.off)
   )   
+
+
+# CCC ---------------------------------------------------------------------
+
+# let's see how epiR and CCC works for looking at differences between analyses. 
+# we'll be calculating Lin's (1989, 2000) concordance correlation coefficient for agreement on a continuous measure.
+# notes on interpreting CCC https://real-statistics.com/reliability/interrater-reliability/lins-concordance-correlation-coefficient/
+
+# Business as usual
+BAU_O <- epi.ccc(subset(sv, treatment == "treated_unbaked_30" & lab == "DPAA")$d18O, subset(sv, treatment == "treated_unbaked_50" & lab == "UU")$d18O)
+BAU_C <- epi.ccc(subset(sv, treatment == "treated_unbaked_30" & lab == "DPAA")$d13C, subset(sv, treatment == "treated_unbaked_50" & lab == "UU")$d13C)
+
+#BAU but no chemical pretreatment
+untreat_O <- epi.ccc(subset(sv, treatment == "untreated_unbaked_30" & lab == "DPAA")$d18O, subset(sv, treatment == "untreated_unbaked_50" & lab == "UU")$d18O)
+untreat_C <- epi.ccc(subset(sv, treatment == "untreated_unbaked_30" & lab == "DPAA")$d13C, subset(sv, treatment == "untreated_unbaked_50" & lab == "UU")$d13C)
+
+# Examine acid rxn temp
+temp30_O <- epi.ccc(subset(sv, treatment == "untreated_unbaked_30" & lab == "DPAA")$d18O, subset(sv, treatment == "untreated_unbaked_30" & lab == "UU")$d18O)
+temp30_C <- epi.ccc(subset(sv, treatment == "untreated_unbaked_30" & lab == "DPAA")$d13C, subset(sv, treatment == "untreated_unbaked_30" & lab == "UU")$d13C)
+
+temp50_O <- epi.ccc(subset(sv, treatment == "untreated_unbaked_50" & lab == "DPAA")$d18O, subset(sv, treatment == "untreated_unbaked_50" & lab == "UU")$d18O)
+temp50_C <- epi.ccc(subset(sv, treatment == "untreated_unbaked_50" & lab == "DPAA")$d13C, subset(sv, treatment == "untreated_unbaked_50" & lab == "UU")$d13C)
+
+# Baking!
+baking_O <- epi.ccc(subset(sv, treatment == "untreated_baked_30" & lab == "DPAA")$d18O, subset(sv, treatment == "untreated_baked_30" & lab == "UU")$d18O)
+baking_C <- epi.ccc(subset(sv, treatment == "untreated_baked_30" & lab == "DPAA")$d13C, subset(sv, treatment == "untreated_baked_30" & lab == "UU")$d13C)
