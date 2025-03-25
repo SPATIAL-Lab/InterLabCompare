@@ -65,7 +65,7 @@ ggplot() +
   scale_x_discrete(labels = function(treatment) str_wrap(treatment, width = 20))
 ggsave("figures/Figure1.png", units = c("in"), width = 7, height = 4)
 
-# Figure 2 Intralab un/treated --------------------------------------------
+# Intralab un/treated --------------------------------------------
 
 interscatterC <- ggplot() + 
   geom_point(data = intralab3, aes(x = d13Ctreated, y = d13C, color = lab,
@@ -105,10 +105,10 @@ interscatterO <- ggplot() +
   xlim(-9, 3) + 
   ylim(-9, 3)
 ggarrange(interscatterO, interscatterC, nrow = 1, ncol = 2, common.legend = T, legend="bottom")
-ggsave("figures/Figure2.png", units = c("in"), width = 7, height = 4)
+ggsave("figures/FigureX.png", units = c("in"), width = 7, height = 4)
 
 
-# Figure 3 Interlab temperature -------------------------------------------
+# Figure 2 Interlab temperature -------------------------------------------
 
 ggplot() + 
   geom_hline(yintercept = 0, color = 'grey20', linetype = 2) +
@@ -125,10 +125,10 @@ ggplot() +
   labs(x = "Treatment", 
        y = expression(paste(Delta, " isotope value ", " (\u2030)"))) + 
   scale_x_discrete(labels = function(treatment) str_wrap(treatment, width = 20))
-ggsave("figures/Figure3.png", units = c("in"), width = 7, height = 4)
+ggsave("figures/Figure2.png", units = c("in"), width = 7, height = 4)
 
 
-# Figure 4 Interlab baking ------------------------------------------------
+# Figure 3 Interlab baking ------------------------------------------------
 
 ggplot() + 
   geom_hline(yintercept = 0, color = 'grey20', linetype = 2) +
@@ -145,10 +145,10 @@ ggplot() +
   labs(x = "Treatment", 
        y = expression(paste(Delta, " isotope value ", " (\u2030)"))) + 
   scale_x_discrete(labels = function(treatment) str_wrap(treatment, width = 20))
-ggsave("figures/Figure4.png", units = c("in"), width = 7, height = 4)
+ggsave("figures/Figure3.png", units = c("in"), width = 7, height = 4)
 
 
-# Figure 2/ interlab boxplots2 ----------------------------------------------------------------
+# interlab boxplots2 ----------------------------------------------------------------
 
 delta %>% filter(str_detect(type, "Untreated")) %>% 
   ggplot() + 
@@ -166,7 +166,7 @@ delta %>% filter(str_detect(type, "Untreated")) %>%
   labs(x = "Treatment", 
        y = expression(paste(Delta, "isotope value", " (\u2030)"))) + 
   scale_x_discrete(labels = function(treatment) str_wrap(treatment, width = 10))
-ggsave("figures/Figure2.png", units = c("in"), width = 7, height = 4)
+ggsave("figures/FigureY.png", units = c("in"), width = 7, height = 4)
 
 
 # Interlab scatter plots --------------------------------------------------
@@ -331,7 +331,7 @@ intraO_UU <- ggplot() +
   scale_y_continuous(limits = c(-10, 3))
 
 ggarrange(intraO_DPAA, intraO_UU, nrow = 1, ncol = 2, common.legend = T, legend = 'bottom')
-ggsave("figures/intraO11.png", units = c("mm"), width = 200, height = 120)
+ggsave("figures/Figure5.png", units = c("mm"), width = 200, height = 120)
 
 intraC_DPAA <- ggplot() + 
   # geom_smooth(method = lm, se = F,
@@ -392,4 +392,4 @@ intraC_UU <- ggplot() +
   scale_y_continuous(limits = c(-17, -7))
 
 ggarrange(intraC_DPAA, intraC_UU, nrow = 1, ncol = 2, common.legend = T, legend="bottom")
-ggsave("figures/intraC11.png", units = c("mm"), width = 200, height = 120)
+ggsave("figures/Figure4.png", units = c("mm"), width = 200, height = 120)
